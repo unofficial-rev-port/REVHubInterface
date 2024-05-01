@@ -1,18 +1,18 @@
 # uncompyle6 version 3.9.1
 # Python bytecode version base 2.7 (62211)
-# Decompiled from: Python 2.7.18 (default, Aug 23 2022, 17:18:36) 
-# [GCC 11.2.0]
+# Decompiled from: Python 3.10.12 (main, Nov 20 2023, 15:14:05) [GCC 11.4.0]
 # Embedded file name: REVHubInterface.py
 import REVcomm
 from REV2mSensor import REV2mSensor
 from REVColorSensorV3 import REVColorSensorV3
 from REVcomm import *
 from functools import partial
-import Tkinter, Tkconstants, tkFileDialog, tkMessageBox, os, subprocess, time, platform, logging
+import Tkinter, Tkconstants, tkFileDialog, tkMessageBox, os, subprocess, time, platform, logging    
 try:
     import ft232
-except Exception as e:
-    tkMessageBox.showerror('Drivers Not Detected', '\n\tPlease verify the correct drivers are installed. Windows 10 will automatically\n\tinstall the correct drivers when the Expansion Hub is plugged in. Windows 7 \n\trequires a manual install. Please see this link for the correct driver (FTDI D2xx):\n\thttps://www.ftdichip.com/Drivers/CDM/CDM21228_Setup.zip\n\n\tNote that firmware update will be unavailable.\n\n\tMessage: \n\t' + str(e))
+except Exception as e: 
+    print(platform.system)
+    tkMessageBox.showerror('Drivers Not Detected', '\n\tPlease verify the correct drivers are installed. Windows 10 will automatically\n\tinstall the correct drivers when the Expansion Hub is plugged in. Windows 7 \n\trequires a manual install. Please see this link for the correct driver (FTDI D2xx):\n\thttps://www.ftdichip.com/Drivers/CDM/CDM21228_Setup.zip\n\n\tNote that firmware update will be unavailable.\nAlso, if you are using linux, this is normal (for now)\n\n\tMessage: \n\t' + str(e))
 
 class device_info():
 
@@ -67,10 +67,8 @@ class device_info():
                         return True
                     else:
                         return False
-
                 except ValueError:
                     return False
-
             else:
                 return False
         else:
@@ -80,7 +78,7 @@ class device_info():
 class firmware_tab():
 
     def __init__(self, root, chooseBin, flashNow):
-        self.INTERFACE_VERSION = '1.2.0'
+        self.INTERFACE_VERSION = '1.2.1'
         root.grid_columnconfigure(0, weight=1)
         root.grid_rowconfigure(0, weight=1)
         root.grid(sticky=(N, S, E, W))
@@ -825,7 +823,7 @@ class Application():
         self.Firmware_tab = ttk.Frame(self.Firmware_Update)
         self.IO_tab = ttk.Frame(self.IO)
         self.Main_window.config(height=600)
-        self.Main_window.config(width=800)
+        self.Main_window.config(width=900)
         self.Main_window.grid(column=0)
         self.Main_window.grid(row=0)
         self.Main_window.grid(sticky=(N, S, E, W))
@@ -855,7 +853,7 @@ class Application():
         self.Connected_Label.config(text='Disconnected')
         self.Top_Banner.grid(row=0)
         self.Top_Banner.grid(sticky=W)
-        self.DC_Motor_frame.config(height=200)
+        self.DC_Motor_frame.config(height=250)
         self.DC_Motor_frame.config(width=200)
         self.DC_Motor_frame.grid(column=0)
         self.DC_Motor_frame.grid(row=0)
@@ -1298,7 +1296,7 @@ class Application():
         frame = ttk.Frame(self.Firmware_tab, borderwidth=5, relief='sunken')
         frame.grid(row=0, column=0, sticky=(N, S, E, W))
         self.firmware = firmware_tab(frame, partial(self.firmware_bin_select), partial(self.firmware_flash))
-        self.firmware.warning_block.insert(END, 'Firmware update to be performed to the Expansion Hub connected via USB only. \n\t\t\nFirmware update is to be performed with only REV qualified .bin files located in the default installation directory\n\t\t\n\nWARNING: incorrect firmware can brick the device.\n\nModified firmware files are not FTC legal.')
+        self.firmware.warning_block.insert(END, 'Firmware update to be performed to the Expansion Hub connected via USB only. \n\t\t\nFirmware update is to be performed with only REV qualified .bin files located in the default installation directory\n\t\t\n\nWARNING: incorrect firmware can brick the device.\n\nModified firmware files are not FTC legal.\n')
         self.firmware.warning_block.config(state='disabled')
 
     def on_quit_button_callback(self):
@@ -1357,6 +1355,7 @@ class Application():
         if isValid == False:
             errMsg = 'Attempted to use an invalid firmware file: ' + self.filename + '\r\n' + err + '\r\n\r\nNo action will be done'
             tkMessageBox.showinfo('Invalid Firmware', errMsg)
+            self.firmware.warning_block.config(state='disabled')
             return
         else:
             self.on_quit_button_callback()
@@ -1365,15 +1364,15 @@ class Application():
             if device_list:
                 for FTDI_device in device_list:
                     for element in FTDI_device:
+                        self.firmware.warning_block.config(state='normal')
                         if 'FT230X' in element:
                             print 'element: ', element
                             ftserial = FTDI_device[0]
                             print 'serial: ', ftserial
                         else:
-                            print 'looking for the FT230X'
-
+                            self.firmware.warning_block.insert(END, 'looking for FT230X\n')
             else:
-                print 'no FTDI devices found'
+                self.firmware.warning_block.insert(END, 'no FTDI devices found\n')
                 exit()
             if ftserial is not '':
                 ftdi_handle = ft232.Ft232(ftserial, baudrate=115200)
@@ -1383,25 +1382,27 @@ class Application():
                 ftdi_handle.cbus_write(1)
                 time.sleep(0.1)
                 ftdi_handle.cbus_write(3)
-                print 'board is in program mode, LED should not be flashing'
+                self.firmware.warning_block.insert(END, 'board is in program mode, LED should not be flashing\n')
+                ftdi_handle.close()
             else:
-                print 'did not find FT230X but found other FTDI parts'
-            ftdi_handle.close()
+                self.firmware.warning_block.insert(END, 'did not find FT230X but found other FTDI parts\n')
+                self.on_connect_button_callback()
+                return
             port = ''
             if self.commMod.REVProcessor.port != None:
                 port = self.commMod.REVProcessor.port[3:]
             else:
                 allPorts = self.commMod.listPorts()
                 if len(allPorts) == 0:
-                    errMsg = 'No available com ports, verify connection and try again.'
+                    errMsg = 'No available com ports, verify connection and try again.\n'
                     tkMessageBox.showinfo('Invalid Firmware', errMsg)
-                    print errMsg
+                    self.firmware.warning_block.insert(END, errMsg)
                 else:
                     port = allPorts[0].getNumber()
             if port != '':
                 osExtension = ''
                 if platform.system() == 'Linux':
-                    print 'Linux detected, using no extension for sflash executable'
+                    print 'Linux detected, using no extension for sflash executable\n'
                     osExtension = ''
                 else:
                     osExtension = '.exe'
@@ -1415,21 +1416,24 @@ class Application():
                 self.firmware.warning_block.config(state='disabled')
                 subprocess.call(cmdLine)
             else:
-                errMsg = 'Com port failure, detected Com as: ' + port + '\r\nCheck connection and try again'
+                errMsg = 'Com port failure, detected Com as: ' + port + '\r\nCheck connection and try again\n'
                 tkMessageBox.showinfo('Invalid Firmware', errMsg)
-                print errMsg
+                self.firmware.warning_block.insert(END, errMsg)
+                self.on_connect_button_callback()
+                self.firmware.warning_block.config(state='disabled')
                 return
-            self.firmware.warning_block.config(state='normal')
             self.firmware.warning_block.insert(END, 'Programming Complete, status LED should be blinking,\nyou can now connect to the hub.')
             self.firmware.warning_block.config(state='disabled')
+
             self.root.update_idletasks()
+            self.on_connect_button_callback()
             return
 
 
 if __name__ == '__main__':
     mp.freeze_support()
     xroot = tk.Tk()
-    xroot.title('REV Hub Interface')
+    xroot.title('Crossplatform Hub Interface')
     try:
         xroot.iconbitmap('resource\\\\favicon.ico')
     except:
