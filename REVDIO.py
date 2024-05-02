@@ -1,8 +1,3 @@
-# uncompyle6 version 3.9.1
-# Python bytecode version base 2.7 (62211)
-# Decompiled from: Python 2.7.18 (default, Aug 23 2022, 17:18:36) 
-# [GCC 11.2.0]
-# Embedded file name: REVDIO.py
 import REVcomm as REVComm, REVmessages as REVMsg
 
 def setSingleDIOOutput(commObj, destination, dioPin, value):
@@ -78,5 +73,3 @@ class DIOPin:
 
     def getDirection(self):
         getDIODirection(self.commObj, self.destinationModule, self.pinNumber)
-
-# okay decompiling REVDIO.pyc

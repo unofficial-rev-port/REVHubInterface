@@ -1,8 +1,3 @@
-# uncompyle6 version 3.9.1
-# Python bytecode version base 2.7 (62211)
-# Decompiled from: Python 2.7.18 (default, Aug 23 2022, 17:18:36) 
-# [GCC 11.2.0]
-# Embedded file name: REV2mSensor.py
 import REVcomm as REVComm
 from REVI2C import I2CDevice
 import sys, time
@@ -18,7 +13,7 @@ class REV2mSensor(I2CDevice):
 
     def _debugPrint(self, val):
         if self._debug_enable == True:
-            print val
+            print(val)
 
     def Is2mDistanceSensor(self):
 
@@ -196,7 +191,7 @@ class REV2mSensor(I2CDevice):
 
     def setSignalRateLimit(self, limit_Mcps):
         if limit_Mcps < 0.0 or limit_Mcps > 51.99:
-            print 'Invalid Signal Rate: ' + str(limit_Mcps)
+            print('Invalid Signal Rate: ' + str(limit_Mcps))
         self.writeShort(self._FINAL_RANGE_CONFIG_MIN_COUNT_RATE_RTN_LIMIT, int(limit_Mcps * 128))
         return True
 
@@ -373,7 +368,7 @@ class REV2mSensor(I2CDevice):
         ms_byte = 0
         if timeout_mclks > 0:
             ls_byte = timeout_mclks - 1
-            while ls_byte & 4294967040L > 0:
+            while ls_byte & 0xFFFFFFF0 > 0:
                 ls_byte >>= 1
                 ms_byte += 1
 
@@ -525,17 +520,15 @@ if __name__ == '__main__':
     if numHubs < 1:
         sys.exit()
     else:
-        print 'Found ' + str(numHubs) + ' hubs.'
+        print('Found ' + str(numHubs) + ' hubs.')
     sensor = REV2mSensor(commMod, 0, REVModules[0].getAddress(), False)
     isSensor = sensor.Is2mDistanceSensor()
-    print str(isSensor)
+    print(str(isSensor))
     if isSensor:
         sensor.initialize()
         for i in range(0, 50):
-            print sensor.readRangeContinuousMillimeters()
+            print(sensor.readRangeContinuousMillimeters())
 
     else:
-        print 'No sensor found, quitting...'
+        print('No sensor found, quitting...')
     commMod.closeActivePort()
-
-# okay decompiling REV2mSensor.pyc

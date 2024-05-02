@@ -1,8 +1,3 @@
-# uncompyle6 version 3.9.1
-# Python bytecode version base 2.7 (62211)
-# Decompiled from: Python 2.7.18 (default, Aug 23 2022, 17:18:36) 
-# [GCC 11.2.0]
-# Embedded file name: REVModule.py
 import REVmessages as REVMsg, REVMotor, REVServo, REVADC, REVDIO, REVI2C, REVcomm as REVComm
 
 class Module:
@@ -132,10 +127,9 @@ class Module:
     def getVersionString(self):
         versionRaw = '' + self.commObj.readVersionString(self.address)
         versionStr = ''
-        for i in range(0, len(versionRaw) / 2):
+        for i in range(0, int(len(versionRaw) / 2)):
             tmpHex = int(str(versionRaw)[i * 2] + str(versionRaw)[i * 2 + 1], 16)
             versionStr = versionStr + chr(tmpHex)
-
         return versionStr
 
     def setIMUBlockReadConfig(self, startRegister, numberOfBytes, readInterval_ms):
@@ -155,5 +149,3 @@ class Module:
 
     def getBulkServoData(self):
         return self.commObj.getBulkServoData(self.address)
-
-# okay decompiling REVModule.pyc

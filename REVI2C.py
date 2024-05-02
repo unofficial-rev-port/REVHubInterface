@@ -1,8 +1,3 @@
-# uncompyle6 version 3.9.1
-# Python bytecode version base 2.7 (62211)
-# Decompiled from: Python 2.7.18 (default, Aug 23 2022, 17:18:36) 
-# [GCC 11.2.0]
-# Embedded file name: REVI2C.py
 import REVcomm as REVComm, REVmessages as REVMsg, time
 
 def i2cWriteSingleByte(commObj, destination, i2cChannel, slaveAddress, byteToWrite):
@@ -263,14 +258,14 @@ class ColorSensor(I2CDevice):
         GREEN = 2
         BLUE = 1
         if red > blue and red > green:
-            print 'RED'
+            print('RED')
             return RED
         else:
             if blue > red and blue > green:
-                print 'BLUE'
+                print('BLUE')
                 return BLUE
             if green > red and green > blue:
-                print 'GREEN'
+                print('GREEN')
                 return GREEN
             return -1
 
@@ -538,8 +533,8 @@ class IMU(I2CDevice):
 
     def getSixByteRegisterValue(self, register):
         self.writeByte(register)
-        val = long(self.readMultipleBytes(6))
-        bits = long(16)
+        val = int(self.readMultipleBytes(6))
+        bits = int(16)
         values = []
         for i in range(0, 3):
             it_val = val & 65535
@@ -549,5 +544,3 @@ class IMU(I2CDevice):
             val = val >> 16
 
         return values
-
-# okay decompiling REVI2C.pyc

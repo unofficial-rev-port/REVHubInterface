@@ -1,8 +1,3 @@
-# uncompyle6 version 3.9.1
-# Python bytecode version base 2.7 (62211)
-# Decompiled from: Python 2.7.18 (default, Aug 23 2022, 17:18:36) 
-# [GCC 11.2.0]
-# Embedded file name: lib-tk\Tkconstants.py
 NO = FALSE = OFF = 0
 YES = TRUE = ON = 1
 N = 'n'
@@ -76,5 +71,3 @@ MOVETO = 'moveto'
 SCROLL = 'scroll'
 UNITS = 'units'
 PAGES = 'pages'
-
-# okay decompiling Tkconstants.pyc

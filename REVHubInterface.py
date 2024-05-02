@@ -1,29 +1,24 @@
-# uncompyle6 version 3.9.1
-# Python bytecode version base 2.7 (62211)
-# Decompiled from: Python 3.10.12 (main, Nov 20 2023, 15:14:05) [GCC 11.4.0]
-# Embedded file name: REVHubInterface.py
 import REVcomm
 from REV2mSensor import REV2mSensor
 from REVColorSensorV3 import REVColorSensorV3
 from REVcomm import *
 from functools import partial
-import Tkinter, Tkconstants, tkFileDialog, tkMessageBox, os, subprocess, time, platform, logging    
+import tkinter, tkinter.ttk, Tkconstants, tkinter.filedialog, tkinter.messagebox, os, subprocess, time, platform, logging   
 try:
     import ft232
 except Exception as e: 
     print(platform.system)
-    tkMessageBox.showerror('Drivers Not Detected', '\n\tPlease verify the correct drivers are installed. Windows 10 will automatically\n\tinstall the correct drivers when the Expansion Hub is plugged in. Windows 7 \n\trequires a manual install. Please see this link for the correct driver (FTDI D2xx):\n\thttps://www.ftdichip.com/Drivers/CDM/CDM21228_Setup.zip\n\n\tNote that firmware update will be unavailable.\nAlso, if you are using linux, this is normal (for now)\n\n\tMessage: \n\t' + str(e))
+    tkinter.messagebox.showerror('Drivers Not Detected', '\n\tPlease verify the correct drivers are installed. Windows 10 will automatically\n\tinstall the correct drivers when the Expansion Hub is plugged in. Windows 7 \n\trequires a manual install. Please see this link for the correct driver (FTDI D2xx):\n\thttps://www.ftdichip.com/Drivers/CDM/CDM21228_Setup.zip\n\n\tNote that firmware update will be unavailable.\nAlso, if you are using linux, this is normal (for now)\n\n\tMessage: \n\t' + str(e))
 
 class device_info():
-
     def __init__(self, root, setAddress):
         root.grid_columnconfigure(0, weight=1)
         root.grid_rowconfigure(0, weight=1)
         root.grid(sticky=(N, S, E, W))
-        self.device_info_frame = ttk.Frame(root)
-        self.device_label = ttk.Label(self.device_info_frame)
+        self.device_info_frame = tkinter.ttk.Frame(root)
+        self.device_label = tkinter.ttk.Label(self.device_info_frame)
         self.Frame_1 = tk.Frame(self.device_info_frame)
-        self.Button_1 = ttk.Button(self.Frame_1)
+        self.Button_1 = tkinter.ttk.Button(self.Frame_1)
         self.device_info_frame.config(height=100)
         self.device_info_frame.config(width=100)
         self.device_info_frame.grid(column=0)
@@ -51,7 +46,7 @@ class device_info():
         self.Button_1.config(width=10)
         vcmd = (
          root.register(self.validate_float), '%d', '%i', '%P', '%s', '%S', '%v', '%V', '%W')
-        self.addr_entry = ttk.Entry(self.device_info_frame, validate='key', validatecommand=vcmd)
+        self.addr_entry = tkinter.ttk.Entry(self.device_info_frame, validate='key', validatecommand=vcmd)
         self.addr_entry.config(width=10)
         self.addr_entry.grid(column=3)
         self.addr_entry.grid(padx=5)
@@ -76,19 +71,18 @@ class device_info():
 
 
 class firmware_tab():
-
     def __init__(self, root, chooseBin, flashNow):
-        self.INTERFACE_VERSION = '1.2.1'
+        self.INTERFACE_VERSION = '1.3.0'
         root.grid_columnconfigure(0, weight=1)
         root.grid_rowconfigure(0, weight=1)
         root.grid(sticky=(N, S, E, W))
-        self.firmware_frame = ttk.Frame(root)
-        self.firmware_label = ttk.Label(self.firmware_frame)
+        self.firmware_frame = tkinter.ttk.Frame(root)
+        self.firmware_label = tkinter.ttk.Label(self.firmware_frame)
         self.warning_block = tk.Text(self.firmware_frame)
         self.Frame_1 = tk.Frame(self.firmware_frame)
-        self.Button_1 = ttk.Button(self.Frame_1)
-        self.Button_2 = ttk.Button(self.Frame_1)
-        self.Device_info_frame1 = ttk.Frame(self.firmware_frame)
+        self.Button_1 = tkinter.ttk.Button(self.Frame_1)
+        self.Button_2 = tkinter.ttk.Button(self.Frame_1)
+        self.Device_info_frame1 = tkinter.ttk.Frame(self.firmware_frame)
         self.firmware_frame.config(height=200)
         self.firmware_frame.config(width=200)
         self.firmware_frame.grid(column=0)
@@ -137,22 +131,21 @@ class firmware_tab():
 
 
 class digital_single():
-
     def __init__(self, root, setInputCallback, setOutputCallback, digital_set, digital_poll):
         root.grid_columnconfigure(0, weight=1)
         root.grid_rowconfigure(0, weight=1)
         root.grid(sticky=(N, S, E, W))
         true = True
         self.var2 = IntVar()
-        self.digital_panel = ttk.Frame(root)
-        self.digital_label_1 = ttk.Label(self.digital_panel)
-        self.Frame_1 = ttk.Frame(self.digital_panel)
-        self.poll_button = ttk.Button(self.digital_panel)
-        self.Separator_1 = ttk.Separator(self.Frame_1)
-        self.State_label = ttk.Label(self.Frame_1)
+        self.digital_panel = tkinter.ttk.Frame(root)
+        self.digital_label_1 = tkinter.ttk.Label(self.digital_panel)
+        self.Frame_1 = tkinter.ttk.Frame(self.digital_panel)
+        self.poll_button = tkinter.ttk.Button(self.digital_panel)
+        self.Separator_1 = tkinter.ttk.Separator(self.Frame_1)
+        self.State_label = tkinter.ttk.Label(self.Frame_1)
         self.input_button = tk.Button(self.Frame_1)
         self.output_button = tk.Button(self.Frame_1)
-        self.Checkbutton_1 = ttk.Checkbutton(self.Frame_1)
+        self.Checkbutton_1 = tkinter.ttk.Checkbutton(self.Frame_1)
         self.digital_panel.config(height=200)
         self.digital_panel.config(padding=(5, 5, 5, 5))
         self.digital_panel.config(relief='groove')
@@ -213,19 +206,18 @@ class digital_single():
 
 
 class analog_single():
-
     def __init__(self, root):
         root.grid_columnconfigure(0, weight=1)
         root.grid_rowconfigure(0, weight=1)
         root.grid(sticky=(N, S, E, W))
-        self.analog_panel = ttk.Frame(root)
-        self.analog_label_1 = ttk.Label(self.analog_panel)
-        self.Frame_1 = ttk.Frame(self.analog_panel)
-        self.voltage_label_1 = ttk.Label(self.Frame_1)
-        self.voltage_value_1 = ttk.Label(self.Frame_1)
-        self.analog_scale_1 = ttk.Progressbar(self.Frame_1)
-        self.java_label_1 = ttk.Label(self.Frame_1)
-        self.java_value_1 = ttk.Label(self.Frame_1)
+        self.analog_panel = tkinter.ttk.Frame(root)
+        self.analog_label_1 = tkinter.ttk.Label(self.analog_panel)
+        self.Frame_1 = tkinter.ttk.Frame(self.analog_panel)
+        self.voltage_label_1 = tkinter.ttk.Label(self.Frame_1)
+        self.voltage_value_1 = tkinter.ttk.Label(self.Frame_1)
+        self.analog_scale_1 = tkinter.ttk.Progressbar(self.Frame_1)
+        self.java_label_1 = tkinter.ttk.Label(self.Frame_1)
+        self.java_value_1 = tkinter.ttk.Label(self.Frame_1)
         self.analog_panel.config(height=200)
         self.analog_panel.config(padding=(5, 5, 5, 5))
         self.analog_panel.config(relief='ridge')
@@ -285,17 +277,16 @@ class analog_single():
 
 
 class io_box():
-
     def __init__(self, root, analogAdd):
         root.grid_columnconfigure(0, weight=1)
         root.grid_rowconfigure(0, weight=1)
         root.grid(sticky=(N, S, E, W))
-        self.io_pack = ttk.Frame(root)
-        self.analog_pack = ttk.Labelframe(self.io_pack)
-        self.digital_pack = ttk.Labelframe(self.io_pack)
-        self.Button_1 = ttk.Button(self.analog_pack)
-        self.innerFrame = ttk.Frame(self.analog_pack)
-        self.innerFrame_1 = ttk.Frame(self.digital_pack)
+        self.io_pack = tkinter.ttk.Frame(root)
+        self.analog_pack = tkinter.ttk.Labelframe(self.io_pack)
+        self.digital_pack = tkinter.ttk.Labelframe(self.io_pack)
+        self.Button_1 = tkinter.ttk.Button(self.analog_pack)
+        self.innerFrame = tkinter.ttk.Frame(self.analog_pack)
+        self.innerFrame_1 = tkinter.ttk.Frame(self.digital_pack)
         self.io_pack.config(height=200)
         self.io_pack.config(width=200)
         self.io_pack.grid(column=0)
@@ -341,18 +332,17 @@ class io_box():
 
 
 class imu_box():
-
     def __init__(self, root, poll_imu_callback):
         root.grid_columnconfigure(0, weight=1)
         root.grid_rowconfigure(0, weight=1)
         root.grid(sticky=(N, S, E, W))
-        self.i2c_pack = ttk.Labelframe(root)
-        self.Label_2 = ttk.Label(self.i2c_pack)
-        self.Euler_label = ttk.Label(self.i2c_pack)
-        self.Accel_label = ttk.Label(self.i2c_pack)
-        self.Euler_value = ttk.Label(self.i2c_pack)
-        self.Accel_value = ttk.Label(self.i2c_pack)
-        self.Poll_button = ttk.Button(self.i2c_pack)
+        self.i2c_pack = tkinter.ttk.Labelframe(root)
+        self.Label_2 = tkinter.ttk.Label(self.i2c_pack)
+        self.Euler_label = tkinter.ttk.Label(self.i2c_pack)
+        self.Accel_label = tkinter.ttk.Label(self.i2c_pack)
+        self.Euler_value = tkinter.ttk.Label(self.i2c_pack)
+        self.Accel_value = tkinter.ttk.Label(self.i2c_pack)
+        self.Poll_button = tkinter.ttk.Button(self.i2c_pack)
         self.i2c_pack.config(height=200)
         self.i2c_pack.config(text='IMU')
         self.i2c_pack.config(width=200)
@@ -403,18 +393,17 @@ class imu_box():
 
 
 class i2c_chan():
-
     def __init__(self, root, add_col_callback, poll_col_callback):
         root.grid_columnconfigure(0, weight=1)
         root.grid_rowconfigure(0, weight=1)
-        self.Frame_1 = ttk.Frame(root)
-        self.i2c_pack = ttk.Labelframe(self.Frame_1)
-        self.Frame_2 = ttk.Frame(self.i2c_pack)
-        self.I2C_label = ttk.Label(self.Frame_2)
-        self.Val_label = ttk.Label(self.Frame_2)
-        self.I2C_value = ttk.Label(self.Frame_2)
-        self.Config_button = ttk.Button(self.Frame_2)
-        self.Poll_button = ttk.Button(self.Frame_2)
+        self.Frame_1 = tkinter.ttk.Frame(root)
+        self.i2c_pack = tkinter.ttk.Labelframe(self.Frame_1)
+        self.Frame_2 = tkinter.ttk.Frame(self.i2c_pack)
+        self.I2C_label = tkinter.ttk.Label(self.Frame_2)
+        self.Val_label = tkinter.ttk.Label(self.Frame_2)
+        self.I2C_value = tkinter.ttk.Label(self.Frame_2)
+        self.Config_button = tkinter.ttk.Button(self.Frame_2)
+        self.Poll_button = tkinter.ttk.Button(self.Frame_2)
         self.Frame_1.config(height=200)
         self.Frame_1.config(width=200)
         self.Frame_1.grid(column=0)
@@ -477,7 +466,7 @@ class i2c_chan():
         self.Config_button.grid(sticky=(E, W))
         self.Poll_button.config(command=poll_col_callback)
         self.Poll_button.config(text='POLL')
-        self.Poll_button.config(state=Tkinter.DISABLED)
+        self.Poll_button.config(state=tkinter.DISABLED)
         self.Poll_button.config(width=10)
         self.Poll_button.grid(column=2)
         self.Poll_button.grid(columnspan=1)
@@ -488,30 +477,29 @@ class i2c_chan():
 
 
 class servo_motor():
-
     def __init__(self, root, slider_0_callback, java_0_callback, ms_0_callback, slider_1_callback, java_1_callback, ms_1_callback):
         root.grid_columnconfigure(0, weight=1)
         root.grid_rowconfigure(0, weight=1)
-        self.Frame_1 = ttk.Frame(root)
-        self.servo_pack = ttk.Labelframe(self.Frame_1)
-        self.servo_0 = ttk.Frame(self.servo_pack)
-        self.servo_1 = ttk.Frame(self.servo_pack)
-        self.Servo_num_0 = ttk.Label(self.servo_0)
-        self.Java_label_0 = ttk.Label(self.servo_0)
-        self.Speed_slider_0 = ttk.Scale(self.servo_0)
-        self.Java_entry_0 = ttk.Entry(self.servo_0)
-        self.Ms_entry_0 = ttk.Entry(self.servo_0)
-        self.Ms_label_0 = ttk.Label(self.servo_0)
-        self.Java_button_0 = ttk.Button(self.servo_0)
-        self.Ms_button_0 = ttk.Button(self.servo_0)
-        self.Servo_num_1 = ttk.Label(self.servo_1)
-        self.Java_label_1 = ttk.Label(self.servo_1)
-        self.Speed_slider_1 = ttk.Scale(self.servo_1)
-        self.Java_entry_1 = ttk.Entry(self.servo_1)
-        self.Ms_entry_1 = ttk.Entry(self.servo_1)
-        self.Ms_label_1 = ttk.Label(self.servo_1)
-        self.Java_button_1 = ttk.Button(self.servo_1)
-        self.Ms_button_1 = ttk.Button(self.servo_1)
+        self.Frame_1 = tkinter.ttk.Frame(root)
+        self.servo_pack = tkinter.ttk.Labelframe(self.Frame_1)
+        self.servo_0 = tkinter.ttk.Frame(self.servo_pack)
+        self.servo_1 = tkinter.ttk.Frame(self.servo_pack)
+        self.Servo_num_0 = tkinter.ttk.Label(self.servo_0)
+        self.Java_label_0 = tkinter.ttk.Label(self.servo_0)
+        self.Speed_slider_0 = tkinter.ttk.Scale(self.servo_0)
+        self.Java_entry_0 = tkinter.ttk.Entry(self.servo_0)
+        self.Ms_entry_0 = tkinter.ttk.Entry(self.servo_0)
+        self.Ms_label_0 = tkinter.ttk.Label(self.servo_0)
+        self.Java_button_0 = tkinter.ttk.Button(self.servo_0)
+        self.Ms_button_0 = tkinter.ttk.Button(self.servo_0)
+        self.Servo_num_1 = tkinter.ttk.Label(self.servo_1)
+        self.Java_label_1 = tkinter.ttk.Label(self.servo_1)
+        self.Speed_slider_1 = tkinter.ttk.Scale(self.servo_1)
+        self.Java_entry_1 = tkinter.ttk.Entry(self.servo_1)
+        self.Ms_entry_1 = tkinter.ttk.Entry(self.servo_1)
+        self.Ms_label_1 = tkinter.ttk.Label(self.servo_1)
+        self.Java_button_1 = tkinter.ttk.Button(self.servo_1)
+        self.Ms_button_1 = tkinter.ttk.Button(self.servo_1)
         self.Java_entry_0.bind('<Return>', self.update_java0)
         self.java_0_callback = java_0_callback
         self.Ms_entry_0.bind('<Return>', self.update_ms0)
@@ -698,21 +686,20 @@ class servo_motor():
 
 
 class dc_motor():
-
     def __init__(self, root, speed_slider_callback, speed_button_callback, java_button_callback):
         self.root = root
         self.root.grid_columnconfigure(0, weight=1)
         self.root.grid_rowconfigure(0, weight=1)
-        self.Frame_5 = ttk.Frame(root)
-        self.Motor_pack = ttk.Labelframe(self.Frame_5)
+        self.Frame_5 = tkinter.ttk.Frame(root)
+        self.Motor_pack = tkinter.ttk.Labelframe(self.Frame_5)
         self.ZeroButton = tk.Button(self.Motor_pack)
-        self.Speed_slider = ttk.Scale(self.Motor_pack)
-        self.Motor_values = ttk.Label(self.Motor_pack)
-        self.Java_label = ttk.Label(self.Motor_pack)
+        self.Speed_slider = tkinter.ttk.Scale(self.Motor_pack)
+        self.Motor_values = tkinter.ttk.Label(self.Motor_pack)
+        self.Java_label = tkinter.ttk.Label(self.Motor_pack)
         self.Speed_button = tk.Button(self.Motor_pack)
         self.Java_entry = tk.Entry(self.Motor_pack)
         self.Java_button = tk.Button(self.Motor_pack)
-        self.Controls_label = ttk.Label(self.Motor_pack)
+        self.Controls_label = tkinter.ttk.Label(self.Motor_pack)
         self.Java_entry.bind('<Return>', self.update_java)
         self.java_button_callback = java_button_callback
         self.Frame_5.config(height=200)
@@ -801,37 +788,37 @@ class Application():
         self.root.grid_rowconfigure(0, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
         true = True
-        self.Main_window = ttk.Frame(root)
-        self.Tab_frame = ttk.Notebook(self.Main_window)
-        self.Connected_Label = ttk.Label(self.Main_window)
+        self.Main_window = tkinter.ttk.Frame(root)
+        self.Tab_frame = tkinter.ttk.Notebook(self.Main_window)
+        self.Connected_Label = tkinter.ttk.Label(self.Main_window)
         try:
             self.Top_Banner_Image = tk.PhotoImage(file='resource/banner.gif')
             self.Top_Banner = Label(self.Main_window, image=self.Top_Banner_Image)
         except:
             self.Top_Banner = Label(self.Main_window)
 
-        self.Connect_button = ttk.Button(self.Main_window)
-        self.Quit_button = ttk.Button(self.Main_window)
-        self.DC_Motor = ttk.Frame(self.Tab_frame)
-        self.Servo_Motor = ttk.Frame(self.Tab_frame)
-        self.I2C_Device = ttk.Frame(self.Tab_frame)
-        self.Firmware_Update = ttk.Frame(self.Tab_frame)
-        self.IO = ttk.Frame(self.Tab_frame)
-        self.DC_Motor_frame = ttk.Frame(self.DC_Motor)
-        self.Servo_Motor_frame = ttk.Frame(self.Servo_Motor)
-        self.I2C_Device_frame = ttk.Frame(self.I2C_Device)
-        self.Firmware_tab = ttk.Frame(self.Firmware_Update)
-        self.IO_tab = ttk.Frame(self.IO)
-        self.Main_window.config(height=600)
+        self.Connect_button = tkinter.ttk.Button(self.Main_window)
+        self.Quit_button = tkinter.ttk.Button(self.Main_window)
+        self.DC_Motor = tkinter.ttk.Frame(self.Tab_frame)
+        self.Servo_Motor = tkinter.ttk.Frame(self.Tab_frame)
+        self.I2C_Device = tkinter.ttk.Frame(self.Tab_frame)
+        self.Firmware_Update = tkinter.ttk.Frame(self.Tab_frame)
+        self.IO = tkinter.ttk.Frame(self.Tab_frame)
+        self.DC_Motor_frame = tkinter.ttk.Frame(self.DC_Motor)
+        self.Servo_Motor_frame = tkinter.ttk.Frame(self.Servo_Motor)
+        self.I2C_Device_frame = tkinter.ttk.Frame(self.I2C_Device)
+        self.Firmware_tab = tkinter.ttk.Frame(self.Firmware_Update)
+        self.IO_tab = tkinter.ttk.Frame(self.IO)
+        self.Main_window.config(height=800)
         self.Main_window.config(width=900)
         self.Main_window.grid(column=0)
         self.Main_window.grid(row=0)
         self.Main_window.grid(sticky=(N, S, E, W))
         self.Main_window.grid_rowconfigure(0, minsize=0)
         self.Main_window.grid_rowconfigure(0, weight=1)
-        self.Main_window.grid_rowconfigure(1, minsize=600)
+        self.Main_window.grid_rowconfigure(1, minsize=700)
         self.Main_window.grid_rowconfigure(1, weight=1)
-        self.Main_window.grid_columnconfigure(0, minsize=350)
+        self.Main_window.grid_columnconfigure(0, minsize=450)
         self.Main_window.grid_columnconfigure(0, weight=1)
         self.Main_window.grid_columnconfigure(1, minsize=80)
         self.Main_window.grid_columnconfigure(1, weight=0)
@@ -965,12 +952,10 @@ class Application():
         try:
             speed = float(self.Motor_packs[moduleNumber * 4 + motorNumber].Java_entry.get())
         except ValueError:
-            print 'Invalid speed entered: ' + self.Motor_packs[moduleNumber * 4 + motorNumber].Java_entry.get()
+            print('Invalid speed entered: ' + self.Motor_packs[moduleNumber * 4 + motorNumber].Java_entry.get())
             return False
 
         self.Motor_packs[moduleNumber * 4 + motorNumber].Speed_slider.set(speed * 32000)
-        self.Motor_packs[moduleNumber * 4 + motorNumber].Speed_entry.delete(0, END)
-        self.Motor_packs[moduleNumber * 4 + motorNumber].Speed_entry.insert(0, '%.2f' % float(speed * 32000))
         self.REVModules[moduleNumber].motors[motorNumber].setPower(float(speed * 32000))
         self.REVModules[moduleNumber].motors[motorNumber].enable()
         self.repetitiveFunctions = [
@@ -1008,7 +993,7 @@ class Application():
             try:
                 pulse = float(self.Servo_packs[moduleNumber * 3 + int(servoNumber / 2)].Java_entry_0.get())
             except ValueError:
-                print 'Invalid value entered: ' + self.Servo_packs[moduleNumber * 3 + int(servoNumber / 2)].Java_entry_0.get()
+                print('Invalid value entered: ' + self.Servo_packs[moduleNumber * 3 + int(servoNumber / 2)].Java_entry_0.get())
                 return False
 
             self.Servo_packs[moduleNumber * 3 + int(servoNumber / 2)].Ms_entry_0.delete(0, END)
@@ -1018,7 +1003,7 @@ class Application():
             try:
                 pulse = float(self.Servo_packs[moduleNumber * 3 + int(servoNumber / 2)].Java_entry_1.get())
             except ValueError:
-                print 'Invalid value entered: ' + self.Servo_packs[moduleNumber * 3 + int(servoNumber / 2)].Java_entry_1.get()
+                print('Invalid value entered: ' + self.Servo_packs[moduleNumber * 3 + int(servoNumber / 2)].Java_entry_1.get())
                 return False
 
             self.Servo_packs[moduleNumber * 3 + int(servoNumber / 2)].Ms_entry_1.delete(0, END)
@@ -1036,7 +1021,7 @@ class Application():
             try:
                 pulse = float(self.Servo_packs[moduleNumber * 3 + int(servoNumber / 2)].Ms_entry_0.get())
             except ValueError:
-                print 'Invalid value entered: ' + self.Servo_packs[moduleNumber * 3 + int(servoNumber / 2)].Ms_entry_0.get()
+                print('Invalid value entered: ' + self.Servo_packs[moduleNumber * 3 + int(servoNumber / 2)].Ms_entry_0.get())
                 return False
 
             self.Servo_packs[moduleNumber * 3 + int(servoNumber / 2)].Java_entry_0.delete(0, END)
@@ -1046,7 +1031,7 @@ class Application():
             try:
                 pulse = float(self.Servo_packs[moduleNumber * 3 + int(servoNumber / 2)].Ms_entry_1.get())
             except ValueError:
-                print 'Invalid value entered: ' + self.Servo_packs[moduleNumber * 3 + int(servoNumber / 2)].Ms_entry_1.get()
+                print('Invalid value entered: ' + self.Servo_packs[moduleNumber * 3 + int(servoNumber / 2)].Ms_entry_1.get())
                 return False
 
             self.Servo_packs[moduleNumber * 3 + int(servoNumber / 2)].Java_entry_1.delete(0, END)
@@ -1092,7 +1077,7 @@ class Application():
             self.I2C_packs[module_number * 4 + bus_number].Val_label.config(text='Value (default: R,G,B,C,Prox)')
         self.I2C_packs[module_number * 4 + bus_number].Config_button.config(text='INIT')
         if isInitialized:
-            self.I2C_packs[module_number * 4 + bus_number].Poll_button.config(state=Tkinter.NORMAL)
+            self.I2C_packs[module_number * 4 + bus_number].Poll_button.config(state=tkinter.NORMAL)
         else:
             self.I2C_packs[module_number * 4 + bus_number].I2C_value.config(text='Device did not initialize')
 
@@ -1222,7 +1207,7 @@ class Application():
             for motorNumber in range(0, 4):
                 self.DC_Motor_frame.grid_rowconfigure(motorNumber, weight=1)
                 self.DC_Motor_frame.grid_columnconfigure(moduleNumber, weight=1)
-                frame = ttk.Frame(self.DC_Motor_frame, borderwidth=5, relief='sunken')
+                frame = tkinter.ttk.Frame(self.DC_Motor_frame, borderwidth=5, relief='sunken')
                 frame.grid(row=motorNumber, column=moduleNumber, sticky=(N, S, E, W))
                 self.Motor_packs.append(dc_motor(frame, partial(self.speedMotorSlider, motorNumber=motorNumber, moduleNumber=moduleNumber), partial(self.speedMotorEntry, motorNumber=motorNumber, moduleNumber=moduleNumber), partial(self.javaMotorEntry, motorNumber=motorNumber, moduleNumber=moduleNumber)))
                 self.Motor_packs[-1].Motor_pack.config(text='Module: ' + str(moduleNumber) + ' Motors: ' + str(motorNumber))
@@ -1232,7 +1217,7 @@ class Application():
             for motorNumber in range(0, 3):
                 self.Servo_Motor_frame.grid_rowconfigure(motorNumber, weight=1)
                 self.Servo_Motor_frame.grid_columnconfigure(moduleNumber, weight=1)
-                frame = ttk.Frame(self.Servo_Motor_frame, borderwidth=5, relief='sunken')
+                frame = tkinter.ttk.Frame(self.Servo_Motor_frame, borderwidth=5, relief='sunken')
                 frame.grid(row=motorNumber, column=moduleNumber, sticky=(N, S, E, W))
                 self.Servo_packs.append(servo_motor(frame, partial(self.servoSlider, servoNumber=2 * motorNumber, moduleNumber=moduleNumber), partial(self.servoJava, servoNumber=motorNumber * 2, moduleNumber=moduleNumber), partial(self.servoMS, servoNumber=motorNumber * 2, moduleNumber=moduleNumber), partial(self.servoSlider, servoNumber=motorNumber * 2 + 1, moduleNumber=moduleNumber), partial(self.servoJava, servoNumber=motorNumber * 2 + 1, moduleNumber=moduleNumber), partial(self.servoMS, servoNumber=motorNumber * 2 + 1, moduleNumber=moduleNumber)))
                 self.Servo_packs[-1].servo_pack.config(text='Module: ' + str(moduleNumber) + ' Motors: ' + str(motorNumber * 2) + ' & ' + str(motorNumber * 2 + 1))
@@ -1242,13 +1227,13 @@ class Application():
         for moduleNumber in range(0, moduleTot):
             self.I2C_Device_frame.grid_rowconfigure(0, weight=1)
             self.I2C_Device_frame.grid_columnconfigure(moduleNumber, weight=1)
-            frame = ttk.Frame(self.I2C_Device_frame, borderwidth=5, relief='sunken')
+            frame = tkinter.ttk.Frame(self.I2C_Device_frame, borderwidth=5, relief='sunken')
             frame.grid(row=0, column=moduleNumber, sticky=W)
             self.IMUs.append(imu_box(frame, partial(self.imuAdd, moduleNumber)))
             for i2cNumber in range(0, 4):
                 self.I2C_Device_frame.grid_rowconfigure(i2cNumber, weight=1)
                 self.I2C_Device_frame.grid_columnconfigure(moduleNumber, weight=1)
-                frame = ttk.Frame(self.I2C_Device_frame, borderwidth=5, relief='sunken')
+                frame = tkinter.ttk.Frame(self.I2C_Device_frame, borderwidth=5, relief='sunken')
                 frame.grid(row=i2cNumber + 1, column=moduleNumber, sticky=(N, S, E, W))
                 self.I2C_packs.append(i2c_chan(frame, partial(self.colorSenseAdd, bus_number=i2cNumber, module_number=moduleNumber), partial(self.colorSensePoll, bus_number=i2cNumber, module_number=moduleNumber)))
                 self.I2C_packs[-1].i2c_pack.config(text='Module: ' + str(moduleNumber) + ' I2C Bus: ' + str(i2cNumber))
@@ -1258,14 +1243,14 @@ class Application():
         self.Analog_panels = []
         for moduleNumber in range(0, moduleTot):
             self.IO_tab.grid_columnconfigure(moduleNumber, weight=1)
-            frame = ttk.Frame(self.IO_tab, borderwidth=5, relief='sunken')
+            frame = tkinter.ttk.Frame(self.IO_tab, borderwidth=5, relief='sunken')
             frame.grid(row=0, column=moduleNumber, sticky=(N, S, E, W))
             self.IO_packs.append(io_box(frame, partial(self.analogAdd, moduleNumber)))
             self.IO_packs[-1].analog_pack.config(text='Analog Inputs Module: ' + str(moduleNumber))
             self.IO_packs[-1].digital_pack.config(text='Digital Input/Outputs Module: ' + str(moduleNumber))
             self.IO_packs[-1].innerFrame.grid_columnconfigure(0, weight=1)
             for i in range(0, 4):
-                frame = ttk.Frame(self.IO_packs[-1].innerFrame, borderwidth=5, relief='sunken')
+                frame = tkinter.ttk.Frame(self.IO_packs[-1].innerFrame, borderwidth=5, relief='sunken')
                 frame.grid(row=i, column=0, sticky=(N, S, E, W))
                 self.IO_packs[-1].innerFrame.grid_rowconfigure(i, weight=1)
                 self.Analog_panels.append(analog_single(frame))
@@ -1273,7 +1258,7 @@ class Application():
 
             for i in range(0, 4):
                 for j in range(0, 2):
-                    frame = ttk.Frame(self.IO_packs[-1].innerFrame_1, borderwidth=5, relief='sunken')
+                    frame = tkinter.ttk.Frame(self.IO_packs[-1].innerFrame_1, borderwidth=5, relief='sunken')
                     frame.grid(row=i, column=j, sticky=(N, S, E, W))
                     self.IO_packs[-1].innerFrame_1.grid_rowconfigure(i, weight=1)
                     self.IO_packs[-1].innerFrame_1.grid_columnconfigure(j, weight=1)
@@ -1282,7 +1267,7 @@ class Application():
 
         self.devce_info = []
         for moduleNumber in range(0, moduleTot):
-            frame = ttk.Frame(self.firmware.Device_info_frame1, borderwidth=5, relief='sunken')
+            frame = tkinter.ttk.Frame(self.firmware.Device_info_frame1, borderwidth=5, relief='sunken')
             frame.grid(row=1, column=moduleNumber, sticky=(N, S, E, W))
             self.devce_info.append(device_info(frame, partial(self.set_address_callback, moduleNumber=moduleNumber)))
             self.devce_info[-1].addr_entry.delete(0, END)
@@ -1293,7 +1278,7 @@ class Application():
         self.root.after(500, self.every_second)
 
     def buildFirmwareFrame(self):
-        frame = ttk.Frame(self.Firmware_tab, borderwidth=5, relief='sunken')
+        frame = tkinter.ttk.Frame(self.Firmware_tab, borderwidth=5, relief='sunken')
         frame.grid(row=0, column=0, sticky=(N, S, E, W))
         self.firmware = firmware_tab(frame, partial(self.firmware_bin_select), partial(self.firmware_flash))
         self.firmware.warning_block.insert(END, 'Firmware update to be performed to the Expansion Hub connected via USB only. \n\t\t\nFirmware update is to be performed with only REV qualified .bin files located in the default installation directory\n\t\t\n\nWARNING: incorrect firmware can brick the device.\n\nModified firmware files are not FTC legal.\n')
@@ -1333,14 +1318,14 @@ class Application():
          True, '')
 
     def firmware_bin_select(self):
-        tmpFilename = tkFileDialog.askopenfilename(initialdir='./', title='Select file', filetypes=(('bin files', '*.bin'), ('all files', '*.*')))
+        tmpFilename = tkinter.filedialog.askopenfilename(initialdir='./', title='Select file', filetypes=(('bin files', '*.bin'), ('all files', '*.*')))
         if tmpFilename == None or tmpFilename == '':
             return
         isValid, err = self.isValidFirmware(tmpFilename)
         if isValid == False:
             errMsg = 'Attempted to open invalid firmware file: ' + tmpFilename + '\r\n' + err
-            tkMessageBox.showinfo('Invalid Firmware', errMsg)
-            print errMsg
+            tkinter.messagebox.showinfo('Invalid Firmware', errMsg)
+            print(errMsg)
         self.filename = tmpFilename
         return
 
@@ -1354,7 +1339,7 @@ class Application():
         isValid, err = self.isValidFirmware(self.filename)
         if isValid == False:
             errMsg = 'Attempted to use an invalid firmware file: ' + self.filename + '\r\n' + err + '\r\n\r\nNo action will be done'
-            tkMessageBox.showinfo('Invalid Firmware', errMsg)
+            tkinter.messagebox.showinfo('Invalid Firmware', errMsg)
             self.firmware.warning_block.config(state='disabled')
             return
         else:
@@ -1362,19 +1347,20 @@ class Application():
             ftserial = ''
             device_list = ft232.list_devices()
             if device_list:
+                print(device_list)
                 for FTDI_device in device_list:
                     for element in FTDI_device:
                         self.firmware.warning_block.config(state='normal')
                         if 'FT230X' in element:
-                            print 'element: ', element
+                            print('element: ', element)
                             ftserial = FTDI_device[0]
-                            print 'serial: ', ftserial
+                            print('serial: ', ftserial)
                         else:
                             self.firmware.warning_block.insert(END, 'looking for FT230X\n')
             else:
                 self.firmware.warning_block.insert(END, 'no FTDI devices found\n')
                 exit()
-            if ftserial is not '':
+            if ftserial != '':
                 ftdi_handle = ft232.Ft232(ftserial, baudrate=115200)
                 ftdi_handle.cbus_setup(mask=3, init=3)
                 ftdi_handle.cbus_write(0)
@@ -1395,14 +1381,14 @@ class Application():
                 allPorts = self.commMod.listPorts()
                 if len(allPorts) == 0:
                     errMsg = 'No available com ports, verify connection and try again.\n'
-                    tkMessageBox.showinfo('Invalid Firmware', errMsg)
+                    tkinter.messagebox.showinfo('Invalid Firmware', errMsg)
                     self.firmware.warning_block.insert(END, errMsg)
                 else:
                     port = allPorts[0].getNumber()
             if port != '':
                 osExtension = ''
                 if platform.system() == 'Linux':
-                    print 'Linux detected, using no extension for sflash executable\n'
+                    print('Linux detected, using no extension for sflash executable\n')
                     osExtension = ''
                 else:
                     osExtension = '.exe'
@@ -1417,7 +1403,7 @@ class Application():
                 subprocess.call(cmdLine)
             else:
                 errMsg = 'Com port failure, detected Com as: ' + port + '\r\nCheck connection and try again\n'
-                tkMessageBox.showinfo('Invalid Firmware', errMsg)
+                tkinter.messagebox.showinfo('Invalid Firmware', errMsg)
                 self.firmware.warning_block.insert(END, errMsg)
                 self.on_connect_button_callback()
                 self.firmware.warning_block.config(state='disabled')
@@ -1444,7 +1430,5 @@ if __name__ == '__main__':
 
     app = Application(xroot)
     xroot.protocol('WM_DELETE_WINDOW', app.joinThreads)
-    print 'Loading application...'
+    print('Loading application...')
     xroot.mainloop()
-
-# okay decompiling REVHubInterface.pyc

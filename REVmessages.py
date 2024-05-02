@@ -1,15 +1,3 @@
-# uncompyle6 version 3.9.1
-# Python bytecode version base 2.7 (62211)
-# Decompiled from: Python 2.7.18 (default, Aug 23 2022, 17:18:36) 
-# [GCC 11.2.0]
-# Embedded file name: REVmessages.py
-"""
-#     COPYRIGHT 2015 DEKA RESEARCH AND DEVELOPMENT CORPORATION
-#
-#   Contains confidential and proprietary information which
-#   may not be copied, disclosed or used by others except as expressly
-#   authorized in writing by DEKA Research & Development Corporation.
-"""
 PAYLOAD_MAX_SIZE = 128
 
 class LEDColor:
@@ -132,10 +120,10 @@ class REVBytes:
             return other + myBytes
         else:
             return other + self.data
-
+        
     def getHexString(self):
         hexString = '%0' + str(self.numBytes * 2) + 'X'
-        hexString = hexString % self.data
+        hexString = hexString % int(self.data) 
         return hexString
 
 
@@ -175,7 +163,7 @@ class REVHeader:
         return length
 
     def __setattr__(self, name, value):
-        if self.__dict__.has_key(name):
+        if name in self.__dict__:
             self.__dict__[name].data = value
         elif isinstance(value, REVBytes):
             self.__dict__[name] = value
@@ -204,12 +192,12 @@ class REVPayload:
         return length
 
     def __setattr__(self, name, value):
-        if self.__dict__.has_key(name):
+        if name in self.__dict__:
             self.__dict__[name].data = value
         elif isinstance(value, REVBytes):
             self.__dict__[name] = value
         else:
-            print 'Value is not an instance of REVBytes: ', value
+            print('Value is not an instance of REVBytes: ', value)
             exit('\n\n\n!!!Attempting to add something other than REVBytes to payload structure!!!\n\n\n')
 
     def __add__(self, TextToAppend):
@@ -492,14 +480,12 @@ class GetAllDIOInputs_Payload(REVPayload):
 
 
 class GetADC_Payload(REVPayload):
-
     def __init__(self):
         self.adcChannel = REVBytes(1)
         self.rawMode = REVBytes(1)
 
 
 class SetMotorChannelMode_Payload(REVPayload):
-
     def __init__(self):
         self.motorChannel = REVBytes(1)
         self.motorMode = REVBytes(1)
@@ -533,32 +519,27 @@ class SetMotorChannelCurrentAlertLevel_Payload(REVPayload):
 
 
 class GetMotorChannelCurrentAlertLevel_Payload(REVPayload):
-
     def __init__(self):
         self.motorChannel = REVBytes(1)
 
 
 class ResetMotorEncoder_Payload(REVPayload):
-
     def __init__(self):
         self.motorChannel = REVBytes(1)
 
 
 class SetMotorConstantPower_Payload(REVPayload):
-
     def __init__(self):
         self.motorChannel = REVBytes(1)
         self.powerLevel = REVBytes(2)
 
 
 class GetMotorConstantPower_Payload(REVPayload):
-
     def __init__(self):
         self.motorChannel = REVBytes(1)
 
 
 class SetMotorTargetVelocity_Payload(REVPayload):
-
     def __init__(self):
         self.motorChannel = REVBytes(1)
         self.velocity = REVBytes(2)
@@ -579,7 +560,6 @@ class SetMotorTargetPosition_Payload(REVPayload):
 
 
 class GetMotorTargetPosition_Payload(REVPayload):
-
     def __init__(self):
         self.motorChannel = REVBytes(1)
 
@@ -607,92 +587,78 @@ class SetMotorPIDCoefficients_Payload(REVPayload):
 
 
 class GetMotorPIDCoefficients_Payload(REVPayload):
-
     def __init__(self):
         self.motorChannel = REVBytes(1)
         self.mode = REVBytes(1)
 
 
 class SetPWMConfiguration_Payload(REVPayload):
-
     def __init__(self):
         self.pwmChannel = REVBytes(1)
         self.framePeriod = REVBytes(2)
 
 
 class GetPWMConfiguration_Payload(REVPayload):
-
     def __init__(self):
         self.pwmChannel = REVBytes(1)
 
 
 class SetPWMPulseWidth_Payload(REVPayload):
-
     def __init__(self):
         self.pwmChannel = REVBytes(1)
         self.pulseWidth = REVBytes(2)
 
 
 class GetPWNPulseWidth_Payload(REVPayload):
-
     def __init__(self):
         self.pwmChannel = REVBytes(1)
 
 
 class SetPWMEnable_Payload(REVPayload):
-
     def __init__(self):
         self.pwmChannel = REVBytes(1)
         self.enable = REVBytes(1)
 
 
 class GetPWMEnable_Payload(REVPayload):
-
     def __init__(self):
         self.pwmChannel = REVBytes(1)
 
 
 class SetServoConfiguration_Payload(REVPayload):
-
     def __init__(self):
         self.servoChannel = REVBytes(1)
         self.framePeriod = REVBytes(2)
 
 
 class GetServoConfiguration_Payload(REVPayload):
-
     def __init__(self):
         self.servoChannel = REVBytes(1)
 
 
 class SetServoPulseWidth_Payload(REVPayload):
-
     def __init__(self):
         self.servoChannel = REVBytes(1)
         self.pulseWidth = REVBytes(2)
 
 
 class GetServoPulseWidth_Payload(REVPayload):
-
     def __init__(self):
         self.servoChannel = REVBytes(1)
 
 
 class SetServoEnable_Payload(REVPayload):
-
     def __init__(self):
         self.servoChannel = REVBytes(1)
         self.enable = REVBytes(1)
 
 
 class GetServoEnable_Payload(REVPayload):
-
     def __init__(self):
         self.servoChannel = REVBytes(1)
 
 
 class I2CWriteSingleByte_Payload(REVPayload):
-
     def __init__(self):
         self.i2cChannel = REVBytes(1)
         self.slaveAddress = REVBytes(1)
@@ -709,7 +675,6 @@ class I2CWriteMultipleBytes_Payload(REVPayload):
 
 
 class I2CWriteStatusQuery_Payload(REVPayload):
-
     def __init__(self):
         self.i2cChannel = REVBytes(1)
 

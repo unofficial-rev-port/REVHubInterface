@@ -1,8 +1,3 @@
-# uncompyle6 version 3.9.1
-# Python bytecode version base 2.7 (62211)
-# Decompiled from: Python 2.7.18 (default, Aug 23 2022, 17:18:36) 
-# [GCC 11.2.0]
-# Embedded file name: REVMotor.py
 import REVcomm as REVComm, REVmessages as REVMsg, REVModule, REVADC, time
 Q16 = 65536.0
 MODE_CONSTANT_POWER = 0
@@ -294,5 +289,3 @@ class Motor:
         self.setMode(0, 1)
         self.setPower(0)
         self.enable()
-
-# okay decompiling REVMotor.pyc

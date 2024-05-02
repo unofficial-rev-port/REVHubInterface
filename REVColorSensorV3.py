@@ -1,8 +1,3 @@
-# uncompyle6 version 3.9.1
-# Python bytecode version base 2.7 (62211)
-# Decompiled from: Python 2.7.18 (default, Aug 23 2022, 17:18:36) 
-# [GCC 11.2.0]
-# Embedded file name: REVColorSensorV3.py
 """REV ControlHub Interface for the REV Color Sensor"""
 import logging
 from REVI2C import I2CDevice

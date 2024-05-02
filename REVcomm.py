@@ -1,20 +1,9 @@
-# uncompyle6 version 3.9.1
-# Python bytecode version base 2.7 (62211)
-# Decompiled from: Python 2.7.18 (default, Aug 23 2022, 17:18:36) 
-# [GCC 11.2.0]
-# Embedded file name: REVcomm.py
-"""
-#     COPYRIGHT 2015, 2016 DEKA RESEARCH AND DEVELOPMENT CORPORATION
-#
-#   Contains confidential and proprietary information which
-#   may not be copied, disclosed or used by others except as expressly
-#   authorized in writing by DEKA Research & Development Corporation.
-"""
-import Tkinter as tk, ttk
-from Tkinter import *
+import tkinter as tk
+from tkinter import *
+import tkinter.ttk
 import threading, multiprocessing as mp, time, math, csv, REVComPorts, REVmessages as REVMsg, os, REVModule
 from REVModule import Module
-import binascii, serial, time, Queue
+import binascii, serial, time, queue
 
 class REVcomm:
 
@@ -51,7 +40,7 @@ class REVcomm:
             try:
                 self.REVProcessor.open()
             except serial.SerialException as e:
-                print 'Serial port error: ' + str(e) + ' retrying...'
+                print('Serial port error: ' + str(e) + ' retrying...')
                 numSerialErrors -= 1
                 if numSerialErrors == 0:
                     break
@@ -59,9 +48,6 @@ class REVcomm:
 
     def closeActivePort(self):
         self.REVProcessor.close()
-
-    def getTime_ms(self):
-        return int(round(time.time() * 1000))
 
     def getTime_ms(self):
         return int(round(time.time() * 1000))
@@ -90,7 +76,7 @@ class REVcomm:
         rcvStarted = False
         startReceiveTime = self.getTime_ms()
         receivedMessageNums = []
-        inWaitingQueue = Queue.Queue()
+        inWaitingQueue = queue.Queue()
         beenInLoop = False
         try:
             retryAttempt = 0
@@ -109,7 +95,7 @@ class REVcomm:
                     if printData == REVMsg.MsgNum.Discovery:
                         discoveryMode = True
                     if self.enablePrinting:
-                        print '-->', REVMsg.printDict[printData]['Name'], '::', PacketToWrite.getPacketData()
+                        print('-->', REVMsg.printDict[printData]['Name'], '::', PacketToWrite.getPacketData())
                     self.REVProcessor.write(binascii.unhexlify(PacketToWrite.getPacketData()))
                     waitTimeStart = time.time()
                     timeout = False
@@ -120,7 +106,6 @@ class REVcomm:
                             if retryAttempt > MaxRetries:
                                 retry = False
                             break
-
                     if timeout:
                         continue
                     time.sleep(0.03)
@@ -130,6 +115,9 @@ class REVcomm:
                         while self.REVProcessor.inWaiting() > 0:
                             retry = False
                             newByte = binascii.hexlify(self.REVProcessor.read(1)).upper()
+                            newByte = str(newByte)
+                            newByte = newByte[2:]
+                            newByte = newByte[:-1]
                             if parseState == self.WaitForFrameByte1:
                                 rcvStarted = True
                                 startReceiveTime = time.time()
@@ -166,7 +154,7 @@ class REVcomm:
                                     if chksumdata[0]:
                                         newPacket = self.processPacket(incomingPacket)
                                         if self.enablePrinting:
-                                            print '<--', REVMsg.printDict[int(newPacket.header.packetType)]['Name'], '::', newPacket.getPacketData()
+                                            print('<--', REVMsg.printDict[int(newPacket.header.packetType)]['Name'], '::', newPacket.getPacketData())
                                         if discoveryMode:
                                             packet.append(newPacket)
                                             time.sleep(2)
@@ -177,7 +165,7 @@ class REVcomm:
                                         else:
                                             return newPacket
                                     else:
-                                        print 'Invalid ChkSum: ', chksumdata[1], '==', chksumdata[2]
+                                        print('Invalid ChkSum: ', chksumdata[1], '==', chksumdata[2])
                                     rcvStarted = False
                                     parseState = self.WaitForFrameByte1
 
@@ -200,17 +188,17 @@ class REVcomm:
             else:
                 if packetType == REVMsg.RespNum.Discovery_RSP:
                     return True
-                print 'This response is for a different message. Sent: %d, Received: %d.' % (receivedPacket.header.refNum, PacketToWrite.header.msgNum)
+                print('This response is for a different message. Sent: %d, Received: %d.' % (receivedPacket.header.refNum, PacketToWrite.header.msgNum))
                 return False
 
         else:
             if packetType == REVMsg.MsgNum.NACK:
                 printData = PacketToWrite.header.packetType.data >> 8 | PacketToWrite.header.packetType.data % 256 << 8
-                print 'NACK Code: ', receivedPacket.payload.nackCode
-                print "NACK'd Packet: ", REVMsg.printDict[printData]['Name'], '::', PacketToWrite.getPacketData()
+                print('NACK Code: ', receivedPacket.payload.nackCode)
+                print("NACK'd Packet: ", REVMsg.printDict[printData]['Name'], '::', PacketToWrite.getPacketData())
                 return False
             else:
-                print 'Incorrect Response Type. Response Expected: ', binascii.hexlify(str(data)), ', Response Received: ', binascii.hexlify(str(packetType))
+                print('Incorrect Response Type. Response Expected: ', binascii.hexlify(str(data)), ', Response Received: ', binascii.hexlify(str(packetType)))
                 return False
 
     def checkPacket(self, incomingPacket, receivedChkSum):
@@ -298,8 +286,7 @@ class REVcomm:
     def setModuleLEDPattern(self, destination, stepArray):
         setModuleLEDPatternMsg = REVMsg.SetModuleLEDPattern()
         for i, step in enumerate(stepArray.patt):
-            setattr(setModuleLEDPatternMsg.payload, ('rgbtStep{}').format(i), step)
-
+            setattr(setModuleLEDPatternMsg.payload, ('rgbtStep{}').format(i), step)  
         self.sendAndReceive(setModuleLEDPatternMsg, destination)
 
     def getModuleLEDPattern(self, destination):
@@ -321,7 +308,6 @@ class REVcomm:
             module = Module(self, packet.header.source, packet.payload.parent)
             module.init_periphs()
             REVModules.append(module)
-
         return REVModules
 
     def getBulkInputData(self, destination):
@@ -369,5 +355,3 @@ class REVcomm:
         getBulkServoDataMsg = REVMsg.GetBulkServoData()
         packet = self.sendAndReceive(getBulkServoDataMsg, destination)
         return packet
-
-# okay decompiling REVcomm.pyc

@@ -1,8 +1,3 @@
-# uncompyle6 version 3.9.1
-# Python bytecode version base 2.7 (62211)
-# Decompiled from: Python 2.7.18 (default, Aug 23 2022, 17:18:36) 
-# [GCC 11.2.0]
-# Embedded file name: REVADC.py
 import REVcomm as REVComm, REVmessages as REVMsg
 ADC_INPUT_CHANNEL_0 = 0
 ADC_INPUT_CHANNEL_1 = 1
@@ -45,5 +40,3 @@ class ADCPin:
         getADC.payload.rawMode = rawMode
         packet = self.commObj.sendAndReceive(getADC, self.destinationModule)
         return packet.payload.adcValue
-
-# okay decompiling REVADC.pyc
