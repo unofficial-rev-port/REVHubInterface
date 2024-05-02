@@ -7,8 +7,8 @@ This interface provides a method for teams to prototype with motors, servos, and
 This is a community continuation of the software, updating to newer underlying technologies (e.g. porting from Python 2 to Python 3), adding features, and porting to more platforms (Linux and macOS, in addition to Windows).
 
 ## Installing the software
-
-Start by downloading the latest version of teh software from [the Releases page](https://github.com/unofficial-rev-port/REVHubInterface/releases).  An `.exe` is provided for Windows systems, an AppImage for Linux systems, and a `.DMG` for macOS.
+(note: binaries are not available yet, this is a placeholder)
+Start by downloading the latest version of the software from [the Releases page](https://github.com/unofficial-rev-port/REVHubInterface/releases).  An `.exe` is provided for Windows systems, an AppImage for Linux systems, and a `.DMG` for macOS.
 
 You may also need the appropriate dirver.
 
@@ -20,10 +20,9 @@ You may also need the appropriate dirver.
 
 1. Connect your Expansion Hub to the computer with a USB A to USB Mini-B cable.
 2. Run the REV Hub Interface Software.
-3. The software will scan and connect to the Expansion Hub. The various peripheral tabs will populate with controls once connected.
+3. Press Connect
 
 ## Running the development version
-
 If you want to run the development version from this repository rather than using a pre=packaged version, you will need a few extra things:
 
 - Python 3
