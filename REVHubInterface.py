@@ -1277,7 +1277,7 @@ class Application():
         self.root.after(500, self.every_second)
 
     def buildFirmwareFrame(self):
-        frame = tkinter.ttk.Frame(self.Firmware_tab, borderwidth=5, relief='sunken')
+        frame = tkinter.ttk.Frame(self.Firmware_tab, borderwidth=5)
         frame.grid(row=0, column=0, sticky=(N, S, E, W))
         self.firmware = firmware_tab(frame, partial(self.firmware_bin_select), partial(self.firmware_flash))
         self.firmware.warning_block.insert(END, 'Firmware update to be performed to the Expansion Hub connected via USB only. \n\t\t\nFirmware update is to be performed with only REV qualified .bin files located in the default installation directory\n\t\t\n\nWARNING: incorrect firmware can brick the device.\n\nModified firmware files are not FTC legal.\n')
