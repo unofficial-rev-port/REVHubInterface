@@ -105,7 +105,6 @@ class firmware_tab():
         self.firmware_label.grid(pady=5)
         self.firmware_label.grid(row=1)
         self.firmware_label.grid(sticky=(E, W))
-        self.warning_block.config(background='#bcbcbc')
         self.warning_block.config(height=11)
         self.warning_block.config(width=50)
         self.warning_block.config(wrap='word')
