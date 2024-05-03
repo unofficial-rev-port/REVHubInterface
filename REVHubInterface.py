@@ -3,7 +3,7 @@ from REV2mSensor import REV2mSensor
 from REVColorSensorV3 import REVColorSensorV3
 from REVcomm import *
 from functools import partial
-import tkinter, tkinter.ttk, Tkconstants, tkinter.filedialog, tkinter.messagebox, os, subprocess, time, platform, logging   
+import tkinter, tkinter.ttk, tkinter.filedialog, tkinter.messagebox, os, subprocess, time, platform, logging   
 try:
     import ft232
 except Exception as e: 
