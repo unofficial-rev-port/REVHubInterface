@@ -794,6 +794,9 @@ class Application():
         self.root.grid_columnconfigure(0, weight=1)
         true = True
         self.Main_window = tkinter.ttk.Frame(root)
+        style = tkinter.ttk.Style()
+        style.configure("Red.Label",   foreground="red")
+        style.configure("Green.Label", foreground="green")
         self.Tab_frame = tkinter.ttk.Notebook(self.Main_window)
         self.Connected_Label = tkinter.ttk.Label(self.Main_window)
         try:
@@ -842,7 +845,7 @@ class Application():
         self.Tab_frame.grid(sticky=(N, S, E, W))
         self.Connected_Label.grid(row=0)
         self.Connected_Label.grid(sticky=E)
-        self.Connected_Label.config(text='Disconnected')
+        self.Connected_Label.config(text='Disconnected', style='Red.Label')
         self.Top_Banner.grid(row=0)
         self.Top_Banner.grid(sticky=W)
         self.DC_Motor_frame.config(height=250)
@@ -926,9 +929,9 @@ class Application():
             isAlive = module.sendKA()
             if isAlive == False:
                 self.on_quit_button_callback()
-                self.Connected_Label.config(text='Disconnected')
+                self.Connected_Label.config(text='Disconnected', style='Red.Label')
             else:
-                self.Connected_Label.config(text='Connected')
+                self.Connected_Label.config(text='Connected', style='Green.Label')
                 module.getStatus()
 
     def speedMotorSlider(self, speed, moduleNumber, motorNumber, *args):
@@ -1296,7 +1299,7 @@ class Application():
         self.repetitiveFunctions = []
         self.commMod.closeActivePort()
         self.Quit_button.config(state='disabled')
-        self.Connected_Label.config(text='Disconnected')
+        self.Connected_Label.config(text='Disconnected', style='Red.Label')
         for i in range(0, len(self.Tab_frame.tabs())):
             if i < 4:
                 self.Tab_frame.tab(i, state='disabled')
