@@ -14,16 +14,16 @@ You may also need the appropriate dirver.
 
 - Windows: The newest versions of Windows should automatically install the required USB drivers. Alternatively, you can download the latest drivers from the [FTDI VCP website](https://www.ftdichip.com/Drivers/VCP.htm).
 - Linux: The latest `libftdi.so` is provided in the download, no additional action should be necessary.
-- macOS: (TODO: figure out; `brew install libftdi` doesn't seem to make the error go away)
+- macOS: (TODO: figure out; ~~`brew install libftdi` doesn't seem to make the error go away.~~ UPDATE: Will be fixed when https://github.com/lsgunth/pyft232/pull/22 is merged and published, in the mean time we should manually apply the change in our releases that have the library bundled.  Also, should we bundle `libftdi1.dylib` and its dependencies, or request users install it via Homebrew themselves?)
 
 ## Connecting and Controlling an Expansion Hub
 
 1. Connect your Expansion Hub to the computer with a USB A to USB Mini-B cable.
 2. Run the REV Hub Interface Software.
-3. Press Connect
+3. Press Connect.  The software will scan and connect to the Expansion Hub. The various peripheral tabs will populate with controls once connected.
 
 ## Running the development version
-If you want to run the development version from this repository rather than using a pre=packaged version, you will need a few extra things:
+If you want to run the development version from this repository rather than using a pre-packaged version, you will need to install a few additional dependencies:
 
 - Python 3
 - Tkinter
