@@ -427,7 +427,6 @@ class i2c_chan():
         self.i2c_pack.grid_columnconfigure(0, weight=1)
         self.Frame_2.config(borderwidth=2)
         self.Frame_2.config(height=200)
-        self.Frame_2.config(relief='raised')
         self.Frame_2.config(width=100)
         self.Frame_2.grid(column=0)
         self.Frame_2.grid(row=0)
@@ -534,7 +533,6 @@ class servo_motor():
         self.servo_pack.grid_columnconfigure(1, weight=0)
         self.servo_0.config(borderwidth=2)
         self.servo_0.config(padding=(1, 1, 1, 1))
-        self.servo_0.config(relief='raised')
         self.servo_0.grid(column=0)
         self.servo_0.grid(padx=1)
         self.servo_0.grid(pady=1)
@@ -606,7 +604,6 @@ class servo_motor():
         self.Ms_button_0.grid(sticky=(N, S, E))
         self.servo_1.config(borderwidth=2)
         self.servo_1.config(padding=(1, 1, 1, 1))
-        self.servo_1.config(relief='raised')
         self.servo_1.grid(column=0)
         self.servo_1.grid(padx=1)
         self.servo_1.grid(pady=1)
@@ -1215,7 +1212,7 @@ class Application():
             for motorNumber in range(0, 4):
                 self.DC_Motor_frame.grid_rowconfigure(motorNumber, weight=1)
                 self.DC_Motor_frame.grid_columnconfigure(moduleNumber, weight=1)
-                frame = tkinter.ttk.Frame(self.DC_Motor_frame, borderwidth=5, relief='sunken')
+                frame = tkinter.ttk.Frame(self.DC_Motor_frame, borderwidth=5)
                 frame.grid(row=motorNumber, column=moduleNumber, sticky=(N, S, E, W))
                 self.Motor_packs.append(dc_motor(frame, partial(self.speedMotorSlider, motorNumber=motorNumber, moduleNumber=moduleNumber), partial(self.speedMotorEntry, motorNumber=motorNumber, moduleNumber=moduleNumber), partial(self.javaMotorEntry, motorNumber=motorNumber, moduleNumber=moduleNumber)))
                 self.Motor_packs[-1].Motor_pack.config(text='Module: ' + str(moduleNumber) + ' Motors: ' + str(motorNumber))
@@ -1225,7 +1222,7 @@ class Application():
             for motorNumber in range(0, 3):
                 self.Servo_Motor_frame.grid_rowconfigure(motorNumber, weight=1)
                 self.Servo_Motor_frame.grid_columnconfigure(moduleNumber, weight=1)
-                frame = tkinter.ttk.Frame(self.Servo_Motor_frame, borderwidth=5, relief='sunken')
+                frame = tkinter.ttk.Frame(self.Servo_Motor_frame, borderwidth=5)
                 frame.grid(row=motorNumber, column=moduleNumber, sticky=(N, S, E, W))
                 self.Servo_packs.append(servo_motor(frame, partial(self.servoSlider, servoNumber=2 * motorNumber, moduleNumber=moduleNumber), partial(self.servoJava, servoNumber=motorNumber * 2, moduleNumber=moduleNumber), partial(self.servoMS, servoNumber=motorNumber * 2, moduleNumber=moduleNumber), partial(self.servoSlider, servoNumber=motorNumber * 2 + 1, moduleNumber=moduleNumber), partial(self.servoJava, servoNumber=motorNumber * 2 + 1, moduleNumber=moduleNumber), partial(self.servoMS, servoNumber=motorNumber * 2 + 1, moduleNumber=moduleNumber)))
                 self.Servo_packs[-1].servo_pack.config(text='Module: ' + str(moduleNumber) + ' Motors: ' + str(motorNumber * 2) + ' & ' + str(motorNumber * 2 + 1))
@@ -1235,13 +1232,13 @@ class Application():
         for moduleNumber in range(0, moduleTot):
             self.I2C_Device_frame.grid_rowconfigure(0, weight=1)
             self.I2C_Device_frame.grid_columnconfigure(moduleNumber, weight=1)
-            frame = tkinter.ttk.Frame(self.I2C_Device_frame, borderwidth=5, relief='sunken')
+            frame = tkinter.ttk.Frame(self.I2C_Device_frame, borderwidth=5)
             frame.grid(row=0, column=moduleNumber, sticky=W)
             self.IMUs.append(imu_box(frame, partial(self.imuAdd, moduleNumber)))
             for i2cNumber in range(0, 4):
                 self.I2C_Device_frame.grid_rowconfigure(i2cNumber, weight=1)
                 self.I2C_Device_frame.grid_columnconfigure(moduleNumber, weight=1)
-                frame = tkinter.ttk.Frame(self.I2C_Device_frame, borderwidth=5, relief='sunken')
+                frame = tkinter.ttk.Frame(self.I2C_Device_frame, borderwidth=5)
                 frame.grid(row=i2cNumber + 1, column=moduleNumber, sticky=(N, S, E, W))
                 self.I2C_packs.append(i2c_chan(frame, partial(self.colorSenseAdd, bus_number=i2cNumber, module_number=moduleNumber), partial(self.colorSensePoll, bus_number=i2cNumber, module_number=moduleNumber)))
                 self.I2C_packs[-1].i2c_pack.config(text='Module: ' + str(moduleNumber) + ' I2C Bus: ' + str(i2cNumber))
@@ -1251,14 +1248,14 @@ class Application():
         self.Analog_panels = []
         for moduleNumber in range(0, moduleTot):
             self.IO_tab.grid_columnconfigure(moduleNumber, weight=1)
-            frame = tkinter.ttk.Frame(self.IO_tab, borderwidth=5, relief='sunken')
+            frame = tkinter.ttk.Frame(self.IO_tab, borderwidth=5)
             frame.grid(row=0, column=moduleNumber, sticky=(N, S, E, W))
             self.IO_packs.append(io_box(frame, partial(self.analogAdd, moduleNumber)))
             self.IO_packs[-1].analog_pack.config(text='Analog Inputs Module: ' + str(moduleNumber))
             self.IO_packs[-1].digital_pack.config(text='Digital Input/Outputs Module: ' + str(moduleNumber))
             self.IO_packs[-1].innerFrame.grid_columnconfigure(0, weight=1)
             for i in range(0, 4):
-                frame = tkinter.ttk.Frame(self.IO_packs[-1].innerFrame, borderwidth=5, relief='sunken')
+                frame = tkinter.ttk.Frame(self.IO_packs[-1].innerFrame, borderwidth=5)
                 frame.grid(row=i, column=0, sticky=(N, S, E, W))
                 self.IO_packs[-1].innerFrame.grid_rowconfigure(i, weight=1)
                 self.Analog_panels.append(analog_single(frame))
@@ -1266,7 +1263,7 @@ class Application():
 
             for i in range(0, 4):
                 for j in range(0, 2):
-                    frame = tkinter.ttk.Frame(self.IO_packs[-1].innerFrame_1, borderwidth=5, relief='sunken')
+                    frame = tkinter.ttk.Frame(self.IO_packs[-1].innerFrame_1, borderwidth=5)
                     frame.grid(row=i, column=j, sticky=(N, S, E, W))
                     self.IO_packs[-1].innerFrame_1.grid_rowconfigure(i, weight=1)
                     self.IO_packs[-1].innerFrame_1.grid_columnconfigure(j, weight=1)
@@ -1275,7 +1272,7 @@ class Application():
 
         self.devce_info = []
         for moduleNumber in range(0, moduleTot):
-            frame = tkinter.ttk.Frame(self.firmware.Device_info_frame1, borderwidth=5, relief='sunken')
+            frame = tkinter.ttk.Frame(self.firmware.Device_info_frame1, borderwidth=5)
             frame.grid(row=1, column=moduleNumber, sticky=(N, S, E, W))
             self.devce_info.append(device_info(frame, partial(self.set_address_callback, moduleNumber=moduleNumber)))
             self.devce_info[-1].addr_entry.delete(0, END)
