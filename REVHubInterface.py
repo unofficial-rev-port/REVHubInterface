@@ -3,10 +3,11 @@ from REV2mSensor import REV2mSensor
 from REVColorSensorV3 import REVColorSensorV3
 from REVcomm import *
 from functools import partial
-import tkinter, tkinter.ttk, tkinter.filedialog, tkinter.messagebox, os, subprocess, time, platform, logging
+import tkinter, tkinter.ttk, tkinter.filedialog, tkinter.messagebox, os, subprocess, time, platform
 
 try:
     from ttkthemes import ThemedTk
+    print('loaded theme')
 except:
     pass
 
@@ -183,7 +184,6 @@ class digital_single():
         self.State_label.config(text='State read:')
         self.State_label.grid(column=4)
         self.State_label.grid(row=1)
-        self.input_button.config(background='#aaccff')
         self.input_button.config(command=setInputCallback)
         self.input_button.config(text='IN')
         self.input_button.grid(column=0)
