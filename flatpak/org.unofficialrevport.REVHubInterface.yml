@@ -17,18 +17,8 @@ modules:
     buildsystem: simple
     builddir: true
     build-commands:
-      - install -D
+      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} . --no-build-isolation
     sources:
       - type: git
-        url: https://github.com/telegramdesktop/tdesktop.git
-        commit: fb444e7dd42985104ec416cdc3545c554694017b
-        tag: v5.0.1
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
-          tag-query: first | .tag_name
-          timestamp-query: first | .published_at
-          version-query: $tag | sub("^[vV]"; "")
-      - type: shell
-        commands:
-          - sed -i '/-Werror/d' Telegram/ThirdParty/dispatch/cmake/modules/DispatchCompilerWarnings.cmake
+        url: https://github.com/unofficial-rev-port/REVHubInterface.git
+        commit: b3f75c78e9f2190580d8aa364252da22593cd8fb
