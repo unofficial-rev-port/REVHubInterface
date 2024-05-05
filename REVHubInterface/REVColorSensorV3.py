@@ -1,6 +1,8 @@
 """REV ControlHub Interface for the REV Color Sensor"""
 import logging
-from REVI2C import I2CDevice
+
+from REVHubInterface.REVI2C import I2CDevice
+
 
 def getDominantColor(r, g, b):
     """ return dominant color as a string """
@@ -59,7 +61,7 @@ class REVColorSensorV3(I2CDevice):
         r = tmp >> 88 & 16777215
         self.logger.debug('R: %d, G: %d, B: %d, I: %d, Prox: %d', r, g, b, ir, d)
         return (
-         r, g, b, ir, d)
+            r, g, b, ir, d)
 
     def getProxValue(self):
         """ Returns raw proximity value """
@@ -80,7 +82,7 @@ class REVColorSensorV3(I2CDevice):
         c = rgbi2c(r, g, b, ir)
         self.logger.debug('R: %d, G: %d, B: %d, C: %d', r, g, b, c)
         return (
-         r, g, b, c)
+            r, g, b, c)
 
     def getIrValue(self):
         self.writeByte(self._LS_DATA_IR)

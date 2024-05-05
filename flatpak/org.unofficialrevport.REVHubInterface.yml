@@ -1,0 +1,34 @@
+id: org.unofficialrevport.REVHubInterface
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+command: revhubinterface
+rename-icon: revhubinterface
+finish-args:
+  - --device=all
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+  - --socket=pulseaudio
+modules:
+  - python3-requirements.json
+  - name: revhubinterface
+    buildsystem: simple
+    builddir: true
+    build-commands:
+      - install -D
+    sources:
+      - type: git
+        url: https://github.com/telegramdesktop/tdesktop.git
+        commit: fb444e7dd42985104ec416cdc3545c554694017b
+        tag: v5.0.1
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
+          tag-query: first | .tag_name
+          timestamp-query: first | .published_at
+          version-query: $tag | sub("^[vV]"; "")
+      - type: shell
+        commands:
+          - sed -i '/-Werror/d' Telegram/ThirdParty/dispatch/cmake/modules/DispatchCompilerWarnings.cmake

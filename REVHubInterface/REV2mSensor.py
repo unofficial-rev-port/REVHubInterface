@@ -1,8 +1,11 @@
-import REVcomm as REVComm
-from REVI2C import I2CDevice
-import sys, time
+import sys
+import time
+
+from REVHubInterface.REVI2C import I2CDevice
+
 VcselPeriodPreRange = 0
 VcselPeriodFinalRange = 1
+
 
 class REV2mSensor(I2CDevice):
 
@@ -20,7 +23,8 @@ class REV2mSensor(I2CDevice):
         def VL53L0X_check(addr, expected, numBytes=1):
             value = self.readRegister(addr, numBytes)
             if value != expected:
-                self._debugPrint('Register (' + hex(addr) + ') expected (' + hex(expected) + ') got (' + hex(value) + ')')
+                self._debugPrint(
+                    'Register (' + hex(addr) + ') expected (' + hex(expected) + ') got (' + hex(value) + ')')
                 return False
             return True
 
@@ -214,7 +218,8 @@ class REV2mSensor(I2CDevice):
         writeTmp = self.readRegister(146)
         self._spad_count = writeTmp & 127
         self._spad_type_is_aperture = True
-        self._debugPrint('SPAD INFO: Scout: ' + str(self._spad_count) + ' type is aperture: ' + str(self._spad_type_is_aperture))
+        self._debugPrint(
+            'SPAD INFO: Scout: ' + str(self._spad_count) + ' type is aperture: ' + str(self._spad_type_is_aperture))
         if writeTmp >> 7 & 1 == 0:
             self._spad_type_is_aperture = False
         self.writeRegister(129, 0)
@@ -254,7 +259,8 @@ class REV2mSensor(I2CDevice):
             if used_budget_us > budget_us:
                 return False
             final_range_timeout_us = budget_us - used_budget_us
-            final_range_timeout_mclks = self.timeoutMicrosecondsToMclks(final_range_timeout_us, timeouts.final_range_vcsel_period_pclks)
+            final_range_timeout_mclks = self.timeoutMicrosecondsToMclks(final_range_timeout_us,
+                                                                        timeouts.final_range_vcsel_period_pclks)
             if enables.pre_range:
                 final_range_timeout_mclks += timeouts.pre_range_mclks
             self.writeShort(self._FINAL_RANGE_CONFIG_TIMEOUT_MACROP_HI, self.encodeTimeout(final_range_timeout_mclks))
@@ -326,14 +332,18 @@ class REV2mSensor(I2CDevice):
         timeouts = self.SequenceStepTimeouts()
         timeouts.pre_range_vcsel_period_pclks = self.getVcselPulsePeriod(VcselPeriodPreRange)
         timeouts.msrc_dss_tcc_mclks = self.readRegister(self._MSRC_CONFIG_TIMEOUT_MACROP) + 1
-        timeouts.msrc_dss_tcc_us = self.timeoutMclksToMicroseconds(timeouts.msrc_dss_tcc_mclks, timeouts.pre_range_vcsel_period_pclks)
+        timeouts.msrc_dss_tcc_us = self.timeoutMclksToMicroseconds(timeouts.msrc_dss_tcc_mclks,
+                                                                   timeouts.pre_range_vcsel_period_pclks)
         timeouts.pre_range_mclks = self.decodeTimeout(self.readRegister(self._PRE_RANGE_CONFIG_TIMEOUT_MACROP_HI, 2))
-        timeouts.pre_range_us = self.timeoutMclksToMicroseconds(timeouts.pre_range_mclks, timeouts.pre_range_vcsel_period_pclks)
+        timeouts.pre_range_us = self.timeoutMclksToMicroseconds(timeouts.pre_range_mclks,
+                                                                timeouts.pre_range_vcsel_period_pclks)
         timeouts.final_range_vcsel_period_pclks = self.getVcselPulsePeriod(VcselPeriodFinalRange)
-        timeouts.final_range_mclks = self.decodeTimeout(self.readRegister(self._FINAL_RANGE_CONFIG_TIMEOUT_MACROP_HI, 2))
+        timeouts.final_range_mclks = self.decodeTimeout(
+            self.readRegister(self._FINAL_RANGE_CONFIG_TIMEOUT_MACROP_HI, 2))
         if enables.pre_range:
             timeouts.final_range_mclks -= timeouts.pre_range_mclks
-        timeouts.final_range_us = self.timeoutMclksToMicroseconds(timeouts.final_range_mclks, timeouts.final_range_vcsel_period_pclks)
+        timeouts.final_range_us = self.timeoutMclksToMicroseconds(timeouts.final_range_mclks,
+                                                                  timeouts.final_range_vcsel_period_pclks)
         return timeouts
 
     def decodeTimeout(self, reg_val):
@@ -513,7 +523,7 @@ class REV2mSensor(I2CDevice):
 
 
 if __name__ == '__main__':
-    commMod = REVComm.REVcomm()
+    commMod = REVcomm.REVcomm()
     commMod.openActivePort()
     REVModules = commMod.discovery()
     numHubs = len(REVModules)

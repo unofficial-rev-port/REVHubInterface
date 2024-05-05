@@ -1,4 +1,7 @@
-import REVcomm as REVComm, REVmessages as REVMsg, REVModule, REVADC, time
+import REVHubInterface.REVmessages as REVMsg
+from REVHubInterface import REVADC
+from REVHubInterface import REVModule
+
 Q16 = 65536.0
 MODE_CONSTANT_POWER = 0
 MODE_CONSTANT_VELOCITY = 1

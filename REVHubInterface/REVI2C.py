@@ -1,4 +1,7 @@
-import REVcomm as REVComm, REVmessages as REVMsg, time
+import time
+
+import REVHubInterface.REVmessages as REVMsg
+
 
 def i2cWriteSingleByte(commObj, destination, i2cChannel, slaveAddress, byteToWrite):
     i2cWriteSingleByteMsg = REVMsg.I2CWriteSingleByte()

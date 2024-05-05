@@ -1,6 +1,8 @@
-import serial, time, binascii, os
-from serial.tools import list_ports
 import re
+import time
+
+from serial.tools import list_ports
+
 defaultComPort = 0
 comPortCommand = ''
 testFixture = False
