@@ -7,12 +7,6 @@ from sys import platform
 import tkinter, tkinter.ttk, tkinter.filedialog, tkinter.messagebox, os, subprocess, time, platform
 
 try:
-    import sv_ttk
-    print('Loaded Tk theme: Sun Valley')
-except:
-    pass
-
-try:
     import ft232
 except Exception as e: 
     print(platform.system)
@@ -1428,8 +1422,10 @@ if __name__ == '__main__':
 
     xroot = tk.Tk()
     # Try to load nicer-looking interface on Linux if possible.  On Windows/macOS, the default Tk themes look reasonably-native.
-    if platform != "darwin" and platform != "win32":
+    if platform.system() != "Darwin" and platform.system() != "Windows":
         try:
+            import sv_ttk
+            print('Loaded Tk theme: Sun Valley')
             sv_ttk.set_theme("dark")
         except:
             pass
