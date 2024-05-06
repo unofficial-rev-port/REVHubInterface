@@ -1,4 +1,4 @@
-from REVHubInterface import REVmessages as REVMsg
+import REVmessages as REVMsg
 
 
 def setServoConfiguration(commObj, destination, servoChannel, framePeriod):

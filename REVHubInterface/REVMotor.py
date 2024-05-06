@@ -1,5 +1,5 @@
 import REVModule
-from REVHubInterface import REVADC, REVmessages as REVMsg
+import REVADC, REVmessages as REVMsg
 
 Q16 = 65536.0
 MODE_CONSTANT_POWER = 0
