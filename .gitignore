@@ -1,2 +1,7 @@
 __pycache__/
 
+/dist/
+/build/
+/flatpak/.flatpak-builder/
+/flatpak/build/
+/.idea/
