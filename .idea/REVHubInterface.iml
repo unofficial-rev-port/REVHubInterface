@@ -6,6 +6,7 @@
       <excludeFolder url="file://$MODULE_DIR$/flatpak/.flatpak-builder" />
       <excludeFolder url="file://$MODULE_DIR$/flatpak/build" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
