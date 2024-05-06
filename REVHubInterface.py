@@ -3,6 +3,7 @@ from REV2mSensor import REV2mSensor
 from REVColorSensorV3 import REVColorSensorV3
 from REVcomm import *
 from functools import partial
+from sys import platform
 import tkinter, tkinter.ttk, tkinter.filedialog, tkinter.messagebox, os, subprocess, time, platform
 
 try:
@@ -1426,11 +1427,12 @@ if __name__ == '__main__':
     mp.freeze_support()
 
     xroot = tk.Tk()
-    # Try to load nicer-looking interface on Linux if possible.  On Windows/macOS, the default TK themes look reasonably-native.
-    try:
-        sv_ttk.set_theme("dark")
-    except:
-        pass
+    # Try to load nicer-looking interface on Linux if possible.  On Windows/macOS, the default Tk themes look reasonably-native.
+    if platform != "darwin" and platform != "win32":
+        try:
+            sv_ttk.set_theme("dark")
+        except:
+            pass
 
     xroot.title('Crossplatform Hub Interface')
     try:
