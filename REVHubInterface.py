@@ -6,8 +6,8 @@ from functools import partial
 import tkinter, tkinter.ttk, tkinter.filedialog, tkinter.messagebox, os, subprocess, time, platform
 
 try:
-    from ttkthemes import ThemedTk
-    print('loaded theme')
+    import sv_ttk
+    print('Loaded Tk theme: Sun Valley')
 except:
     pass
 
@@ -904,13 +904,13 @@ class Application():
         self.Quit_button.grid(pady=5)
         self.Quit_button.grid(row=0)
         self.Quit_button.grid(sticky=(N, S, E, W))
-        self.Tab_frame.add(self.DC_Motor, padding=(2, 6, 2, 6), text='DC Motors')
+        self.Tab_frame.add(self.DC_Motor, text='DC Motors')
         self.DC_Motor.grid_columnconfigure(0, weight=1)
         self.DC_Motor.grid_rowconfigure(0, weight=1)
-        self.Tab_frame.add(self.Servo_Motor, padding=(2, 6, 2, 6), text='Servo Motors')
+        self.Tab_frame.add(self.Servo_Motor, text='Servo Motors')
         self.Servo_Motor.grid_columnconfigure(0, weight=1)
         self.Servo_Motor.grid_rowconfigure(0, weight=1)
-        self.Tab_frame.add(self.I2C_Device, padding=(2, 6, 2, 6), text='I2C Devices')
+        self.Tab_frame.add(self.I2C_Device, text='I2C Devices')
         self.I2C_Device.grid_columnconfigure(0, weight=1)
         self.I2C_Device.grid_rowconfigure(0, weight=1)
         self.Tab_frame.add(self.IO, text='GPIO Control')
@@ -1425,11 +1425,12 @@ if __name__ == '__main__':
 
     mp.freeze_support()
 
+    xroot = tk.Tk()
     # Try to load nicer-looking interface on Linux if possible.  On Windows/macOS, the default TK themes look reasonably-native.
     try:
-        xroot = ThemedTk(theme="arc")
+        sv_ttk.set_theme("dark")
     except:
-        xroot = tk.Tk()
+        pass
 
     xroot.title('Crossplatform Hub Interface')
     try:
