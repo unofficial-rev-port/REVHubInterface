@@ -15,7 +15,7 @@ try:
     import ft232
 except Exception as e: 
     print(platform.system)
-    tkinter.messagebox.showerror('Drivers Not Detected', '\n\tPlease verify the correct drivers are installed. Windows 10 will automatically\n\tinstall the correct drivers when the Expansion Hub is plugged in. Windows 7 \n\trequires a manual install. Please see this link for the correct driver (FTDI D2xx):\n\thttps://www.ftdichip.com/Drivers/CDM/CDM21228_Setup.zip\n\n\tNote that firmware update will be unavailable.\nAlso, if you are using linux, this is normal (for now)\n\n\tMessage: \n\t' + str(e))
+    tkinter.messagebox.showerror('Drivers Not Detected', 'Please verify the correct drivers are installed.  Without the correct dirvers, firmware update functionality will be unavailable.\n\n - Windows 10 and above should automatically install the correct drivers when the Expansion Hub is plugged in.\n\n - Windows 7 requires a manual install. Please see this link for the correct driver (FTDI D2xx): https://www.ftdichip.com/Drivers/CDM/CDM21228_Setup.zip\n\n - On macOS, install libftdi via Homebrew: "brew install libftdi"\n\n - On Linux, install libftdi.  On Debian/Ubuntu-based systems, install it via "sudo apt install libftdi1"\n\nException Message:\n' + str(e))
 
 class device_info():
     def __init__(self, root, setAddress):
