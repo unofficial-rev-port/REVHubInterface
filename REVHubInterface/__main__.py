@@ -1421,13 +1421,12 @@ def initwindow():
 
     xroot = tk.Tk()
     # Try to load nicer-looking interface on Linux if possible.  On Windows/macOS, the default Tk themes look reasonably-native.
-    if platform.system() != "Darwin" and platform.system() != "Windows":
-        try:
-            import sv_ttk
-            print('Loaded Tk theme: Sun Valley')
-            sv_ttk.set_theme("dark")
-        except:
-            pass
+    try:
+        import sv_ttk
+        print('Loaded Tk theme: Sun Valley')
+        sv_ttk.set_theme("dark")
+    except:
+        pass
 
     xroot.title('REV Hub Interface - Community Edition - v1.3.1')
     try:
