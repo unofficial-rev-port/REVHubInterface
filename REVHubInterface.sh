@@ -1,2 +1,2 @@
 #!/usr/bin/sh
-flatpak-spawn  --host pkexec python3 -m REVHubInterface
+pkexec flatpak run --command="python3 -m REVHubInterface" org.unofficialrevport.REVHubInterface
