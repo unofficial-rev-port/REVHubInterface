@@ -1,2 +1,2 @@
 #!/usr/bin/sh
-pkexec python3 -m REVHubInterface
+flatpak-spawn  --host pkexec python3 -m REVHubInterface
