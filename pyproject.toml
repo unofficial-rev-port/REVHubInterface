@@ -4,6 +4,8 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "REVHubInterface"
 dynamic = ["dependencies", "version"] # TODO make dynamic https://pypi.org/project/setuptools-scm/
+description = "Manual control of REV Robotics Expansion Hub from a PC. Unofficial \"community edition\". "
+readme = "README.md"
 [tool.setuptools.dynamic]
 dependencies = { file = ["requirements.txt"] }
 [tool.setuptools]
