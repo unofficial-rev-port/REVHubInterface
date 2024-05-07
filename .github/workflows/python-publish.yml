@@ -34,6 +34,11 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install build
           python -m build
+      - name: upload dists
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-dists
+          path: dist/
 
   pypi-publish:
     runs-on: ubuntu-latest
@@ -46,7 +51,7 @@ jobs:
       - name: Retrieve release distributions
         uses: actions/download-artifact@v4
         with:
-          name: release-build
+          name: release-dists
           path: dist/
 
       - name: Publish release distributions to PyPI
