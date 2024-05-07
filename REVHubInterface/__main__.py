@@ -6,11 +6,11 @@ from functools import partial
 from sys import platform
 import tkinter as tk, tkinter.ttk, tkinter.filedialog, tkinter.messagebox, os, subprocess, time, platform
 
-try:
-    import ft232
-except Exception as e: 
-    print(platform.system)
-    tkinter.messagebox.showerror('Drivers Not Detected', 'Please verify the correct drivers are installed.  Without the correct dirvers, firmware update functionality will be unavailable.\n\n - Windows 10 and above should automatically install the correct drivers when the Expansion Hub is plugged in.\n\n - Windows 7 requires a manual install. Please see this link for the correct driver (FTDI D2xx): https://www.ftdichip.com/Drivers/CDM/CDM21228_Setup.zip\n\n - On macOS, install libftdi via Homebrew: "brew install libftdi"\n\n - On Linux, install libftdi.  On Debian/Ubuntu-based systems, install it via "sudo apt install libftdi1"\n\nException Message:\n' + str(e))
+# try:
+#     import ft232
+# except Exception as e: 
+#     print(platform.system)
+#     tkinter.messagebox.showerror('Drivers Not Detected', 'Please verify the correct drivers are installed.  Without the correct dirvers, firmware update functionality will be unavailable.\n\n - Windows 10 and above should automatically install the correct drivers when the Expansion Hub is plugged in.\n\n - Windows 7 requires a manual install. Please see this link for the correct driver (FTDI D2xx): https://www.ftdichip.com/Drivers/CDM/CDM21228_Setup.zip\n\n - On macOS, install libftdi via Homebrew: "brew install libftdi"\n\n - On Linux, install libftdi.  On Debian/Ubuntu-based systems, install it via "sudo apt install libftdi1"\n\nException Message:\n' + str(e))
 
 class device_info():
     def __init__(self, root, setAddress):
@@ -72,63 +72,63 @@ class device_info():
             return True
 
 
-class firmware_tab():
-    def __init__(self, root, chooseBin, flashNow):
-        self.INTERFACE_VERSION = '1.3.0'
-        root.grid_columnconfigure(0, weight=1)
-        root.grid_rowconfigure(0, weight=1)
-        root.grid(sticky=(N, S, E, W))
-        self.firmware_frame = tkinter.ttk.Frame(root)
-        self.firmware_label = tkinter.ttk.Label(self.firmware_frame)
-        self.warning_block = tk.Text(self.firmware_frame)
-        self.Frame_1 = tkinter.ttk.Frame(self.firmware_frame)
-        self.Button_1 = tkinter.ttk.Button(self.Frame_1)
-        self.Button_2 = tkinter.ttk.Button(self.Frame_1)
-        self.Device_info_frame1 = tkinter.ttk.Frame(self.firmware_frame)
-        self.firmware_frame.config(height=200)
-        self.firmware_frame.config(width=200)
-        self.firmware_frame.grid(column=0)
-        self.firmware_frame.grid(row=0)
-        self.firmware_frame.grid(sticky=(N, S, E, W))
-        self.firmware_frame.grid_rowconfigure(0, weight=1)
-        self.firmware_frame.grid_columnconfigure(0, weight=1)
-        self.Device_info_frame1.config(height=100)
-        self.Device_info_frame1.config(width=100)
-        self.Device_info_frame1.grid(column=0)
-        self.Device_info_frame1.grid(row=4)
-        self.Device_info_frame1.grid(sticky=(N, S, E, W))
-        self.Device_info_frame1.grid_rowconfigure(0, weight=1)
-        self.Device_info_frame1.grid_columnconfigure(0, weight=1)
-        self.firmware_label.config(text='Interface Version: ' + self.INTERFACE_VERSION)
-        self.firmware_label.config(width=10)
-        self.firmware_label.grid(column=0)
-        self.firmware_label.grid(columnspan=2)
-        self.firmware_label.grid(padx=5)
-        self.firmware_label.grid(pady=5)
-        self.firmware_label.grid(row=1)
-        self.firmware_label.grid(sticky=(E, W))
-        self.warning_block.config(height=11)
-        self.warning_block.config(width=50)
-        self.warning_block.config(wrap='word')
-        self.warning_block.grid(column=0)
-        self.warning_block.grid(columnspan=2)
-        self.warning_block.grid(row=0)
-        self.warning_block.grid(sticky=(N, S, E, W))
-        self.Frame_1.config(height=200)
-        self.Frame_1.config(width=200)
-        self.Frame_1.grid(column=0)
-        self.Frame_1.grid(row=2)
-        self.Frame_1.grid(sticky=W)
-        self.Button_1.config(command=chooseBin)
-        self.Button_1.config(text='Choose .bin file')
-        self.Button_1.grid(column=0)
-        self.Button_1.grid(row=0)
-        self.Button_1.grid(sticky=W)
-        self.Button_2.config(command=flashNow)
-        self.Button_2.config(text='Flash')
-        self.Button_2.grid(column=1)
-        self.Button_2.grid(row=0)
-        self.Button_2.grid(sticky=W)
+# class firmware_tab():
+#     def __init__(self, root, chooseBin, flashNow):
+#         self.INTERFACE_VERSION = '1.3.0'
+#         root.grid_columnconfigure(0, weight=1)
+#         root.grid_rowconfigure(0, weight=1)
+#         root.grid(sticky=(N, S, E, W))
+#         self.firmware_frame = tkinter.ttk.Frame(root)
+#         self.firmware_label = tkinter.ttk.Label(self.firmware_frame)
+#         self.warning_block = tk.Text(self.firmware_frame)
+#         self.Frame_1 = tkinter.ttk.Frame(self.firmware_frame)
+#         self.Button_1 = tkinter.ttk.Button(self.Frame_1)
+#         self.Button_2 = tkinter.ttk.Button(self.Frame_1)
+#         self.Device_info_frame1 = tkinter.ttk.Frame(self.firmware_frame)
+#         self.firmware_frame.config(height=200)
+#         self.firmware_frame.config(width=200)
+#         self.firmware_frame.grid(column=0)
+#         self.firmware_frame.grid(row=0)
+#         self.firmware_frame.grid(sticky=(N, S, E, W))
+#         self.firmware_frame.grid_rowconfigure(0, weight=1)
+#         self.firmware_frame.grid_columnconfigure(0, weight=1)
+#         self.Device_info_frame1.config(height=100)
+#         self.Device_info_frame1.config(width=100)
+#         self.Device_info_frame1.grid(column=0)
+#         self.Device_info_frame1.grid(row=4)
+#         self.Device_info_frame1.grid(sticky=(N, S, E, W))
+#         self.Device_info_frame1.grid_rowconfigure(0, weight=1)
+#         self.Device_info_frame1.grid_columnconfigure(0, weight=1)
+#         self.firmware_label.config(text='Interface Version: ' + self.INTERFACE_VERSION)
+#         self.firmware_label.config(width=10)
+#         self.firmware_label.grid(column=0)
+#         self.firmware_label.grid(columnspan=2)
+#         self.firmware_label.grid(padx=5)
+#         self.firmware_label.grid(pady=5)
+#         self.firmware_label.grid(row=1)
+#         self.firmware_label.grid(sticky=(E, W))
+#         self.warning_block.config(height=11)
+#         self.warning_block.config(width=50)
+#         self.warning_block.config(wrap='word')
+#         self.warning_block.grid(column=0)
+#         self.warning_block.grid(columnspan=2)
+#         self.warning_block.grid(row=0)
+#         self.warning_block.grid(sticky=(N, S, E, W))
+#         self.Frame_1.config(height=200)
+#         self.Frame_1.config(width=200)
+#         self.Frame_1.grid(column=0)
+#         self.Frame_1.grid(row=2)
+#         self.Frame_1.grid(sticky=W)
+#         self.Button_1.config(command=chooseBin)
+#         self.Button_1.config(text='Choose .bin file')
+#         self.Button_1.grid(column=0)
+#         self.Button_1.grid(row=0)
+#         self.Button_1.grid(sticky=W)
+#         self.Button_2.config(command=flashNow)
+#         self.Button_2.config(text='Flash')
+#         self.Button_2.grid(column=1)
+#         self.Button_2.grid(row=0)
+#         self.Button_2.grid(sticky=W)
 
 
 class digital_single():
@@ -802,12 +802,12 @@ class Application():
         self.DC_Motor = tkinter.ttk.Frame(self.Tab_frame)
         self.Servo_Motor = tkinter.ttk.Frame(self.Tab_frame)
         self.I2C_Device = tkinter.ttk.Frame(self.Tab_frame)
-        self.Firmware_Update = tkinter.ttk.Frame(self.Tab_frame)
+        #self.Firmware_Update = tkinter.ttk.Frame(self.Tab_frame)
         self.IO = tkinter.ttk.Frame(self.Tab_frame)
         self.DC_Motor_frame = tkinter.ttk.Frame(self.DC_Motor)
         self.Servo_Motor_frame = tkinter.ttk.Frame(self.Servo_Motor)
         self.I2C_Device_frame = tkinter.ttk.Frame(self.I2C_Device)
-        self.Firmware_tab = tkinter.ttk.Frame(self.Firmware_Update)
+        #self.Firmware_tab = tkinter.ttk.Frame(self.Firmware_Update)
         self.IO_tab = tkinter.ttk.Frame(self.IO)
         self.Main_window.config(height=800)
         self.Main_window.config(width=900)
@@ -865,14 +865,14 @@ class Application():
         self.I2C_Device_frame.grid(sticky=(N, S, E, W))
         self.I2C_Device_frame.grid_rowconfigure(0, weight=1)
         self.I2C_Device_frame.grid_columnconfigure(0, weight=1)
-        self.Firmware_tab.config(height=200)
-        self.Firmware_tab.config(padding=(2, 6, 2, 6))
-        self.Firmware_tab.config(width=200)
-        self.Firmware_tab.grid(column=0)
-        self.Firmware_tab.grid(row=0)
-        self.Firmware_tab.grid(sticky=(N, S, E, W))
-        self.Firmware_tab.grid_rowconfigure(0, weight=1)
-        self.Firmware_tab.grid_columnconfigure(0, weight=1)
+        # self.Firmware_tab.config(height=200)
+        # self.Firmware_tab.config(padding=(2, 6, 2, 6))
+        # self.Firmware_tab.config(width=200)
+        # self.Firmware_tab.grid(column=0)
+        # self.Firmware_tab.grid(row=0)
+        # self.Firmware_tab.grid(sticky=(N, S, E, W))
+        # self.Firmware_tab.grid_rowconfigure(0, weight=1)
+        # self.Firmware_tab.grid_columnconfigure(0, weight=1)
         self.IO_tab.config(height=200)
         self.IO_tab.config(padding=(2, 6, 2, 6))
         self.IO_tab.config(width=200)
@@ -911,10 +911,10 @@ class Application():
         self.Tab_frame.add(self.IO, text='GPIO Control')
         self.IO.grid_columnconfigure(0, weight=1)
         self.IO.grid_rowconfigure(0, weight=1)
-        self.Tab_frame.add(self.Firmware_Update, text='Firmware')
-        self.Firmware_Update.grid_columnconfigure(0, weight=1)
-        self.Firmware_Update.grid_rowconfigure(0, weight=1)
-        self.buildFirmwareFrame()
+        # self.Tab_frame.add(self.Firmware_Update, text='Firmware')
+        # self.Firmware_Update.grid_columnconfigure(0, weight=1)
+        # self.Firmware_Update.grid_rowconfigure(0, weight=1)
+        # self.buildFirmwareFrame()
 
     def send_all_KA(self):
         for module in self.REVModules:
@@ -1266,23 +1266,23 @@ class Application():
                     self.Digital_panels[-1].digital_label_1.config(text=str(i * 2 + j))
 
         self.devce_info = []
-        for moduleNumber in range(0, moduleTot):
-            frame = tkinter.ttk.Frame(self.firmware.Device_info_frame1, borderwidth=5)
-            frame.grid(row=1, column=moduleNumber, sticky=(N, S, E, W))
-            self.devce_info.append(device_info(frame, partial(self.set_address_callback, moduleNumber=moduleNumber)))
-            self.devce_info[-1].addr_entry.delete(0, END)
-            self.devce_info[-1].addr_entry.insert(0, str(self.REVModules[moduleNumber].getModuleAddress()))
-            self.devce_info[-1].device_label.config(text='Module: ' + str(moduleNumber))
+    #     for moduleNumber in range(0, moduleTot):
+    #         frame = tkinter.ttk.Frame(self.firmware.Device_info_frame1, borderwidth=5)
+    #         frame.grid(row=1, column=moduleNumber, sticky=(N, S, E, W))
+    #         self.devce_info.append(device_info(frame, partial(self.set_address_callback, moduleNumber=moduleNumber)))
+    #         self.devce_info[-1].addr_entry.delete(0, END)
+    #         self.devce_info[-1].addr_entry.insert(0, str(self.REVModules[moduleNumber].getModuleAddress()))
+    #         self.devce_info[-1].device_label.config(text='Module: ' + str(moduleNumber))
 
-        self.firmware.firmware_label.config(text='Interface Version: ' + self.firmware.INTERFACE_VERSION + '\nFirmware Version: ' + self.REVModules[0].getVersionString())
-        self.root.after(500, self.every_second)
+    #     self.firmware.firmware_label.config(text='Interface Version: ' + self.firmware.INTERFACE_VERSION + '\nFirmware Version: ' + self.REVModules[0].getVersionString())
+    #     self.root.after(500, self.every_second)
 
-    def buildFirmwareFrame(self):
-        frame = tkinter.ttk.Frame(self.Firmware_tab, borderwidth=5)
-        frame.grid(row=0, column=0, sticky=(N, S, E, W))
-        self.firmware = firmware_tab(frame, partial(self.firmware_bin_select), partial(self.firmware_flash))
-        self.firmware.warning_block.insert(END, 'Firmware update to be performed to the Expansion Hub connected via USB only. \n\t\t\nFirmware update is to be performed with only REV qualified .bin files located in the default installation directory\n\t\t\n\nWARNING: incorrect firmware can brick the device.\n\nModified firmware files are not FTC legal.\n')
-        self.firmware.warning_block.config(state='disabled')
+    # def buildFirmwareFrame(self):
+    #     frame = tkinter.ttk.Frame(self.Firmware_tab, borderwidth=5)
+    #     frame.grid(row=0, column=0, sticky=(N, S, E, W))
+    #     self.firmware = firmware_tab(frame, partial(self.firmware_bin_select), partial(self.firmware_flash))
+    #     self.firmware.warning_block.insert(END, 'Firmware update to be performed to the Expansion Hub connected via USB only. \n\t\t\nFirmware update is to be performed with only REV qualified .bin files located in the default installation directory\n\t\t\n\nWARNING: incorrect firmware can brick the device.\n\nModified firmware files are not FTC legal.\n')
+    #     self.firmware.warning_block.config(state='disabled')
 
     def on_quit_button_callback(self):
         for module in self.REVModules:
@@ -1429,7 +1429,7 @@ def initwindow():
         except:
             pass
 
-    xroot.title('REV Hub Interface - Community Edition')
+    xroot.title('REV Hub Interface - Community Edition - v1.3.1')
     try:
         xroot.iconbitmap('resource\\\\favicon.ico')
     except:
