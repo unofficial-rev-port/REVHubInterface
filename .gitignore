@@ -5,3 +5,4 @@ __pycache__/
 /flatpak/.flatpak-builder/
 /flatpak/build/
 /.idea/
+/flatpak/repo/
