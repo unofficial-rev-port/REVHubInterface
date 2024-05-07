@@ -1,2 +1,2 @@
 #!/usr/bin/sh
-python -m REVHubInterface
+pkexec python3 -m REVHubInterface
