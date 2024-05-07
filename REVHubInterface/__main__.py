@@ -1420,7 +1420,7 @@ def initwindow():
     mp.freeze_support()
 
     xroot = tk.Tk()
-    # Try to load nicer-looking interface on Linux if possible.  On Windows/macOS, the default Tk themes look reasonably-native.
+    #attempt to import the theme, fallack to default if fails
     try:
         import sv_ttk
         print('Loaded Tk theme: Sun Valley')
