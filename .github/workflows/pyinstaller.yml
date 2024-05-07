@@ -12,7 +12,7 @@ jobs:
         with:
           python_ver: '3.12'
           pyinstaller_ver: '==6.6.0'
-          spec: 'REVHubInterface.spec'
+          spec: 'REVHubInterface-mac.spec'
           requirements: 'requirements.txt'
           upload_exe_with_name: 'REVHubInterface Mac'
           options: --onefile, --name "REVHubInterface", --windowed,
