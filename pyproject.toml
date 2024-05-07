@@ -9,3 +9,5 @@ dynamic = ["dependencies"]
 dependencies = { file = ["requirements.txt"] }
 [tool.setuptools]
 packages = ["REVHubInterface"]
+[project.gui-scripts]
+revhubinterface = "REVHubInterface.__main__:initwindow"
