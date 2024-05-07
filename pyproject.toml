@@ -13,3 +13,4 @@ packages = ["REVHubInterface"]
 [project.gui-scripts]
 revhubinterface = "REVHubInterface.__main__:initwindow"
 [tool.setuptools_scm]
+local_scheme = "no-local-version"
