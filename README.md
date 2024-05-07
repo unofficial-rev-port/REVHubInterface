@@ -17,17 +17,22 @@ Alternately, you can download it from PyPi:
 
 To avoid needing to run with root privlages on Ubuntu based platforms (and possibly other distributions) you need to add your user to the `dialout` group:
 
-1. run `sudo usermod -a -G dialout <username>`, where `<username>` is the user you want to be able to run REV Hub Interface
-2. reboot
+1. Run ```sudo usermod `whoami` -a -G dialout```
+2. Reboot
 
-Firmware updates require installing a driver.
+Firmware updates may require installing a driver.
 
-(Firmware has been ommited from the initial releases)
+> [!WARNING]
+> Firmware update functionality has been ommited from the initial release.
 
-~~- Windows: The newest versions of Windows should automatically install the required USB drivers. Alternatively, you can download the latest drivers from the [FTDI VCP website](https://www.ftdichip.com/Drivers/VCP.htm).~~
-~~- Linux: The latest `libftdi` is provided in the Flatpak.  If installing via PyPI instead, you will need to install `libftdi` yourself.  On Ubuntu and derivitaves, this can be installed with `sudo apt install libftdi1`.  The package name may be similar on other distributions.~~
-~~- macOS: (TODO: figure out; `brew install libftdi` doesn't seem to make the error go away. UPDATE: https://github.com/lsgunth/pyft232/pull/22 is merged but not yet published, in the mean time we should manually apply the change in our releases that have the library bundled.  Also, should we bundle `libftdi1.dylib` and its dependencies, or request users install it via Homebrew themselves?~~
+<details>
+  <summary>Driver installation</summary>
 
+- Windows: The newest versions of Windows should automatically install the required USB drivers. Alternatively, you can download the latest drivers from the [FTDI VCP website](https://www.ftdichip.com/Drivers/VCP.htm).
+- Linux: The latest `libftdi` is provided in the Flatpak.  If installing via PyPI instead, you will need to install `libftdi` yourself.  On Ubuntu and derivitaves, this can be installed with `sudo apt install libftdi1`.  The package name may be similar on other distributions.
+- macOS: (TODO: figure out; `brew install libftdi` doesn't seem to make the error go away. UPDATE: https://github.com/lsgunth/pyft232/pull/22 is merged but not yet published, in the mean time we should manually apply the change in our releases that have the library bundled.  Also, should we bundle `libftdi1.dylib` and its dependencies, or request users install it via Homebrew themselves?
+
+</details>
 
 ## Connecting and Controlling an Expansion Hub
 
