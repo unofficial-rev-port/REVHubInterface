@@ -9,8 +9,13 @@ This is a community continuation of the software, updating to newer underlying t
 ## Installing the software
 (note: binaries are not available yet, this is a placeholder)
 Start by downloading the latest version of the software from [the Releases page](https://github.com/unofficial-rev-port/REVHubInterface/releases).  An `.exe` is provided for Windows systems, an AppImage for Linux systems, and a `.DMG` for macOS.
+Alternately, download from Flatpak (TODO) or from PyPi (just needs publishing)
+PyPi installation steps: 
+1. Install Python3
+2. Run `pip install REVHubInterface` to install
+3. Finally, run `python -m REVHubInterface` to run the app
 
-You may also need the appropriate dirver.
+Firmware updates require installing a driver.
 
 - Windows: The newest versions of Windows should automatically install the required USB drivers. Alternatively, you can download the latest drivers from the [FTDI VCP website](https://www.ftdichip.com/Drivers/VCP.htm).
 - Linux: The latest `libftdi.so` is provided in the download, no additional action should be necessary.
@@ -32,3 +37,5 @@ If you want to run the development version from this repository rather than usin
   - macOS: If using Homebrew, it can be install via `brew install python-tk`.
 - On Linux, you will also need the latest `libftdi.so`.  On Ubuntu and derivitaves, this can be installed with `sudo apt install libftdi-dev`.  The package name may be similar on other distributions.
 - The remaining Python dependencies (currently `pyft232` and `pyserial`, subject to future changes) can be installed via `pip3 install -r requirements.txt`
+- Finally, run `python REVHubInterface` while in the base folder of the repo
+- Alternately, you can install onto your system from source using `pip install .` from the base folder of the repo, then using `python -m REVHubInterface` from anywhere
