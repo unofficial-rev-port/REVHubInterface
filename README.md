@@ -1,4 +1,4 @@
-# Rev Hardware Client (Community Edition)
+# REV Hub Interface (Community Edition)
 
 The REV Hub Interface is a piece of software allowing for a direct connection from a REV Expansion Hub and its peripherals to a PC. 
 
@@ -7,19 +7,19 @@ This interface provides a method for teams to prototype with motors, servos, and
 This is a community continuation of the software, updating to newer underlying technologies (e.g. porting from Python 2 to Python 3), adding features, and porting to more platforms (Linux and macOS, in addition to Windows).
 
 ## Installing the software
-(note: binaries are not available yet, this is a placeholder)
-Start by downloading the latest version of the software from [the Releases page](https://github.com/unofficial-rev-port/REVHubInterface/releases).  An `.exe` is provided for Windows systems, an AppImage for Linux systems, and a `.DMG` for macOS.
-Alternately, download from Flatpak (TODO) or from PyPi (just needs publishing)
-PyPi installation steps: 
-1. Install Python3
+
+Start by downloading the latest version of the software from [the Releases page](https://github.com/unofficial-rev-port/REVHubInterface/releases).  An `.exe` is provided for Windows systems, a Flatpak for Linux systems (soon to be published on Flathub), and a `.DMG` for macOS.
+Alternately, you can download it from PyPi:
+
+1. Install Python 3
 2. Run `pip install REVHubInterface` to install
-3. Finally, run `python -m REVHubInterface` to run the app
+3. Finally, run `python3 -m REVHubInterface` to run the app
 
 Firmware updates require installing a driver.
 
 - Windows: The newest versions of Windows should automatically install the required USB drivers. Alternatively, you can download the latest drivers from the [FTDI VCP website](https://www.ftdichip.com/Drivers/VCP.htm).
-- Linux: The latest `libftdi.so` is provided in the download, no additional action should be necessary.
-- macOS: (TODO: figure out; ~~`brew install libftdi` doesn't seem to make the error go away.~~ UPDATE: Will be fixed when https://github.com/lsgunth/pyft232/pull/22 is merged and published, in the mean time we should manually apply the change in our releases that have the library bundled.  Also, should we bundle `libftdi1.dylib` and its dependencies, or request users install it via Homebrew themselves?)
+- Linux: The latest `libftdi` is provided in the Flatpak.  If installing via PyPI instead, you will need to install `libftdi` yourself.  On Ubuntu and derivitaves, this can be installed with `sudo apt install libftdi1`.  The package name may be similar on other distributions.
+- macOS: (TODO: figure out; ~~`brew install libftdi` doesn't seem to make the error go away.~~ UPDATE: https://github.com/lsgunth/pyft232/pull/22 is merged but not yet published, in the mean time we should manually apply the change in our releases that have the library bundled.  Also, should we bundle `libftdi1.dylib` and its dependencies, or request users install it via Homebrew themselves?)
 
 ## Connecting and Controlling an Expansion Hub
 
@@ -35,30 +35,31 @@ If you want to run the development version from this repository rather than usin
   - Windows: This is included in the Python 3 installer, just make sure sure it is selected to be installed at install time.
   - Linux: On Ubuntu and derivatives, this is instaled with `sudo apt install python3-tk`.  The package name will likely be similar on other distributions.
   - macOS: If using Homebrew, it can be install via `brew install python-tk`.
-- On Linux, you will also need the latest `libftdi.so`.  On Ubuntu and derivitaves, this can be installed with `sudo apt install libftdi-dev`.  The package name may be similar on other distributions.
+- On Linux, you will need to install `libftdi`.  On Ubuntu and derivitaves, this can be installed with `sudo apt install libftdi1`.  The package name may be similar on other distributions.
 - The remaining Python dependencies (currently `pyft232` and `pyserial`, subject to future changes) can be installed via `pip3 install -r requirements.txt`
-- Finally, run `python REVHubInterface` while in the base folder of the repo.
-- Alternately, you can install onto your system from source using `pip install .` from the base folder of the repo, then using `python -m REVHubInterface` from anywhere.
-
+- Finally, run `python3 REVHubInterface` while in the base folder of the repo.
+- Alternately, you can install onto your system from source using `pip install .` from the base folder of the repo, then using `python3 -m REVHubInterface` from anywhere.
 
 ## Compiling and publishing binaries
 
 ### PyPi
-PyPi builds *should* be automated by simply updating the trigger-actions branch, however if you want to do it manually...
-Install build (pip install build) and twine (pip install twine)
-1. create a Github release with a tag with the proper version number (if you want a dev release just skip this step, see https://packaging.python.org/en/latest/specifications/version-specifiers/ for proper version numbering)
-2. run `python -m build `
-3. run `twine upload dist/*`
-you may want to setup an api key for easier login, see https://packaging.python.org/en/latest/specifications/pypirc/#using-a-pypi-token
+PyPi builds *should* be automated by simply updating the trigger-actions branch, however, if you want to do it manually:
+
+1. Install build (`pip install build`) and twine (`pip install twine`)
+2. Create a Github release with a tag with the proper version number (if you want a dev release just skip this step; see https://packaging.python.org/en/latest/specifications/version-specifiers/ for proper version numbering)
+3. Run `python3 -m build `
+4. Run `twine upload dist/*`
+
+You may want to setup an API key for easier login, see https://packaging.python.org/en/latest/specifications/pypirc/#using-a-pypi-token
 
 ### Pyinstaller
-Pyinstaller builds should be automated by pushing to the trigger-actions branch and binaries should be available in the actions tab.
-However, if you'd prefer to build from source:
-Install PyInstaller (pip install pyinstaller)
-1. Run `pyinstaller REVHubInterface.spec`
-2. The binary should be available in the "dist" folder
+Pyinstaller builds should be automated by pushing to the trigger-actions branch and binaries should be available in the actions tab.  However, if you'd prefer to build from source:
+
+1. Install PyInstaller (`pip install pyinstaller`)
+2. Run `pyinstaller REVHubInterface.spec`
+3. The binary should be available in the `dist` folder
 
 ### Flatpak
-Install Flatpak and flatpak-builder
+Install Flatpak and flatpak-builder  
 TODO: finish this with Flathub directions
 
