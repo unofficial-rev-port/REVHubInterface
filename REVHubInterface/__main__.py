@@ -1,7 +1,7 @@
-from . import REVcomm
-from .REV2mSensor import REV2mSensor
-from .REVColorSensorV3 import REVColorSensorV3
-from .REVcomm import *
+from REVHubInterface import REVcomm # relative imports don't work here due to pyinstaller issue
+from REVHubInterface.REV2mSensor import REV2mSensor
+from REVHubInterface.REVColorSensorV3 import REVColorSensorV3
+from REVHubInterface.REVcomm import *
 from functools import partial
 from sys import platform
 import tkinter as tk, tkinter.ttk, tkinter.filedialog, tkinter.messagebox, os, subprocess, time, platform
