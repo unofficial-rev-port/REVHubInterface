@@ -1,0 +1,45 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  pyinstaller-build-mac:
+    runs-on: macos-latest
+    steps:
+      - name: Create Executable
+        uses: sayyid5416/pyinstaller@v1
+        with:
+          python_ver: '3.12'
+          pyinstaller_ver: '==6.6.0'
+          spec: 'revhubinterface.spec'
+          requirements: 'requirements.txt'
+          upload_exe_with_name: 'REVHubInterface Mac'
+          options: --onefile, --name "REVHubInterface", --windowed,
+  pyinstaller-build-win:
+    runs-on: windows-latest
+    steps:
+      - name: Create Executable
+        uses: sayyid5416/pyinstaller@v1
+        with:
+          python_ver: '3.12'
+          pyinstaller_ver: '==6.6.0'
+          spec: 'revhubinterface.spec'
+          requirements: 'requirements.txt'
+          upload_exe_with_name: 'REVHubInterface Windows'
+          options: --onefile, --name "REVHubInterface", --windowed,
+  pyinstaller-build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Executable
+        uses: sayyid5416/pyinstaller@v1
+        with:
+          python_ver: '3.12'
+          pyinstaller_ver: '==6.6.0'
+          spec: 'revhubinterface.spec'
+          requirements: 'requirements.txt'
+          upload_exe_with_name: 'REVHubInterface Linux'
+          options: --onefile, --name "REVHubInterface", --windowed,
+      
+        
+    
