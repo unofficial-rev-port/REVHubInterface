@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import *
 import tkinter.ttk
-import threading, multiprocessing as mp, time, math, csv, os
-from . import REVComPorts, REVmessages as REVMsg, REVModule
+import multiprocessing as mp, time
+from . import REVComPorts, REVmessages as REVMsg
 from .REVModule import Module
 import binascii, serial, time, queue
 
@@ -109,7 +109,6 @@ class REVcomm:
                             break
                     if timeout:
                         continue
-                    time.sleep(0.03)
                     if discoveryMode:
                         packet = []
                     if self.REVProcessor.inWaiting() > 0:

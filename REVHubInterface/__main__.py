@@ -4,7 +4,7 @@ from .REVColorSensorV3 import REVColorSensorV3
 from .REVcomm import *
 from functools import partial
 from sys import platform
-import tkinter, tkinter.ttk, tkinter.filedialog, tkinter.messagebox, os, subprocess, time, platform
+import tkinter as tk, tkinter.ttk, tkinter.filedialog, tkinter.messagebox, os, subprocess, time, platform
 
 try:
     import ft232
@@ -1299,8 +1299,7 @@ class Application():
     def every_second(self):
         for func in self.repetitiveFunctions:
             func()
-
-        self.root.after(500, self.every_second)
+        self.root.after(250, self.every_second)
 
     def joinThreads(self):
         self.repetitiveFunctions = []

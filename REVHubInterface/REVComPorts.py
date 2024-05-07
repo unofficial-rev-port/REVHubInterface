@@ -1,4 +1,4 @@
-import serial, time, binascii, os
+import time
 from serial.tools import list_ports
 import re
 defaultComPort = 0
