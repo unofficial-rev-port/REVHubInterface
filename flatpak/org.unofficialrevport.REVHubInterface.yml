@@ -19,7 +19,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/iwalton3/tkinter-standalone
-        commit: ba946536054f9d27a08aafde21aa18330ce05729
+        commit: 88aa05075d90d393a29a484bce676e237d311082
     modules:
       - name: tcl
         buildsystem: autotools
