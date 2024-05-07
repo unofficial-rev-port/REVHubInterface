@@ -8,7 +8,6 @@ finish-args:
   - --share=ipc
   - --socket=x11
   - --device=dri
-  - --socket=pulseaudio
 modules:
   - python3-requirements.json
   - name: tkinter
