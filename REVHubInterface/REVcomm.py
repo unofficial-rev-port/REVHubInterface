@@ -1,8 +1,9 @@
 import tkinter as tk
 from tkinter import *
 import tkinter.ttk
-import threading, multiprocessing as mp, time, math, csv, REVComPorts, REVmessages as REVMsg, os, REVModule
-from REVModule import Module
+import threading, multiprocessing as mp, time, math, csv, os
+from . import REVComPorts, REVmessages as REVMsg, REVModule
+from .REVModule import Module
 import binascii, serial, time, queue
 
 class REVcomm:

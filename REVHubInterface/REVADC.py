@@ -1,4 +1,4 @@
-import REVcomm as REVComm, REVmessages as REVMsg
+from . import REVcomm as REVComm, REVmessages as REVMsg
 ADC_INPUT_CHANNEL_0 = 0
 ADC_INPUT_CHANNEL_1 = 1
 ADC_INPUT_CHANNEL_2 = 2

@@ -1,4 +1,4 @@
-import REVmessages as REVMsg
+from . import REVmessages as REVMsg
 
 
 def setSingleDIOOutput(commObj, destination, dioPin, value):

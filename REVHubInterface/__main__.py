@@ -1,7 +1,7 @@
-import REVcomm
-from REV2mSensor import REV2mSensor
-from REVColorSensorV3 import REVColorSensorV3
-from REVcomm import *
+from . import REVcomm
+from .REV2mSensor import REV2mSensor
+from .REVColorSensorV3 import REVColorSensorV3
+from .REVcomm import *
 from functools import partial
 from sys import platform
 import tkinter, tkinter.ttk, tkinter.filedialog, tkinter.messagebox, os, subprocess, time, platform

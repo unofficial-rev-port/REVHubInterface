@@ -1,5 +1,4 @@
-import REVMotor, REVServo
-import REVADC, REVDIO, REVI2C
+from . import REVMotor, REVServo, REVADC, REVDIO, REVI2C
 
 
 class Module:

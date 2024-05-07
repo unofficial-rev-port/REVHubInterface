@@ -1,6 +1,6 @@
 """REV ControlHub Interface for the REV Color Sensor"""
 import logging
-from REVI2C import I2CDevice
+from .REVI2C import I2CDevice
 
 def getDominantColor(r, g, b):
     """ return dominant color as a string """

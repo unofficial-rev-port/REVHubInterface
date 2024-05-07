@@ -1,4 +1,5 @@
-import REVmessages as REVMsg, time
+from . import REVmessages as REVMsg
+import time
 
 
 def i2cWriteSingleByte(commObj, destination, i2cChannel, slaveAddress, byteToWrite):

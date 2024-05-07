@@ -1,5 +1,4 @@
-import REVModule
-import REVADC, REVmessages as REVMsg
+from . import REVModule, REVADC, REVmessages as REVMsg
 
 Q16 = 65536.0
 MODE_CONSTANT_POWER = 0
