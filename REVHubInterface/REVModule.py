@@ -1,4 +1,6 @@
-import REVmessages as REVMsg, REVMotor, REVServo, REVADC, REVDIO, REVI2C, REVcomm as REVComm
+import REVMotor, REVServo
+import REVADC, REVDIO, REVI2C
+
 
 class Module:
 

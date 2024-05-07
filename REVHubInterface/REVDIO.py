@@ -1,4 +1,5 @@
-import REVcomm as REVComm, REVmessages as REVMsg
+import REVmessages as REVMsg
+
 
 def setSingleDIOOutput(commObj, destination, dioPin, value):
     setSingleDIOOutput = REVMsg.SetSingleDIOOutput()

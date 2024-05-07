@@ -1,4 +1,6 @@
-import REVcomm as REVComm, REVmessages as REVMsg, REVModule, REVADC, time
+import REVModule
+import REVADC, REVmessages as REVMsg
+
 Q16 = 65536.0
 MODE_CONSTANT_POWER = 0
 MODE_CONSTANT_VELOCITY = 1
