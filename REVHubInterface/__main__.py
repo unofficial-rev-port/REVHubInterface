@@ -1429,7 +1429,7 @@ def initwindow():
         except:
             pass
 
-    xroot.title('Rev Hub Interface - Community Edition')
+    xroot.title('REV Hub Interface - Community Edition')
     try:
         xroot.iconbitmap('resource\\\\favicon.ico')
     except:
