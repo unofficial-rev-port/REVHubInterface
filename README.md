@@ -37,5 +37,28 @@ If you want to run the development version from this repository rather than usin
   - macOS: If using Homebrew, it can be install via `brew install python-tk`.
 - On Linux, you will also need the latest `libftdi.so`.  On Ubuntu and derivitaves, this can be installed with `sudo apt install libftdi-dev`.  The package name may be similar on other distributions.
 - The remaining Python dependencies (currently `pyft232` and `pyserial`, subject to future changes) can be installed via `pip3 install -r requirements.txt`
-- Finally, run `python REVHubInterface` while in the base folder of the repo
-- Alternately, you can install onto your system from source using `pip install .` from the base folder of the repo, then using `python -m REVHubInterface` from anywhere
+- Finally, run `python REVHubInterface` while in the base folder of the repo.
+- Alternately, you can install onto your system from source using `pip install .` from the base folder of the repo, then using `python -m REVHubInterface` from anywhere.
+
+
+## Compiling and publishing binaries
+
+### PyPi
+PyPi builds *should* be automated by simply updating the trigger-actions branch, however if you want to do it manually...
+Install build (pip install build) and twine (pip install twine)
+1. create a Github release with a tag with the proper version number (if you want a dev release just skip this step, see https://packaging.python.org/en/latest/specifications/version-specifiers/ for proper version numbering)
+2. run `python -m build `
+3. run `twine upload dist/*`
+you may want to setup an api key for easier login, see https://packaging.python.org/en/latest/specifications/pypirc/#using-a-pypi-token
+
+### Pyinstaller
+Pyinstaller builds should be automated by pushing to the trigger-actions branch and binaries should be available in the actions tab.
+However, if you'd prefer to build from source:
+Install PyInstaller (pip install pyinstaller)
+1. Run `pyinstaller REVHubInterface.spec`
+2. The binary should be available in the "dist" folder
+
+### Flatpak
+Install Flatpak and flatpak-builder
+TODO: finish this with Flathub directions
+
