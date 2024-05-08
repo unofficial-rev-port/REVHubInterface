@@ -15,7 +15,7 @@ Alternately, you can download it from PyPi:
 2. Run `pip install REVHubInterface` to install
 3. Finally, run `python3 -m REVHubInterface` to run the app (it should also be runnable as `revhubinterface`)
 
-To avoid needing to run with root privlages on Ubuntu based platforms (and possibly other distributions) you need to add your user to the `dialout` group:
+To avoid needing to run with root privileges on Ubuntu based platforms (and possibly other distributions) you need to add your user to the `dialout` group:
 
 1. Run ```sudo usermod `whoami` -a -G dialout```
 2. Reboot
@@ -41,7 +41,10 @@ Firmware updates may require installing a driver.
 3. Press Connect.  The software will scan and connect to the Expansion Hub. The various peripheral tabs will populate with controls once connected.
 
 ## Running the development version
-If you want to run the development version from this repository rather than using a pre-packaged version, you will need to install a few additional dependencies:
+
+Early binaries are availiable from the Actions tab, or from the pre-releases section of https://pypi.org/project/REVHubInterface/#history.
+
+If you want to compile yourself rather than using a pre-packaged version, you will need to install a few additional dependencies:
 
 - Python 3
 - Tkinter
@@ -54,6 +57,8 @@ If you want to run the development version from this repository rather than usin
 - Alternately, you can install onto your system from source using `pip install .` from the base folder of the repo, then using `python3 -m REVHubInterface` from anywhere.
 
 ## Compiling and publishing binaries
+<details>
+  <summary>Directions for developers</summary>
 
 ### PyPi
 PyPi builds *should* be automated by simply updating the trigger-actions branch, however, if you want to do it manually:
@@ -75,4 +80,6 @@ Pyinstaller builds should be automated by pushing to the trigger-actions branch 
 ### Flatpak
 Install Flatpak and flatpak-builder  
 TODO: finish this with Flathub directions
+
+</details>
 
