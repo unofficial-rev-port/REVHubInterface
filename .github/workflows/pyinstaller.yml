@@ -14,12 +14,12 @@ jobs:
           pyinstaller_ver: '==6.6.0'
           spec: 'REVHubInterface-mac.spec'
           requirements: 'requirements.txt'
-          upload_exe_with_name: 'REVHubInterface Mac'
+          upload_exe_with_name: 'REVHubInterfaceMacBinary'
           options: --onefile, --name "REVHubInterface", --windowed,
       - name: Make DMG
         uses: QQxiaoming/create-dmg-action@v0.0.2
         with:
-          name: 'REVHubInterface DMG'
+          name: 'REVHubInterfaceMacDMG.dmg'
           srcdir: './dist'
   pyinstaller-build-win:
     runs-on: windows-latest
