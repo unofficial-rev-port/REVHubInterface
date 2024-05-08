@@ -519,7 +519,7 @@ class Application():
         style = tkinter.ttk.Style()
         style.configure("Red.Label",   foreground="red")
         style.configure("Green.Label", foreground="green")
-        style.configure("Quit.TButton", foreground='red', font=('Helvetica', 16, 'bold'))
+        style.configure("Quit.TButton", foreground='red', font=('TkDefaultFont', 16, 'bold'))
         self.Tab_frame = tkinter.ttk.Notebook(self.Main_window)
         self.Connected_Label = tkinter.ttk.Label(self.Main_window)
         try:
