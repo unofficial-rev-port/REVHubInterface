@@ -519,6 +519,7 @@ class Application():
         style = tkinter.ttk.Style()
         style.configure("Red.Label",   foreground="red")
         style.configure("Green.Label", foreground="green")
+        style.configure("Quit.TButton", foreground='red', font=('Helvetica', 16, 'bold'))
         self.Tab_frame = tkinter.ttk.Notebook(self.Main_window)
         self.Connected_Label = tkinter.ttk.Label(self.Main_window)
         try:
@@ -585,7 +586,7 @@ class Application():
         self.Connect_button.config(command=self.on_connect_button_callback, text='CONNECT', width=10)
         self.Connect_button.grid(column=1, row=0, ipadx=0, ipady=0, padx=5, pady=5, sticky=(N, S, E, W))
 
-        self.Quit_button.config(command=self.on_quit_button_callback, text='E-STOP', width=7)
+        self.Quit_button.config(command=self.on_quit_button_callback, text='E-STOP', width=7, style='Quit.TButton')
         self.Quit_button.grid(column=2, row=0, padx=5, pady=5, sticky=(N, S, E, W))
 
         self.Tab_frame.add(self.DC_Motor, text='DC Motors')
