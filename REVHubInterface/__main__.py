@@ -997,7 +997,7 @@ class Application():
     def every_second(self):
         for func in self.repetitiveFunctions:
             func()
-        self.root.after(250, self.every_second)
+        self.root.after(500, self.every_second)
 
     def joinThreads(self):
         self.repetitiveFunctions = []
