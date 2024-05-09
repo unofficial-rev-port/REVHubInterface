@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - trigger-actions
+      - main
 
 jobs:
   pyinstaller-build-mac:

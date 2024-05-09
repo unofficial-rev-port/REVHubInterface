@@ -13,7 +13,7 @@ on:
     types: [published]
   push:
     branches:
-      - trigger-actions
+      - main
 
 permissions:
   contents: read
