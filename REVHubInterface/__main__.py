@@ -521,7 +521,8 @@ class Application():
         self.Tab_frame = tkinter.ttk.Notebook(self.Main_window)
         self.Connected_Label = tkinter.ttk.Label(self.Main_window)
         try:
-            self.Top_Banner_Image = tk.PhotoImage(file='resource/banner.gif')
+            dir_path = os.path.dirname(os.path.realpath(__file__))
+            self.Top_Banner_Image = tk.PhotoImage(file=dir_path + '/resource/banner.gif')
             self.Top_Banner = Label(self.Main_window, image=self.Top_Banner_Image)
         except:
             self.Top_Banner = Label(self.Main_window)
