@@ -1118,12 +1118,15 @@ def initwindow():
     mp.freeze_support()
 
     xroot = tk.Tk()
-    #attempt to import the theme, fallack to default if fails
+
+    # Attempt to import and load the Sun Valley theme
     try:
         import sv_ttk
-        print('Loaded Tk theme: Sun Valley')
         sv_ttk.set_theme("dark")
-    except:
+        print('Loaded Tk theme: Sun Valley')
+    except Exception as e:
+        # Print error, then fall back to default ttk theme
+        print(e)
         pass
 
     xroot.title('REV Hub Interface - Community Edition - v1.3.1')
