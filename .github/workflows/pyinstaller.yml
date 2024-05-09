@@ -15,7 +15,6 @@ jobs:
           spec: 'REVHubInterface-mac.spec'
           requirements: 'requirements.txt'
           upload_exe_with_name: 'REVHubInterface_Mac_Binary'
-          options: --onefile, --name "REVHubInterface", --windowed, --collect-data "sv_ttk",
       - name: Make DMG
         uses: QQxiaoming/create-dmg-action@v0.0.2
         with:
@@ -37,7 +36,6 @@ jobs:
           spec: 'REVHubInterface.spec'
           requirements: 'requirements.txt'
           upload_exe_with_name: 'REVHubInterface_Windows'
-          options: --onefile, --name "REVHubInterface", --windowed, --collect-data "sv_ttk",
   pyinstaller-build-linux:
     runs-on: ubuntu-latest
     steps:
@@ -49,7 +47,6 @@ jobs:
           spec: 'REVHubInterface.spec'
           requirements: 'requirements.txt'
           upload_exe_with_name: 'REVHubInterface_Linux'
-          options: --onefile, --name "REVHubInterface", --windowed, --collect-data "sv_ttk",
       
         
     
