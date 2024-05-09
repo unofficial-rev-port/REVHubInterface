@@ -51,3 +51,8 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
 )
+
+app = BUNDLE(exe,
+         name='REVHubInterface.app',
+         icon=None,
+         bundle_identifier=None)
