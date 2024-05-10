@@ -972,7 +972,7 @@ class Application():
     #         self.devce_info[-1].device_label.config(text='Module: ' + str(moduleNumber))
 
     #     self.firmware.firmware_label.config(text='Interface Version: ' + self.firmware.INTERFACE_VERSION + '\nFirmware Version: ' + self.REVModules[0].getVersionString())
-    #     self.root.after(500, self.every_second)
+        self.root.after(500, self.every_second)
 
     # def buildFirmwareFrame(self):
     #     frame = tkinter.ttk.Frame(self.Firmware_tab, borderwidth=5)
