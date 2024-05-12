@@ -7,8 +7,6 @@ finish-args:
   - --device=all
   - --share=ipc
   - --socket=x11
-  - --device=dri
-  - --talk-name=org.freedesktop.Flatpak 
 modules:
   - python3-requirements.json
   - name: tkinter
@@ -58,11 +56,13 @@ modules:
               url-template: https://prdownloads.sourceforge.net/tcl/tk$version-src.tar.gz
   - name: revhubinterface
     buildsystem: simple
-    builddir: true
     build-commands:
       - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} . --no-build-isolation
-      - install -D REVHubInterface.sh /app/bin/REVHubInterface.sh
+      - install -Dm755 REVHubInterface.sh /app/bin/REVHubInterface.sh
+      - install -Dm644 -t /app/share/applications flatpak/org.unofficialrevport.REVHubInterface.desktop
+      - install -Dm644 -t /app/share/icons/hicolor/scalable/apps org.unofficialrevport.REVHubInterface.svg
     sources:
       - type: git
         url: https://github.com/unofficial-rev-port/REVHubInterface.git
-        branch: main
+        commit: 40ae8c18fe9dd6ab92e8945ca669ff37e087d1bf
+        
