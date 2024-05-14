@@ -2,7 +2,7 @@
 <component type="desktop-application">
     <id>org.unofficialrevport.REVHubInterface</id>
     <launchable type="desktop-id">org.unofficialrevport.REVHubInterface.desktop</launchable>
-    <name>REV Hub Interface</name>
+    <name>REV Hub Interface - Community Edition</name>
     <metadata_license>FSFAP</metadata_license>
     <project_license>BSD-3-Clause</project_license>
     <summary>Directly control a REV Robotics Expansion Hub</summary>
