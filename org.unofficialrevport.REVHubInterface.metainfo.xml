@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2024 Unofficial REV Port Team -->
 <component type="desktop-application">
     <id>org.unofficialrevport.REVHubInterface</id>
     <launchable type="desktop-id">org.unofficialrevport.REVHubInterface.desktop</launchable>
@@ -18,7 +19,15 @@
         <name>The Unofficial REV Port Team</name>
         <url>https://unofficialrevport.org</url>
     </developer>
-    <content_rating type="oars-1.0" />
+    <content_rating type="oars-1.1" />
+    <categories>
+        <category>Development</category>
+        <category>Science</category>
+        <category>Education</category>
+        <category>Robotics</category>
+        <category>Monitor</category>
+        <category>Electronics</category>
+    </categories>
     <screenshots>
         <screenshot type="default">
             <caption>Controlling motors</caption>
@@ -37,5 +46,37 @@
             <image type="source" width="1382" height="1590">https://unofficialrevport.org/revhubinterface/gpiocontrol.png</image>
         </screenshot>
     </screenshots>
+    <releases>
+   <release version="1.3.2" date="2024-06-10">
+  <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.3.2</url>
+    <description>
+      <p>Urgent hotfix release</p>
+        <ul>
+          <li>Fixed critical bug preventing the main update loop from running, preventing all communication</li>
+          <li>Also changed E-STOP button to be red</li>
+        </ul>
+    </description>
+  </release>
+  <release version="1.3.1" date="2024-06-07">
+  <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.3.1</url>
+    <description>
+      <p>First release with binaries</p>
+        <ul>
+          <li>Added Pyinstaller and PyPi publishing</li>
+          <li>Temporarily disabled firmware flashing</li>
+        </ul>
+    </description>
+  </release>
+  <release version="1.3.0" date="2024-06-07">
+  <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.3.0</url>
+    <description>
+      <p>First release!</p>
+        <ul>
+          <li>Ported original to Python 3</li>
+          <li>Improved performance significantly</li>
+        </ul>
+    </description>
+  </release>
+</releases>
 
 </component>
