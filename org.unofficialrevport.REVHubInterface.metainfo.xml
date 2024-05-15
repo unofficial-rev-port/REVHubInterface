@@ -28,6 +28,10 @@
         <category>Monitor</category>
         <category>Electronics</category>
     </categories>
+    <branding>
+        <color type="primary" scheme-preference="light">#f05a28</color>
+        <color type="primary" scheme-preference="dark">#f05a28</color>
+    </branding>
     <screenshots>
         <screenshot type="default">
             <caption>Controlling motors</caption>
