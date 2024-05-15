@@ -14,3 +14,4 @@ packages = ["REVHubInterface"]
 revhubinterface = "REVHubInterface.__main__:initwindow"
 [tool.setuptools_scm]
 local_scheme = "no-local-version"
+version_file = "REVHubInterface/_version.py"

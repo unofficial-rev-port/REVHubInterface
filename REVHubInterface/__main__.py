@@ -1128,7 +1128,15 @@ def initwindow():
         print(e)
         pass
 
-    xroot.title('REV Hub Interface - Community Edition - v1.3.1')
+    # Attempt to load version
+    try:
+        import _version
+        version = _version.version
+    except ModuleNotFoundError:
+        version = "DEV BUILD"
+
+
+    xroot.title(f'REV Hub Interface - Community Edition - v{version}')
     try:
         xroot.iconbitmap('resource\\\\favicon.ico')
     except:
