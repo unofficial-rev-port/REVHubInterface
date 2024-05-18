@@ -61,6 +61,7 @@ modules:
       - install -Dm755 REVHubInterface.sh /app/bin/REVHubInterface.sh
       - install -Dm644 -t /app/share/applications flatpak/org.unofficialrevport.REVHubInterface.desktop
       - install -Dm644 -t /app/share/icons/hicolor/scalable/apps org.unofficialrevport.REVHubInterface.svg
+      - install -Dm644 -t /app/share/metainfo org.unofficialrevport.REVHubInterface.metainfo.xml
     sources:
       - type: git
         url: https://github.com/unofficial-rev-port/REVHubInterface.git
