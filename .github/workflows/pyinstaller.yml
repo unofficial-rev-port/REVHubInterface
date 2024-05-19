@@ -16,7 +16,7 @@ jobs:
           requirements: 'requirements.txt'
           upload_exe_with_name: 'REVHubInterface_Mac_Binary'
       - name: Make DMG
-        uses: unofficial-rev-port/create-dmg-action-fixed-icon@v0.0.3
+        uses: unofficial-rev-port/create-dmg-action-fixed-icon@v0.0.4
         with:
           name: 'REVHubInterface'
           srcdir: './dist/REVHubInterface.app'
