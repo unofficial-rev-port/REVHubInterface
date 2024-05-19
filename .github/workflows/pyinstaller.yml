@@ -16,7 +16,7 @@ jobs:
           requirements: 'requirements.txt'
           upload_exe_with_name: 'REVHubInterface_Mac_Binary'
       - name: Make DMG
-        uses: QQxiaoming/create-dmg-action@v0.0.2
+        uses: unofficial-rev-port/create-dmg-action-fixed-icon@v0.0.3
         with:
           name: 'REVHubInterface_Mac_DMG'
           srcdir: './dist'
