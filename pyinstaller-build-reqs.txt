@@ -1,0 +1,2 @@
+setuptools-scm=8.1.0
+-r requirements.txt

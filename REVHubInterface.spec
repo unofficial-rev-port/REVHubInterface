@@ -1,6 +1,8 @@
 # -*- mode: python ; coding: utf-8 -*-
 from PyInstaller.utils.hooks import collect_all
 from PyInstaller.utils.hooks import collect_data_files
+from setuptools_scm import get_version, _cli
+_cli.main(["--force-write-version-files"])
 
 datas = []
 datas += collect_data_files('sv_ttk')
@@ -58,7 +60,7 @@ app = BUNDLE(
     name='REVHubInterface.app',
     icon='org.unofficialrevport.REVHubInterface.icns',
     bundle_identifier=None,
-    version='DEV', # FIXME: Make dynamic
+    version=get_version(),
     info_plist={
         'NSPrincipalClass': 'NSApplication',
         'NSAppleScriptEnabled': False,

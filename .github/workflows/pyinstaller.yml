@@ -13,7 +13,7 @@ jobs:
           python_ver: '3.12'
           pyinstaller_ver: '==6.6.0'
           spec: 'REVHubInterface.spec'
-          requirements: 'requirements.txt'
+          requirements: 'pyinstaller-build-reqs.txt'
           upload_exe_with_name: 'REVHubInterface_Mac_Binary'
       - name: Make DMG
         uses: unofficial-rev-port/create-dmg-action-fixed-icon@v0.0.4
@@ -34,7 +34,7 @@ jobs:
           python_ver: '3.12'
           pyinstaller_ver: '==6.6.0'
           spec: 'REVHubInterface.spec'
-          requirements: 'requirements.txt'
+          requirements: 'pyinstaller-build-reqs.txt'
           upload_exe_with_name: 'REVHubInterface_Windows'
   pyinstaller-build-linux:
     runs-on: ubuntu-latest
@@ -45,7 +45,7 @@ jobs:
           python_ver: '3.12'
           pyinstaller_ver: '==6.6.0'
           spec: 'REVHubInterface.spec'
-          requirements: 'requirements.txt'
+          requirements: 'pyinstaller-build-reqs.txt'
           upload_exe_with_name: 'REVHubInterface_Linux'
       
         
