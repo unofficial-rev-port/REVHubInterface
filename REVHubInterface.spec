@@ -52,7 +52,17 @@ exe = EXE(
     entitlements_file=None,
 )
 
-app = BUNDLE(exe,
-         name='REVHubInterface.app',
-         icon=None,
-         bundle_identifier=None)
+app = BUNDLE(
+    exe,
+    name='REVHubInterface.app',
+    icon='org.unofficialrevport.REVHubInterface.icns',
+    bundle_identifier=None,
+    version='DEV', # FIXME: Make dynamic
+    info_plist={
+        'NSPrincipalClass': 'NSApplication',
+        'NSAppleScriptEnabled': False,
+        'CFBundleIdentifier': 'org.unofficialrevport.REVHubInterface',
+        'CFBundleDisplayName': 'REV Hub Interface - Community Edition',
+        'NSHumanReadableCopyright': 'Copyright © REV Robotics LLC and the Unoffical REV Port community.\nThis software is released under the BSD 3-Clause license.',
+    },
+)
