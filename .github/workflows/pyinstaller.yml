@@ -18,13 +18,13 @@ jobs:
       - name: Make DMG
         uses: unofficial-rev-port/create-dmg-action-fixed-icon@v0.0.3
         with:
-          name: 'REVHubInterface_Mac_DMG'
+          name: 'REVHubInterface'
           srcdir: './dist/REVHubInterface.app'
       - name: Upload DMG
         uses: actions/upload-artifact@v4
         with:
           name: 'REVHubInterface_Mac_DMG'
-          path: './REVHubInterface_Mac_DMG.dmg'
+          path: './REVHubInterface.dmg'
   pyinstaller-build-win:
     runs-on: windows-latest
     steps:
