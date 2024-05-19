@@ -38,6 +38,7 @@ exe = EXE(
     a.datas,
     [],
     name='REVHubInterface',
+    icon='org.unofficialrevport.REVHubInterface.ico',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
