@@ -19,7 +19,7 @@ jobs:
         uses: unofficial-rev-port/create-dmg-action-fixed-icon@v0.0.3
         with:
           name: 'REVHubInterface_Mac_DMG'
-          srcdir: './dist'
+          srcdir: './dist/REVHubInterface.app'
       - name: Upload DMG
         uses: actions/upload-artifact@v4
         with:
