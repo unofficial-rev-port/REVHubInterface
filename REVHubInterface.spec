@@ -3,7 +3,6 @@ from PyInstaller.utils.hooks import collect_all
 from PyInstaller.utils.hooks import collect_data_files
 from setuptools_scm import get_version, _cli
 _cli.main(["--force-write-version-files"])
-_cli.main(["ls"])
 
 datas = []
 datas += collect_data_files('sv_ttk')
