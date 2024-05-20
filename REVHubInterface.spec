@@ -1,12 +1,8 @@
 # -*- mode: python ; coding: utf-8 -*-
-print("beginning to run spec ")
 from PyInstaller.utils.hooks import collect_all
 from PyInstaller.utils.hooks import collect_data_files
-print("before setuptools import")
 from setuptools_scm import get_version, _cli
-print("after setuptools import")
 _cli.main(["--force-write-version-files"])
-print("after setuptools run")
 
 datas = []
 datas += collect_data_files('sv_ttk')
