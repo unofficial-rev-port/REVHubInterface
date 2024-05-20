@@ -1130,8 +1130,8 @@ def initwindow():
 
     # Attempt to load version
     try:
-        import _version
-        version = _version.version
+        from REVHubInterface._version import __version__
+        version = __version__
     except ModuleNotFoundError:
         version = "DEV BUILD"
 
