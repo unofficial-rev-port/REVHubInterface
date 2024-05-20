@@ -7,3 +7,4 @@ __pycache__/
 /.idea/
 /flatpak/repo/
 /REVHubInterface/_version.py
+/.flatpak-builder/
