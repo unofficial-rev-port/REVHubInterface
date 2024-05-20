@@ -8,3 +8,5 @@ __pycache__/
 /flatpak/repo/
 /REVHubInterface/_version.py
 /.flatpak-builder/
+/repo/
+/REVHubInterface.egg-info/
