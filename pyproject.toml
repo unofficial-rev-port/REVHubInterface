@@ -6,6 +6,28 @@ name = "REVHubInterface"
 dynamic = ["dependencies", "version"] # TODO make dynamic https://pypi.org/project/setuptools-scm/
 description = "GUI program for manual control of REV Robotics Expansion Hub from a PC. Unofficial \"Community Edition\". "
 readme = "README.md"
+license = {file = "LICENSE.txt"}
+keywords = ["REV", "Expansion Hub", "Hub Interface"]
+classifiers = [
+    "Development Status :: 5 - Stable",
+    "Environment :: X11 Applications",
+    "Environment :: Win32 (MS Windows)",
+    "Environment :: MacOS X",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: BSD License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Education",
+    "Topic :: Scientific/Engineering"
+]
+[project.urls]
+Homepage = "https://unofficialrevport.org"
+Repository = "https://github.com/unofficial-rev-port/REVHubInterface.git"
+Issues = "https://github.com/unofficial-rev-port/REVHubInterface/issues"
 [tool.setuptools.dynamic]
 dependencies = { file = ["requirements.txt"] }
 [tool.setuptools]
