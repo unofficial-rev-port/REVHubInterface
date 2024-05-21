@@ -1,4 +1,8 @@
 # REV Hub Interface (Community Edition)
+[![Discord](https://img.shields.io/discord/1237587540014403614?style=flat&logo=discord&color=5865F2)](https://discord.gg/2CJqU6YX2W)
+[![PyPI - Version](https://img.shields.io/pypi/v/REVHubInterface)](https://pypi.org/project/REVHubInterface/)
+[![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/unofficial-rev-port/REVHubInterface/total)](https://github.com/unofficial-rev-port/REVHubInterface/releases)
+
 
 The REV Hub Interface is a piece of software allowing for a direct connection from a REV Expansion Hub and its peripherals to a PC. 
 
