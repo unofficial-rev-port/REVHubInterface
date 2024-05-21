@@ -1,0 +1,19 @@
+on:
+  push:
+    branches: [main]
+  pull_request:
+name: "Flatpak Build"
+jobs:
+  flatpak:
+    name: "Flatpak"
+    runs-on: ubuntu-latest
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:gnome-44
+      options: --privileged
+    steps:
+    - uses: actions/checkout@v4
+    - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+      with:
+        bundle: org.unofficialrevport.REVHubInterface.flatpak
+        manifest-path: flatpak/org.unofficialrevport.REVHubInterface.yml
+        cache-key: flatpak-builder-${{ github.sha }}
