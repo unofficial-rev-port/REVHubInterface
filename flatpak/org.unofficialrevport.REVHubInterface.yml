@@ -64,7 +64,6 @@ modules:
       - install -Dm644 -t /app/share/icons/hicolor/scalable/apps org.unofficialrevport.REVHubInterface.svg
       - install -Dm644 -t /app/share/metainfo org.unofficialrevport.REVHubInterface.metainfo.xml
     sources:
-      - type: git
-        url: https://github.com/unofficial-rev-port/REVHubInterface.git
-        commit: 1f759c2868fee59824def38c2946077fa29557c3
+      - type: dir
+        path: ../
         
