@@ -33,7 +33,7 @@ dependencies = { file = ["requirements.txt"] }
 [tool.setuptools]
 packages = ["REVHubInterface"]
 [tool.setuptools.package-data]
-REVHubInterface = ["org.unofficialrevport.REVHubInterface.png"]
+REVHubInterface = ["org.unofficialrevport.REVHubInterface.png","org.unofficialrevport.REVHubInterface.Devel.png"]
 [project.gui-scripts]
 revhubinterface = "REVHubInterface.__main__:initwindow"
 [tool.setuptools_scm]

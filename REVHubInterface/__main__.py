@@ -1202,8 +1202,9 @@ def initwindow():
         else:
             icon = PhotoImage(file=Path(__file__).with_name('org.unofficialrevport.REVHubInterface.png'))
         xroot.iconphoto(False, icon)
-    except TclError:
+    except TclError as e:
         print("Icon loading failed!")
+        print(e)
 
     app = Application(xroot)
     xroot.protocol('WM_DELETE_WINDOW', app.joinThreads)
