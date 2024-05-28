@@ -32,6 +32,8 @@ Issues = "https://github.com/unofficial-rev-port/REVHubInterface/issues"
 dependencies = { file = ["requirements.txt"] }
 [tool.setuptools]
 packages = ["REVHubInterface"]
+[tool.setuptools.package-data]
+REVHubInterface = ["org.unofficialrevport.REVHubInterface.png"]
 [project.gui-scripts]
 revhubinterface = "REVHubInterface.__main__:initwindow"
 [tool.setuptools_scm]

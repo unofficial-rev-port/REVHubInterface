@@ -1133,13 +1133,22 @@ def initwindow():
         from REVHubInterface._version import __version__
         version = __version__
     except ModuleNotFoundError:
-        version = "DEV BUILD"
+        version = "dev"
 
 
     xroot.title(f'REV Hub Interface - Community Edition - v{version}')
+    try:
+        from pathlib import Path
+        icon = PhotoImage(file=Path(__file__).with_name('org.unofficialrevport.REVHubInterface.png'))
+        xroot.iconphoto(False, icon)
+    except TclError:
+        print("Couldn't find bundled icon, falling back to cwd icon")
+        try:
+            icon = PhotoImage(file='org.unofficialrevport.REVHubInterface.png')
+            xroot.iconphoto(False, icon)
+        except TclError as e:
+            print(e)
 
-    icon = Image("photo", file="org.unofficialrevport.REVHubInterface.png")
-    xroot.tk.call('wm','iconphoto',xroot._w,icon) # based on https://stackoverflow.com/a/52843705
 
     app = Application(xroot)
     xroot.protocol('WM_DELETE_WINDOW', app.joinThreads)
