@@ -38,7 +38,7 @@ class device_info():
 
         vcmd = (
          root.register(self.validate_float), '%d', '%i', '%P', '%s', '%S', '%v', '%V', '%W')
-        
+
         self.addr_entry = tkinter.ttk.Entry(self.device_info_frame, validate='key', validatecommand=vcmd)
         self.addr_entry.config(width=10)
         self.addr_entry.grid(column=3, padx=5, pady=5, row=0, sticky=E)
@@ -120,7 +120,7 @@ class digital_single():
         self.digital_panel.grid(column=0, row=0, sticky=(N, S, E, W))
         self.digital_panel.grid_rowconfigure(0, weight=1)
         self.digital_panel.grid_columnconfigure(0, weight=1)
-        
+
         self.digital_label_1.config(takefocus=true, text='Digital 0:', width=8)
         self.digital_label_1.grid(column=0, row=0, sticky=W, padx=0, pady=0, columnspan=1)
 
@@ -228,7 +228,7 @@ class io_box():
         self.digital_pack.grid(column=0, row=1, sticky=(N, S, E, W))
         self.digital_pack.grid_rowconfigure(0, weight=1)
         self.digital_pack.grid_columnconfigure(0, weight=1)
-        
+
         self.innerFrame_1.config(height=200, width=200)
         self.innerFrame_1.grid(column=0, row=0, sticky=(N, S, E, W))
 
@@ -382,7 +382,7 @@ class servo_motor():
 
         self.Java_label_0.config(text='Java (0,1)')
         self.Java_label_0.grid(column=2, padx=5, pady=5, row=1, sticky=(N, E, W))
-        
+
         self.Speed_slider_0.config(command=slider_0_callback, from_=500, orient='horizontal', to=2500, value=1500)
         self.Speed_slider_0.grid(column=1, padx=5, pady=5, row=0, sticky=(E, W))
 
@@ -394,7 +394,7 @@ class servo_motor():
 
         self.Ms_label_0.config(text='MS (500,2500)')
         self.Ms_label_0.grid(column=3, padx=5, pady=5, row=1, sticky=(N, E, W))
-        
+
         self.Java_button_0.config(command=java_0_callback, text='set', width=3)
         self.Java_button_0.grid(column=2, padx=5, pady=5, row=0, sticky=(N, S, E))
 
@@ -589,7 +589,7 @@ class Application():
         self.Quit_button.grid(column=2, row=0, padx=5, pady=5, sticky=(N, S, E, W))
 
         self.Tab_frame.add(self.DC_Motor, text='DC Motors')
-        
+
         self.DC_Motor.grid_columnconfigure(0, weight=1)
         self.DC_Motor.grid_rowconfigure(0, weight=1)
 
@@ -1137,13 +1137,9 @@ def initwindow():
 
 
     xroot.title(f'REV Hub Interface - Community Edition - v{version}')
-    try:
-        xroot.iconbitmap('resource\\\\favicon.ico')
-    except:
-        try:
-            xroot.iconbitmap('favicon.ico')
-        except:
-            pass
+
+    icon = Image("photo", file="org.unofficialrevport.REVHubInterface.png")
+    xroot.tk.call('wm','iconphoto',xroot._w,icon) # based on https://stackoverflow.com/a/52843705
 
     app = Application(xroot)
     xroot.protocol('WM_DELETE_WINDOW', app.joinThreads)
