@@ -1,39 +1,22 @@
 on:
   push:
-    branches:
-      - main
-    # tags:
-      # - "release"
+    branches: [main]
   pull_request:
-name: Flatpak
+name: "Flatpak Build"
 jobs:
-  flathub:
+  flatpak:
+    name: "Flatpak"
     runs-on: ubuntu-latest
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:gnome-44
+      options: --privileged
     steps:
-      - uses: actions/checkout@v4
-        with:
-          repository: flathub/org.unofficialrevport.REVHubInterface
-      - name: "Get configs"
-        run: |
-          rm -rf * .git .github .gitignore && git clone https://github.com/unofficial-rev-port/REVHubInterface . && 
-          mv flatpak/org.unofficialrevport.REVHubInterface.yml . && 
-          mv flatpak/python3-requirements.json . && 
-          bash rm -r -- \!\(org.unofficialrevport.REVHubInterface.yml\|python3-requirements.json\)
-      - name: "remove old tag"
-        id: removeOldTag
-        uses: mikefarah/yq@master
-        with: 
-          cmd: "yq -i \'del(.modules[2].sources)\' org.unofficialrevport.REVHubInterface.yml"
-      - name: "add new tag"
-        id: addNewTag
-        uses: mikefarah/yq@master
-        with: 
-          cmd: "yq \'.modules[2] += {\"sources\": [{\"type\": \"git\", \"url\": \"https://github.com/unofficial-rev-port/REVHubInterface.git\", \"disable-shallow-clone\": true, \"commit\": \'\"$(git log --format=\\\"%H\\\" -n 1)}]}\" org.unofficialrevport.REVHubInterface.yml"
-      - name: Create pr
-        uses: peter-evans/create-pull-request@v6
-        with:
-          commit-message: "Update manifest && python3 requirements"
-          title: "Automated release update"
-          body: "Automated update of manifest and python3 requirements to flathub"
-          branch: master
-          
+    - uses: actions/checkout@v4
+      with:
+        fetch-tags: true
+        fetch-depth: 0
+    - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+      with:
+        bundle: org.unofficialrevport.REVHubInterface.flatpak
+        manifest-path: flatpak/org.unofficialrevport.REVHubInterface.yml
+        cache-key: flatpak-builder-${{ github.sha }}
