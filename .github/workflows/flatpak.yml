@@ -10,10 +10,6 @@ jobs:
   flathub:
     runs-on: ubuntu-latest
     steps:
-      - name: "Install yq"
-        run: |
-          wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && \
-          chmod +x /usr/bin/yq
       - uses: actions/checkout@v4
         with:
           repository: flathub/org.unofficialrevport.REVHubInterface
@@ -23,9 +19,15 @@ jobs:
           mv flatpak/python3-requirements.json . && \
           rm -r -- !(org.unofficialrevport.REVHubInterface.yml|python3-requirements.json)
       - name: "remove old tag"
-        run: "yq -i \'del(.modules[2].sources)\' org.unofficialrevport.REVHubInterface.yml"
+        id: removeOldTag
+        uses: mikefarah/yq@master
+        with: 
+          cmd: "yq -i \'del(.modules[2].sources)\' org.unofficialrevport.REVHubInterface.yml"
       - name: "add new tag"
-        run: "yq \'.modules[2] += {\"sources\": [{\"type\": \"git\", \"url\": \"https://github.com/unofficial-rev-port/REVHubInterface.git\", \"disable-shallow-clone\": true, \"commit\": \'\"$(git log --format=\\\"%H\\\" -n 1)}]}\" org.unofficialrevport.REVHubInterface.yml"
+        id: addNewTag
+        uses: mikefarah/yq@master
+        with: 
+          cmd: "yq \'.modules[2] += {\"sources\": [{\"type\": \"git\", \"url\": \"https://github.com/unofficial-rev-port/REVHubInterface.git\", \"disable-shallow-clone\": true, \"commit\": \'\"$(git log --format=\\\"%H\\\" -n 1)}]}\" org.unofficialrevport.REVHubInterface.yml"
       - name: Create pr
         uses: peter-evans/create-pull-request@v6
         with:
