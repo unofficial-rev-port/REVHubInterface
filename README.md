@@ -2,6 +2,7 @@
 [![Discord](https://img.shields.io/discord/1237587540014403614?style=flat&logo=discord&color=5865F2)](https://discord.gg/2CJqU6YX2W)
 [![PyPI - Version](https://img.shields.io/pypi/v/REVHubInterface)](https://pypi.org/project/REVHubInterface/)
 [![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/unofficial-rev-port/REVHubInterface/total)](https://github.com/unofficial-rev-port/REVHubInterface/releases)
+![Flathub Downloads](https://img.shields.io/flathub/downloads/org.unofficialrevport.REVHubInterface?label=flathub%20installs)
 
 
 The REV Hub Interface is a piece of software allowing for a direct connection from a REV Expansion Hub and its peripherals to a PC. 
@@ -14,7 +15,9 @@ This software is licensed under the BSD-3-Clause license. The full text is avail
 
 ## Installing the software
 
-Start by downloading the latest version of the software from [the Releases page](https://github.com/unofficial-rev-port/REVHubInterface/releases).  An `.exe` is provided for Windows systems, a Flatpak for Linux systems (soon to be published on Flathub), and a `.DMG` for macOS.
+Start by downloading the latest version of the software from [the Releases page](https://github.com/unofficial-rev-port/REVHubInterface/releases).  
+An `.exe` is provided for Windows systems, a Flatpak and binary for Linux systems, and a `.DMG` for macOS.
+Linux users can also download from Flathub [here](https://flathub.org/apps/org.unofficialrevport.REVHubInterface) or wherever you get your Flatpak apps.
 Alternately, you can download it from PyPi:
 
 1. Install Python 3
