@@ -51,6 +51,16 @@
         </screenshot>
     </screenshots>
     <releases>
+        <release version="1.3.4" date="2024-06-13">
+  <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.3.4</url>
+    <description>
+      <p>Flathub release!</p>
+        <ul>
+          <li>Finally published builds to Flathub!</li>
+          <li>Also added dev app icon</li>
+        </ul>
+    </description>
+  </release>
     <release version="1.3.3" date="2024-05-20">
   <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.3.3</url>
     <description>
