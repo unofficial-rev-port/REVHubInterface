@@ -17,7 +17,7 @@ jobs:
         run: rm -rf * .git .github .gitignore && git clone https://github.com/unofficial-rev-port/REVHubInterface . && \
           mv flatpak/org.unofficialrevport.REVHubInterface.yml . && \
           mv flatpak/python3-requirements.json . && \
-          bash rm -r -- !(org.unofficialrevport.REVHubInterface.yml|python3-requirements.json)
+          rm -r -- \!\(org.unofficialrevport.REVHubInterface.yml\|python3-requirements.json\)
       - name: "remove old tag"
         id: removeOldTag
         uses: mikefarah/yq@master
