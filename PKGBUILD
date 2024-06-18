@@ -1,7 +1,7 @@
 # Maintainer: iris snazzsinclair@gmail.com
 pkgname=revhubinterface-git
 _pkgname=RevHubInterface
-pkgver=1.3.3.r29.gca4c53e
+pkgver=1.3.3.r31.g224fc76
 pkgrel=1
 pkgdesc="Software for controling a REV Expansion Hub on a pc over USB"
 arch=('any')
