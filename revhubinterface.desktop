@@ -2,5 +2,5 @@
 Name=REV Hub Interface - Community Edition
 Exec=/usr/bin/revhubinterface
 Type=Application
-Icon=/usr/share/pixmaps/org.unofficialrevport.REVHubInterface.Devel.png
+Icon=/usr/share/pixmaps/revhubinterface.png
 Categories=Development
