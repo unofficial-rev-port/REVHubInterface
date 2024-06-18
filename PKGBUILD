@@ -26,7 +26,7 @@ build(){
 }
 package(){
     cd $_pkgname
-    install -Dm644 -t "$pkgdir/usr/share/icons/{$pkgname}.png"  org.unofficialrevport.REVHubInterface.png
-    install -Dm644 -t "$pkgdir/usr/share/applications/{$pkgname}.desktop" revhubinterface.desktop
+    install -Dm644 -t "$pkgdir/usr/share/icons/"  org.unofficialrevport.REVHubInterface.png
+    install -Dm644 -t "$pkgdir/usr/share/applications/" revhubinterface.desktop
     install -Dm755 -t "$pkgdir/usr/bin/REVHubInterface" dist/REVHubInterface
 }
