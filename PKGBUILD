@@ -1,7 +1,7 @@
 # Maintainer: iris snazzsinclair@gmail.com
 pkgname=revhubinterface-git
-_name=RevHubInterface
-pkgver=1.3.3dev
+_pkgname=RevHubInterface
+pkgver=1.3.3.r23.gd178a37
 pkgrel=1
 pkgdesc="Software for controling a REV Expansion Hub on a pc over USB"
 arch=('any')
@@ -14,7 +14,7 @@ makedepends=(
 		    'python-pyserial'
             'tk'
 )
-source=("$_pkgname::https://github.com/unofficial-rev-port/REVHubInterface.git")
+source=("$_pkgname::git+https://github.com/unofficial-rev-port/REVHubInterface")
 b2sums=('SKIP')
 #It works till here
 pkgver(){
@@ -27,7 +27,5 @@ build(){
 }
 package(){
     cd $_pkgname
-    mkdir /usr/bin/REVHubInterface
-    mv dist/REVHubInterface /usr/bin/REVHubInterface
+    install -Dm755 -t "$pkgdir/usr/bin/REVHubInterface" dist/REVHubInterface
 }
-
