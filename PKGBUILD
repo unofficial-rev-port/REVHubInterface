@@ -28,5 +28,5 @@ package(){
     cd $_pkgname
     install -Dm644 -t "${pkgdir}/usr/share/pixmaps"  org.unofficialrevport.REVHubInterface.Devel.png
     install -Dm644 -t "${pkgdir}/usr/share/applications" revhubinterface.desktop
-    install -Dm755 -t "${pkgdir}/usr/bin/revhubinterface" dist/REVHubInterface
+    install -Dm755 -t "${pkgdir}/usr/bin" dist/REVHubInterface
 }

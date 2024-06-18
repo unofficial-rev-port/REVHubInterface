@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=REV Hub Interface - Community Edition
-Exec=./usr/bin/revhubinterface/REVHubInterface
+Exec=/usr/bin/REVHubInterface
 Type=Application
 Icon=/usr/share/pixmaps/org.unofficialrevport.REVHubInterface.Devel.png
 Categories=Development
