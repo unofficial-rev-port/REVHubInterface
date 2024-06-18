@@ -1,7 +1,7 @@
 # Maintainer: iris snazzsinclair@gmail.com
 pkgname=revhubinterface-git
 _pkgname=RevHubInterface
-pkgver=1.3.3.r35.gc5358b9
+pkgver=1.3.3.r36.gf2a783a
 pkgrel=1
 pkgdesc="Software for controling a REV Expansion Hub on a pc over USB"
 arch=('any')
@@ -30,5 +30,5 @@ package(){
     install -Dm644 -t "${pkgdir}/usr/share/applications" revhubinterface.desktop
     cd dist
     cp REVHubInterface revhubinterface
-    install -Dm755 -t "${pkgdir}/usr/bin" dist/revhubinterface
+    install -Dm755 -t "${pkgdir}/usr/bin" revhubinterface
 }
