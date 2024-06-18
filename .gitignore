@@ -11,3 +11,6 @@ __pycache__/
 /repo/
 /REVHubInterface.egg-info/
 .part
+pkg
+RevHubInterface
+
