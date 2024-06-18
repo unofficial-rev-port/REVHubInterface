@@ -26,9 +26,7 @@ build(){
 }
 package(){
     cd $_pkgname
-    install -Dm644 -t "${pkgdir}/usr/share/pixmaps"  org.unofficialrevport.REVHubInterface.Devel.png
-    install -Dm644 -t "${pkgdir}/usr/share/applications" revhubinterface.desktop
-    cd dist
-    cp REVHubInterface revhubinterface
-    install -Dm755 -t "${pkgdir}/usr/bin" revhubinterface
+    install -Dm644 -T "${pkgdir}/usr/share/pixmaps/revhubinterface-git.png"  org.unofficialrevport.REVHubInterface.Devel.png
+    install -Dm644 -T "${pkgdir}/usr/share/applications/revhubinterface-git.desktop" revhubinterface.desktop
+    install -Dm755 -T "${pkgdir}/usr/bin/revhubinterface" dist/REVHubInterface
 }
