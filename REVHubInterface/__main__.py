@@ -508,6 +508,54 @@ class dc_motor():
     def update_java(self, event):
         self.java_button_callback()
 
+class motorPID():
+    def __init__(self, root, java_button_callback):
+        self.root = root
+        self.root.grid_columnconfigure(0, weight=1)
+        self.root.grid_rowconfigure(0, weight=1)
+        self.Frame_5 = tkinter.ttk.Frame(root)
+        self.pid_pack = tkinter.ttk.Labelframe(self.Frame_5)
+        self.ZeroButton = tkinter.ttk.Button(self.pid_pack)
+        self.Speed_slider = tkinter.ttk.Scale(self.pid_pack)
+        self.pid_values = tkinter.ttk.Label(self.pid_pack)
+        self.Java_label = tkinter.ttk.Label(self.pid_pack)
+        self.Speed_button = tkinter.ttk.Button(self.pid_pack)
+        self.Java_entry = tkinter.ttk.Entry(self.pid_pack)
+        self.Java_button = tkinter.ttk.Button(self.pid_pack)
+        self.Controls_label = tkinter.ttk.Label(self.pid_pack)
+        self.Java_entry.bind('<Return>', self.update_java)
+        self.java_button_callback = java_button_callback
+
+        self.Frame_5.config(height=200, width=200)
+        self.Frame_5.grid(column=0, row=0, sticky=(N, S, E, W))
+        self.Frame_5.grid_rowconfigure(0, weight=1)
+        self.Frame_5.grid_columnconfigure(0, weight=1)
+
+        self.pid_pack.config(height=200, padding=(5, 5, 5, 5), text='motornum', width=200)
+        self.pid_pack.grid(column=0, padx=5, pady=5, row=0, sticky=(N, S, E, W))
+        self.pid_pack.grid_rowconfigure(0, weight=1)
+        self.pid_pack.grid_rowconfigure(1, weight=1)
+        self.pid_pack.grid_rowconfigure(2, weight=1)
+        self.pid_pack.grid_columnconfigure(0, weight=1)
+        self.pid_pack.grid_columnconfigure(1, weight=1)
+        self.pid_pack.grid_columnconfigure(2, weight=2)
+        self.pid_pack.grid_columnconfigure(3, weight=2)
+
+        self.pid_values.config(justify='left', text='Current (mA): %3d\n\nEncoder: %3d' % (0, 0))
+        self.pid_values.grid(column=0, padx=5, pady=5, row=1, sticky=(E, W))
+
+        self.Java_entry.config(width=10)
+        self.Java_entry.grid(column=3, padx=5, pady=5, row=0, sticky=(N, S, E, W))
+
+        self.Java_button.config(command=java_button_callback, text='set')
+        self.Java_button.grid(column=3, padx=5, pady=5, row=0, sticky=E)
+
+        self.Controls_label.config(text='Controls:')
+        self.Controls_label.grid(column=0, padx=5, pady=5, row=0, sticky=(E, W))
+
+    def update_java(self, event):
+        self.java_button_callback()
+
 
 class Application():
 
@@ -534,11 +582,13 @@ class Application():
         self.Connect_button = tkinter.ttk.Button(self.Main_window)
         self.Quit_button = tkinter.ttk.Button(self.Main_window)
         self.DC_Motor = tkinter.ttk.Frame(self.Tab_frame)
+        self.motorPID = tkinter.ttk.Frame(self.Tab_frame)
         self.Servo_Motor = tkinter.ttk.Frame(self.Tab_frame)
         self.I2C_Device = tkinter.ttk.Frame(self.Tab_frame)
         #self.Firmware_Update = tkinter.ttk.Frame(self.Tab_frame)
         self.IO = tkinter.ttk.Frame(self.Tab_frame)
         self.DC_Motor_frame = tkinter.ttk.Frame(self.DC_Motor)
+        self.pid_frame = tkinter.ttk.Frame(self.motorPID)
         self.Servo_Motor_frame = tkinter.ttk.Frame(self.Servo_Motor)
         self.I2C_Device_frame = tkinter.ttk.Frame(self.I2C_Device)
         #self.Firmware_tab = tkinter.ttk.Frame(self.Firmware_Update)
@@ -564,6 +614,11 @@ class Application():
         self.DC_Motor_frame.grid(column=0, row=0, sticky=(N, S, E, W))
         self.DC_Motor_frame.grid_rowconfigure(0, weight=1)
         self.DC_Motor_frame.grid_columnconfigure(0, minsize=0, weight=1)
+
+        self.pid_frame.config(height=250, width=200)
+        self.pid_frame.grid(column=0, row=0, sticky=(N, S, E, W))
+        self.pid_frame.grid_rowconfigure(0, weight=1)
+        self.pid_frame.grid_columnconfigure(0, minsize=0, weight=1)
 
         self.Servo_Motor_frame.config(height=200, width=200)
         self.Servo_Motor_frame.grid(column=0, row=0, sticky=(N, S, E, W))
@@ -596,6 +651,11 @@ class Application():
 
         self.DC_Motor.grid_columnconfigure(0, weight=1)
         self.DC_Motor.grid_rowconfigure(0, weight=1)
+
+        self.Tab_frame.add(self.motorPID, text='Motor PID')
+
+        self.motorPID.grid_columnconfigure(0, weight=1)
+        self.motorPID.grid_rowconfigure(0, weight=1)
 
         self.Tab_frame.add(self.Servo_Motor, text='Servo Motors')
 
@@ -661,6 +721,15 @@ class Application():
         self.REVModules[moduleNumber].motors[motorNumber].enable()
         self.repetitiveFunctions = [
             (lambda: self.send_all_KA())]
+        self.repetitiveFunctions.append((lambda: self.updateMotorLabels(motorNumber, moduleNumber)))
+        return True
+    
+    def javaTargetEntry(self, motorNumber, moduleNumber, *args):
+        target = int(self.pid_packs[moduleNumber * 4 + motorNumber].Java_entry.get())
+        self.REVModules[moduleNumber].motors[motorNumber].setTargetPosition(target, 20)
+        self.REVModules[moduleNumber].motors[motorNumber].setMode(2, 1)
+        self.REVModules[moduleNumber].motors[motorNumber].setPower(1)
+        self.repetitiveFunctions = [(lambda: self.send_all_KA())]
         self.repetitiveFunctions.append((lambda: self.updateMotorLabels(motorNumber, moduleNumber)))
         return True
 
@@ -946,6 +1015,18 @@ class Application():
                              partial(self.speedMotorEntry, motorNumber=motorNumber, moduleNumber=moduleNumber),
                              partial(self.javaMotorEntry, motorNumber=motorNumber, moduleNumber=moduleNumber)))
                 self.Motor_packs[-1].Motor_pack.config(
+                    text='Module: ' + str(moduleNumber) + ' Motors: ' + str(motorNumber))
+        
+        self.pid_packs = []
+        for moduleNumber in range(0, moduleTot):
+            for motorNumber in range(0, 4):
+                self.pid_frame.grid_rowconfigure(motorNumber, weight=1)
+                self.pid_frame.grid_columnconfigure(moduleNumber, weight=1)
+                frame = tkinter.ttk.Frame(self.pid_frame, borderwidth=5)
+                frame.grid(row=motorNumber, column=moduleNumber, sticky=(N, S, E, W))
+                self.pid_packs.append(
+                    motorPID(frame,partial(self.javaTargetEntry, motorNumber=motorNumber, moduleNumber=moduleNumber)))
+                self.pid_packs[-1].pid_pack.config(
                     text='Module: ' + str(moduleNumber) + ' Motors: ' + str(motorNumber))
 
         self.Servo_packs = []
