@@ -90,7 +90,6 @@ def getMotorTargetVelocity(commObj, destination, motorChannel):
 
 
 def setMotorTargetPosition(commObj, destination, motorChannel, position, atTargetTolerance):
-    print(getMotorTargetPosition(commObj, destination, motorChannel)[0])
     setMotorTargetPositionMsg = REVMsg.SetMotorTargetPosition()
     setMotorTargetPositionMsg.payload.motorChannel = motorChannel
     setMotorTargetPositionMsg.payload.position = position
