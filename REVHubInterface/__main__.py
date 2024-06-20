@@ -728,7 +728,7 @@ class Application():
     def javaTargetEntry(self, motorNumber, moduleNumber, *args):
         target = int(self.pid_packs[moduleNumber * 4 + motorNumber].Java_entry.get())
         self.REVModules[moduleNumber].motors[motorNumber].setTargetPosition(target, 1)
-        self.REVModules[moduleNumber].motors[motorNumber].setMode(1, 1)
+        self.REVModules[moduleNumber].motors[motorNumber].setMode(1, 2)
         self.REVModules[moduleNumber].motors[motorNumber].setPower(float(1 * 32000))
         self.repetitiveFunctions = [(lambda: self.send_all_KA())]
         self.repetitiveFunctions.append((lambda: self.updateMotorLabels(motorNumber, moduleNumber)))
