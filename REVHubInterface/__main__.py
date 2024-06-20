@@ -1021,7 +1021,7 @@ class Application():
                 frame.grid(row=motorNumber, column=moduleNumber, sticky=(N, S, E, W))
                 self.Motor_packs.append(
                     dc_motor(frame, partial(self.speedMotorSlider, motorNumber=motorNumber, moduleNumber=moduleNumber),
-                             partial(self.zeroMotorSpeed, motorNumber=motorNumber, moduleNumber=moduleNumber),
+                             partial(self.speedMotorEntry, motorNumber=motorNumber, moduleNumber=moduleNumber),
                              partial(self.javaMotorEntry, motorNumber=motorNumber, moduleNumber=moduleNumber)))
                 self.Motor_packs[-1].Motor_pack.config(
                     text='Module: ' + str(moduleNumber) + ' Motors: ' + str(motorNumber))
@@ -1144,7 +1144,7 @@ class Application():
     def every_second(self):
         for func in self.repetitiveFunctions:
             func()
-        self.root.after(500, self.every_second)
+        self.root.after(250, self.every_second)
 
     def joinThreads(self):
         self.repetitiveFunctions = []
