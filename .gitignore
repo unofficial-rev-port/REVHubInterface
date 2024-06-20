@@ -13,4 +13,5 @@ __pycache__/
 .part
 pkg
 RevHubInterface
+.venv
 

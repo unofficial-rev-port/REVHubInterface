@@ -61,7 +61,6 @@ def resetMotorEncoder(commObj, destination, motorChannel):
 
 
 def setMotorConstantPower(commObj, destination, motorChannel, powerLevel):
-    raise Exception("tried to set power")
     setMotorConstantPowerMsg = REVMsg.SetMotorConstantPower()
     setMotorConstantPowerMsg.payload.motorChannel = motorChannel
     setMotorConstantPowerMsg.payload.powerLevel = powerLevel
@@ -90,7 +89,6 @@ def getMotorTargetVelocity(commObj, destination, motorChannel):
 
 
 def setMotorTargetPosition(commObj, destination, motorChannel, position, atTargetTolerance):
-    print("set")
     setMotorTargetPositionMsg = REVMsg.SetMotorTargetPosition()
     setMotorTargetPositionMsg.payload.motorChannel = motorChannel
     setMotorTargetPositionMsg.payload.position = position
@@ -223,7 +221,6 @@ class Motor:
         resetMotorEncoder(self.commObj, self.destinationModule, self.channel)
 
     def setPower(self, powerLevel):
-        raise Exception("Attempted to set Power")
         setMotorConstantPower(self.commObj, self.destinationModule, self.channel, powerLevel)
 
     def getPower(self):
@@ -290,7 +287,6 @@ class Motor:
         return getBulkPIDData(self.commObj, self.destinationModule, self.channel)
 
     def init(self):
-        print("setPower")
         self.setMode(0, 1)
         self.setPower(0)
         self.enable()
