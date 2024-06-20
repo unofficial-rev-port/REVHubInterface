@@ -698,7 +698,7 @@ class Application():
         self.repetitiveFunctions.append((lambda: self.updateMotorLabels(motorNumber, moduleNumber)))
         return True
 
-    def speedMotorEntry(self, motorNumber, moduleNumber, *args):
+    def zeroMotorSpeed(self, motorNumber, moduleNumber, *args):
         speed = 0
         self.Motor_packs[moduleNumber * 4 + motorNumber].Speed_slider.set(speed)
         self.Motor_packs[moduleNumber * 4 + motorNumber].Java_entry.delete(0, END)
@@ -729,7 +729,7 @@ class Application():
         return True
     
     def javaTargetEntry(self, motorNumber, moduleNumber, *args):
-        self.speedMotorEntry(motorNumber, moduleNumber)
+        self.zeroMotorSpeed(motorNumber, moduleNumber)
         target = int(self.pid_packs[moduleNumber * 4 + motorNumber].Java_entry.get())
         self.REVModules[moduleNumber].motors[motorNumber].setTargetPosition(target, 1)
         self.REVModules[moduleNumber].motors[motorNumber].setMode(2, 2)
@@ -1021,7 +1021,7 @@ class Application():
                 frame.grid(row=motorNumber, column=moduleNumber, sticky=(N, S, E, W))
                 self.Motor_packs.append(
                     dc_motor(frame, partial(self.speedMotorSlider, motorNumber=motorNumber, moduleNumber=moduleNumber),
-                             partial(self.speedMotorEntry, motorNumber=motorNumber, moduleNumber=moduleNumber),
+                             partial(self.zeroMotorSpeed, motorNumber=motorNumber, moduleNumber=moduleNumber),
                              partial(self.javaMotorEntry, motorNumber=motorNumber, moduleNumber=moduleNumber)))
                 self.Motor_packs[-1].Motor_pack.config(
                     text='Module: ' + str(moduleNumber) + ' Motors: ' + str(motorNumber))
