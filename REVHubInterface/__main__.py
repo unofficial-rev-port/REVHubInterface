@@ -728,7 +728,7 @@ class Application():
         target = int(self.pid_packs[moduleNumber * 4 + motorNumber].Java_entry.get())
         self.REVModules[moduleNumber].motors[motorNumber].setTargetPosition(target, 20)
         self.REVModules[moduleNumber].motors[motorNumber].setMode(2, 1)
-        self.REVModules[moduleNumber].motors[motorNumber].setPower(1)
+        self.REVModules[moduleNumber].motors[motorNumber].setPower(float(32000))
         self.repetitiveFunctions = [(lambda: self.send_all_KA())]
         self.repetitiveFunctions.append((lambda: self.updateMotorLabels(motorNumber, moduleNumber)))
         return True
