@@ -738,6 +738,8 @@ class Application():
         position = self.REVModules[int(moduleNumber)].motors[motorNumber].getPosition()
         self.Motor_packs[moduleNumber * 4 + motorNumber].Motor_values.config(
             text='Current (mA): %3d\n\nEncoder: %3d' % (current, position))
+        self.pid_packs[moduleNumber * 4 + motorNumber].pid_values.config(
+            text='Current (mA): %3d\n\nEncoder: %3d' % (current, position))
 
     def servoSlider(self, pulse, moduleNumber, servoNumber, *args):
         if servoNumber % 2 == 0:

@@ -89,6 +89,7 @@ def getMotorTargetVelocity(commObj, destination, motorChannel):
 
 
 def setMotorTargetPosition(commObj, destination, motorChannel, position, atTargetTolerance):
+    print("set")
     setMotorTargetPositionMsg = REVMsg.SetMotorTargetPosition()
     setMotorTargetPositionMsg.payload.motorChannel = motorChannel
     setMotorTargetPositionMsg.payload.position = position
@@ -221,6 +222,7 @@ class Motor:
         resetMotorEncoder(self.commObj, self.destinationModule, self.channel)
 
     def setPower(self, powerLevel):
+        print("powerSet")
         setMotorConstantPower(self.commObj, self.destinationModule, self.channel, powerLevel)
 
     def getPower(self):
@@ -239,6 +241,7 @@ class Motor:
         return getMotorTargetVelocity(self.commObj, self.destinationModule, self.channel)
 
     def setTargetPosition(self, position, tolerance):
+        print("set")
         setMotorTargetPosition(self.commObj, self.destinationModule, self.channel, position, tolerance)
 
     def getTargetPosition(self):
