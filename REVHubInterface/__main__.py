@@ -652,7 +652,7 @@ class Application():
         self.DC_Motor.grid_columnconfigure(0, weight=1)
         self.DC_Motor.grid_rowconfigure(0, weight=1)
 
-        self.Tab_frame.add(self.motorPID, text='Motor Velocity PID')
+        self.Tab_frame.add(self.motorPID, text='Motor PID')
 
         self.motorPID.grid_columnconfigure(0, weight=1)
         self.motorPID.grid_rowconfigure(0, weight=1)
