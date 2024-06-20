@@ -690,6 +690,7 @@ class Application():
     def speedMotorSlider(self, speed, moduleNumber, motorNumber, *args):
         self.Motor_packs[moduleNumber * 4 + motorNumber].Java_entry.delete(0, END)
         self.Motor_packs[moduleNumber * 4 + motorNumber].Java_entry.insert(0, '%.2f' % (float(speed) / 32000))
+        self.REVModules[moduleNumber].motors[motorNumber].disablePIDs()
         self.REVModules[moduleNumber].motors[motorNumber].setPower(float(speed))
         self.REVModules[moduleNumber].motors[motorNumber].enable()
         self.repetitiveFunctions = [
@@ -702,6 +703,7 @@ class Application():
         self.Motor_packs[moduleNumber * 4 + motorNumber].Speed_slider.set(speed)
         self.Motor_packs[moduleNumber * 4 + motorNumber].Java_entry.delete(0, END)
         self.Motor_packs[moduleNumber * 4 + motorNumber].Java_entry.insert(0, '%.2f' % float(speed / 32000))
+        self.REVModules[moduleNumber].motors[motorNumber].disablePIDs()
         self.REVModules[moduleNumber].motors[motorNumber].setPower(float(speed))
         self.REVModules[moduleNumber].motors[motorNumber].enable()
         self.repetitiveFunctions = [
@@ -718,6 +720,7 @@ class Application():
 
         self.Motor_packs[moduleNumber * 4 + motorNumber].Speed_slider.set(speed * 32000)
         self.REVModules[moduleNumber].motors[motorNumber].setMode(0, 1)
+        self.REVModules[moduleNumber].motors[motorNumber].disablePIDs()
         self.REVModules[moduleNumber].motors[motorNumber].setPower(float(speed * 32000))
         self.REVModules[moduleNumber].motors[motorNumber].enable()
         self.repetitiveFunctions = [
