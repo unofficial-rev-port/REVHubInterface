@@ -61,7 +61,6 @@ def resetMotorEncoder(commObj, destination, motorChannel):
 
 
 def setMotorConstantPower(commObj, destination, motorChannel, powerLevel):
-    print('setpower')
     setMotorConstantPowerMsg = REVMsg.SetMotorConstantPower()
     setMotorConstantPowerMsg.payload.motorChannel = motorChannel
     setMotorConstantPowerMsg.payload.powerLevel = powerLevel
@@ -183,8 +182,6 @@ class Motor:
         self.destinationModule = destinationModule
         self.commObj = commObj
         self.motorCurrent = REVADC.ADCPin(self.commObj, 8 + channel, self.destinationModule)
-        self.targetPositon = None
-        self.targetVeolcity = None
 
     def setDestination(self, destinationModule):
         self.destinationModule = destinationModule
@@ -224,8 +221,7 @@ class Motor:
         resetMotorEncoder(self.commObj, self.destinationModule, self.channel)
 
     def setPower(self, powerLevel):
-        if self.targetPositon and self.targetVelocity is None:
-            setMotorConstantPower(self.commObj, self.destinationModule, self.channel, powerLevel)
+        setMotorConstantPower(self.commObj, self.destinationModule, self.channel, powerLevel)
 
     def getPower(self):
         return getMotorConstantPower(self.commObj, self.destinationModule, self.channel)
@@ -243,7 +239,6 @@ class Motor:
         return getMotorTargetVelocity(self.commObj, self.destinationModule, self.channel)
 
     def setTargetPosition(self, position, tolerance):
-        self.targetPositon = position
         setMotorTargetPosition(self.commObj, self.destinationModule, self.channel, position, tolerance)
 
     def getTargetPosition(self):
@@ -290,9 +285,6 @@ class Motor:
 
     def getBulkPIDData(self):
         return getBulkPIDData(self.commObj, self.destinationModule, self.channel)
-    def disablePIDs(self):
-        self.targetPositon = None
-        self.targetVeolcity = None
 
     def init(self):
         self.setMode(0, 1)
