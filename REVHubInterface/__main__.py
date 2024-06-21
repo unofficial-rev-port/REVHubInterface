@@ -449,7 +449,7 @@ class servo_motor():
 
     def update_ms1(self, event):
         self.ms_1_callback()
-1
+
 
 class dc_motor():
     def __init__(self, root, speed_slider_callback, speed_button_callback, java_button_callback):
@@ -515,6 +515,8 @@ class motorPID():
         self.root.grid_rowconfigure(0, weight=1)
         self.Frame_5 = tkinter.ttk.Frame(root)
         self.pid_pack = tkinter.ttk.Labelframe(self.Frame_5)
+        self.ZeroButton = tkinter.ttk.Button(self.pid_pack)
+        self.Speed_slider = tkinter.ttk.Scale(self.pid_pack)
         self.pid_values = tkinter.ttk.Label(self.pid_pack)
         self.Java_label = tkinter.ttk.Label(self.pid_pack)
         self.Speed_button = tkinter.ttk.Button(self.pid_pack)
@@ -686,10 +688,28 @@ class Application():
                 module.getStatus()
 
     def speedMotorSlider(self, speed, moduleNumber, motorNumber, *args):
-        self.updateMotorPower(motorNumber, moduleNumber, float(speed))
+        self.Motor_packs[moduleNumber * 4 + motorNumber].Java_entry.delete(0, END)
+        self.Motor_packs[moduleNumber * 4 + motorNumber].Java_entry.insert(0, '%.2f' % (float(speed) / 32000))
+        self.REVModules[moduleNumber].motors[motorNumber].disablePIDs()
+        self.REVModules[moduleNumber].motors[motorNumber].setPower(float(speed))
+        self.REVModules[moduleNumber].motors[motorNumber].enable()
+        self.repetitiveFunctions = [
+            (lambda: self.send_all_KA())]
+        self.repetitiveFunctions.append((lambda: self.updateMotorLabels(motorNumber, moduleNumber)))
+        return True
 
     def zeroMotorSpeed(self, motorNumber, moduleNumber, *args):
-        self.updateMotorPower(motorNumber, moduleNumber, 0)
+        speed = 0
+        self.Motor_packs[moduleNumber * 4 + motorNumber].Speed_slider.set(speed)
+        self.Motor_packs[moduleNumber * 4 + motorNumber].Java_entry.delete(0, END)
+        self.Motor_packs[moduleNumber * 4 + motorNumber].Java_entry.insert(0, '%.2f' % float(speed / 32000))
+        self.REVModules[moduleNumber].motors[motorNumber].disablePIDs()
+        self.REVModules[moduleNumber].motors[motorNumber].setPower(float(speed))
+        self.REVModules[moduleNumber].motors[motorNumber].enable()
+        self.repetitiveFunctions = [
+            (lambda: self.send_all_KA())]
+        self.repetitiveFunctions.append((lambda: self.updateMotorLabels(motorNumber, moduleNumber)))
+        return True
 
     def javaMotorEntry(self, motorNumber, moduleNumber, *args):
         try:
@@ -697,17 +717,17 @@ class Application():
         except ValueError:
             print('Invalid speed entered: ' + self.Motor_packs[moduleNumber * 4 + motorNumber].Java_entry.get())
             return False
-        self.updateMotorPower(motorNumber, moduleNumber, speed)
-    
-    def updateMotorPower(self, motorNumber, moduleNumber, speed, *args):
+
         self.Motor_packs[moduleNumber * 4 + motorNumber].Speed_slider.set(speed * 32000)
-        self.Motor_packs[moduleNumber * 4 + motorNumber].Java_entry.delete(0, END)
-        self.Motor_packs[moduleNumber * 4 + motorNumber].Java_entry.insert(0, '%.2f' % (float(speed)))
-        self.REVModules[moduleNumber].motors[motorNumber].setPower(speed)
-        self.repetitiveFunctions = [(lambda: self.send_all_KA())]
+        self.REVModules[moduleNumber].motors[motorNumber].setMode(0, 1)
+        self.REVModules[moduleNumber].motors[motorNumber].disablePIDs()
+        self.REVModules[moduleNumber].motors[motorNumber].setPower(float(speed * 32000))
+        self.REVModules[moduleNumber].motors[motorNumber].enable()
+        self.repetitiveFunctions = [
+            (lambda: self.send_all_KA())]
         self.repetitiveFunctions.append((lambda: self.updateMotorLabels(motorNumber, moduleNumber)))
         return True
-
+    
     def javaTargetEntry(self, motorNumber, moduleNumber, *args):
         self.zeroMotorSpeed(motorNumber, moduleNumber)
         target = int(self.pid_packs[moduleNumber * 4 + motorNumber].Java_entry.get())
@@ -715,6 +735,7 @@ class Application():
         self.REVModules[moduleNumber].motors[motorNumber].setMode(2, 2)
         self.REVModules[moduleNumber].motors[motorNumber].setTargetVelocity(32000)
         self.REVModules[moduleNumber].motors[motorNumber].enable()
+        
         self.repetitiveFunctions = [(lambda: self.send_all_KA())]
         self.repetitiveFunctions.append((lambda: self.updateMotorLabels(motorNumber, moduleNumber)))
         return True
@@ -1000,7 +1021,7 @@ class Application():
                 frame.grid(row=motorNumber, column=moduleNumber, sticky=(N, S, E, W))
                 self.Motor_packs.append(
                     dc_motor(frame, partial(self.speedMotorSlider, motorNumber=motorNumber, moduleNumber=moduleNumber),
-                             partial(self.zeroMotorSpeed, motorNumber=motorNumber, moduleNumber=moduleNumber),
+                             partial(self.speedMotorEntry, motorNumber=motorNumber, moduleNumber=moduleNumber),
                              partial(self.javaMotorEntry, motorNumber=motorNumber, moduleNumber=moduleNumber)))
                 self.Motor_packs[-1].Motor_pack.config(
                     text='Module: ' + str(moduleNumber) + ' Motors: ' + str(motorNumber))
