@@ -1,23 +1,25 @@
 # REV Hub Interface (Community Edition)
-[![Discord](https://img.shields.io/discord/1237587540014403614?style=flat&logo=discord&color=5865F2)](https://discord.gg/2CJqU6YX2W)
-[![PyPI - Version](https://img.shields.io/pypi/v/REVHubInterface)](https://pypi.org/project/REVHubInterface/)
-[![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/unofficial-rev-port/REVHubInterface/total)](https://github.com/unofficial-rev-port/REVHubInterface/releases)
-![Flathub Downloads](https://img.shields.io/flathub/downloads/org.unofficialrevport.REVHubInterface?label=flathub%20installs)
+[![Discord](https://img.shields.io/discord/1237587540014403614?style=flat&logo=discord&color=5865F2&label=Join%20our%20Discord%21)](https://discord.gg/2CJqU6YX2W)
+[![PyPI - Version](https://img.shields.io/pypi/v/REVHubInterface?label=Latest%20Version%20%28PyPI%29)](https://pypi.org/project/REVHubInterface/)
+[![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/unofficial-rev-port/REVHubInterface/total?label=GitHub%20Downloads)](https://github.com/unofficial-rev-port/REVHubInterface/releases)
+![Flathub Downloads](https://img.shields.io/flathub/downloads/org.unofficialrevport.REVHubInterface?label=Flathub%20Downloads)
 
 
 The REV Hub Interface is a piece of software allowing for a direct connection from a REV Expansion Hub and its peripherals to a PC. 
 
 This interface provides a method for teams to prototype with motors, servos, and sensors in a way that is faster and easier than setting up an entire robot control system. It is also a valuable troubleshooting tool that can help isolate the cause of an issue and determine if it is electrical or software related. The REV Hub Firmware can also be updated and recovered through this interface in addition to the Robot Controller Application.
 
-This is a community continuation of the software, updating to newer underlying technologies (e.g. porting from Python 2 to Python 3), adding features, and porting to more platforms (Linux and macOS, in addition to Windows). Though initially created by REV, this version of the software is **not maintained by or affiliated with REV.**  Do **not** contact REV support about any issues you experience with this software, instead you may create a GitHub Issue or ask in https://discord.gg/pU2fesSTqF. 
+This is a community continuation of the software, updating to newer underlying technologies (e.g. porting from Python 2 to Python 3), adding features, and porting to more platforms (Linux and macOS, in addition to Windows).  Though the original version of the software was created by REV Robotics, this version of the software is <ins>not maintained by or affiliated with REV Robotics</ins>.  Please do <ins>**not**</ins> contact REV Robotics official support about any issues you experience with this software; instead, you may create a GitHub Issue or ask in [our Discord server](https://discord.gg/pU2fesSTqF).
 
 This software is licensed under the BSD-3-Clause license. The full text is availiable in the LICENSE.txt file.
 
 ## Installing the software
 
+<a href='https://flathub.org/apps/org.unofficialrevport.REVHubInterface'><img width='240' alt='Download on Flathub' src='https://flathub.org/api/badge?svg&locale=en'/></a>
+
 Start by downloading the latest version of the software from [the Releases page](https://github.com/unofficial-rev-port/REVHubInterface/releases).  
 An `.exe` is provided for Windows systems, a Flatpak and binary for Linux systems, and a `.DMG` for macOS.
-Linux users can also download from Flathub [here](https://flathub.org/apps/org.unofficialrevport.REVHubInterface) or wherever you get your Flatpak apps.
+Linux users can also [download from Flathub here](https://flathub.org/apps/org.unofficialrevport.REVHubInterface).
 Alternately, you can download it from PyPi:
 
 1. Install Python 3
