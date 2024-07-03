@@ -1,9 +1,9 @@
 # Maintainer: iris snazzsinclair@gmail.com
 pkgname=revhubinterface-git
 _pkgname=RevHubInterface
-pkgver=1.3.3.r40.g99afe8e
+pkgver=1.4
 pkgrel=1
-pkgdesc="Software for controling a REV Expansion Hub on a pc over USB"
+pkgdesc="Software for controling a REV Expansion Hub on a PC over USB"
 arch=('any')
 url="https://github.com/unofficial-rev-port/REVHubInterface"
 license=('BSD3')
@@ -14,7 +14,7 @@ makedepends=(
 		    'python-pyserial'
             'tk'
 )
-source=("$_pkgname::git+https://github.com/unofficial-rev-port/REVHubInterface")
+source=("$_pkgname::git+https://github.com/unofficial-rev-port/REVHubInterface.git#tag=v1.4")
 b2sums=('SKIP')
 pkgver(){
     cd $_pkgname

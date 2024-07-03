@@ -51,57 +51,67 @@
         </screenshot>
     </screenshots>
     <releases>
+        <release version="1.4" date="2024-07-02">
+            <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.4</url>
+            <description>
+                <p>Motor Run to Position (PID) support and more!</p>
+                    <ul>
+                        <li>You can now tell a motor to run to a position, equivalent to the FTC SDK's RUN_TO_POSITION mode</li>
+                        <li>The overall update rate of the application is increased for better responsiveness</li>
+                    </ul>
+              </description>
+        </release>
         <release version="1.3.4" date="2024-06-13">
-  <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.3.4</url>
-    <description>
-      <p>Flathub release!</p>
-        <ul>
-          <li>Finally published builds to Flathub!</li>
-          <li>Also added dev app icon</li>
-        </ul>
-    </description>
-  </release>
-    <release version="1.3.3" date="2024-05-20">
-  <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.3.3</url>
-    <description>
-      <p>Add Mac DMGs and app icon</p>
-        <ul>
-          <li>Added DMG files compiled for Mac</li>
-          <li>Added app icon</li>
-          <li>Embedded version number into app</li>
-        </ul>
-    </description>
-  </release>
-   <release version="1.3.2" date="2024-05-10">
-  <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.3.2</url>
-    <description>
-      <p>Urgent hotfix release</p>
-        <ul>
-          <li>Fixed critical bug preventing the main update loop from running, preventing all communication</li>
-          <li>Also changed E-STOP button to be red</li>
-        </ul>
-    </description>
-  </release>
-  <release version="1.3.1" date="2024-05-07">
-  <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.3.1</url>
-    <description>
-      <p>First release with binaries</p>
-        <ul>
-          <li>Added Pyinstaller and PyPi publishing</li>
-          <li>Temporarily disabled firmware flashing</li>
-        </ul>
-    </description>
-  </release>
-  <release version="1.3.0" date="2024-05-07">
-  <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.3.0</url>
-    <description>
-      <p>First release!</p>
-        <ul>
-          <li>Ported original to Python 3</li>
-          <li>Improved performance significantly</li>
-        </ul>
-    </description>
-  </release>
-</releases>
+            <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.3.4</url>
+            <description>
+                <p>Flathub release!</p>
+                    <ul>
+                        <li>Finally published builds to Flathub!</li>
+                        <li>Also added dev app icon</li>
+                    </ul>
+              </description>
+        </release>
+        <release version="1.3.3" date="2024-05-20">
+            <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.3.3</url>
+            <description>
+                <p>Add Mac DMGs and app icon</p>
+                <ul>
+                    <li>Added DMG files compiled for Mac</li>
+                    <li>Added app icon</li>
+                    <li>Embedded version number into app</li>
+                </ul>
+            </description>
+        </release>
+        <release version="1.3.2" date="2024-05-10">
+        <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.3.2</url>
+            <description>
+            <p>Urgent hotfix release</p>
+                <ul>
+                <li>Fixed critical bug preventing the main update loop from running, preventing all communication</li>
+                <li>Also changed E-STOP button to be red</li>
+                </ul>
+            </description>
+        </release>
+        <release version="1.3.1" date="2024-05-07">
+        <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.3.1</url>
+            <description>
+            <p>First release with binaries</p>
+                <ul>
+                <li>Added Pyinstaller and PyPi publishing</li>
+                <li>Temporarily disabled firmware flashing</li>
+                </ul>
+            </description>
+        </release>
+        <release version="1.3.0" date="2024-05-07">
+        <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.3.0</url>
+            <description>
+            <p>First release!</p>
+                <ul>
+                <li>Ported original to Python 3</li>
+                <li>Improved performance significantly</li>
+                </ul>
+            </description>
+        </release>
+    </releases>
 
 </component>
