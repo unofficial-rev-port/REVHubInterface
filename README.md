@@ -34,7 +34,7 @@ To avoid needing to run with root privileges on Ubuntu based platforms (and poss
 Firmware updates may require installing a driver.
 
 > [!WARNING]
-> Firmware update functionality has been ommited from the initial release.
+> Firmware update functionality has been ommited for releases.
 
 <details>
   <summary>Driver installation</summary>
@@ -60,8 +60,10 @@ If you want to compile yourself rather than using a pre-packaged version, you wi
 - Python 3
 - Tkinter
   - Windows: This is included in the Python 3 installer, just make sure sure it is selected to be installed at install time.
-  - Linux: On Ubuntu and derivatives, this is instaled with `sudo apt install python3-tk`.  The package name will likely be similar on other distributions.
+  - Linux: On Ubuntu and derivatives, this is instaled with `sudo apt install python3-tk`. On arch, it can be installed with `sudo pacman -Su tk` The package name will likely be similar on other distributions.
   - macOS: If using Homebrew, it can be install via `brew install python-tk`.
+> [!WARNING]
+> Firmware update functionality has been ommited for releases and thus `libftdi` is not required.
 - On Linux, you will need to install `libftdi`.  On Ubuntu and derivitaves, this can be installed with `sudo apt install libftdi1`.  The package name may be similar on other distributions.
 - The remaining Python dependencies (currently `pyft232` and `pyserial`, subject to future changes) can be installed via `pip3 install -r requirements.txt`
 - Finally, run `python3 REVHubInterface` while in the base folder of the repo.
@@ -84,7 +86,7 @@ You may want to setup an API key for easier login, see https://packaging.python.
 ### Pyinstaller
 Pyinstaller builds should be automated by pushing to the trigger-actions branch and binaries should be available in the actions tab.  However, if you'd prefer to build from source:
 
-1. Install PyInstaller (`pip install pyinstaller`)
+1. Install PyInstaller (`pip install pyinstaller` or it may be present in a distro repository)
 2. Run `pyinstaller REVHubInterface.spec`
 3. The binary should be available in the `dist` folder
 
