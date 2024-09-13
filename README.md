@@ -28,7 +28,7 @@ Alternately, you can download it from PyPi:
 
 To avoid needing to run with root privileges on Ubuntu based platforms (and possibly other distributions) you need to add your user to the `dialout` group:
 
-1. Run ```sudo usermod `whoami` -a -G dialout```
+1. Run ```sudo usermod `whoami` -a -G dialout``` (or on Arch-based systems, ```sudo usermod `whoami` -a -G uucp``` )
 2. Reboot
 
 Firmware updates may require installing a driver.
