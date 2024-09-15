@@ -5,11 +5,11 @@
 ![Flathub Downloads](https://img.shields.io/flathub/downloads/org.unofficialrevport.REVHubInterface?label=Flathub%20Downloads)
 
 
-The Community Edition of REV Hub Interface is a Community run fork of the REV hub interface, with a focus on making it the best tool it can be for First Tech Challenge teams. The Community Edition REV Hub Interface allows you to manually control an Expansion Hub from your computer, which is great for prototyping mechanisms in realistic conditions. Originally, it was simply a port of REV's release to Linux and MacOS, however, it has since grown greatly with a more modern UI, more control features, and a backend overhaul making everything more responsive and accurate.
+This is the Community Edition of REV Hub Interface. REV Hub Interface allows you to manually control an Expansion Hub from your computer with zero code. Originally created by REV, we have now ported it to Linux and MacOS as well as adding a more modern UI, more control features, and a backend overhaul making everything more responsive.
 
-Though the original version of the software was created by REV Robotics, this version of the software is <ins>not maintained by or affiliated with REV Robotics</ins>.  Please do <ins>**not**</ins> contact REV Robotics official support about any issues you experience with this software; instead, you may create a GitHub Issue or ask in [our Discord server](https://discord.gg/pU2fesSTqF).
+Though the original version of the software was created by REV Robotics, this version is <ins>not maintained by or affiliated with REV Robotics</ins>.  Please do <ins>**not**</ins> contact REV Robotics official support about any issues you experience with this software; instead, you may create a GitHub Issue or ask in [our Discord server](https://discord.gg/pU2fesSTqF).
 
-This software is licensed under the BSD-3-Clause license which we inherited from REV. The full text is availiable in the LICENSE.txt file.
+This software is licensed under the BSD-3-Clause license, as is the official REV version that it is based on. The full text is availiable in the LICENSE.txt file.
 
 ## Installing the software
 
