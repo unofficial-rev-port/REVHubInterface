@@ -1,3 +1,4 @@
-pyft232==0.12
+# Unplanned to be used right now.
+# pyft232==0.12 
 pyserial==3.5
 sv-ttk==2.6.0
