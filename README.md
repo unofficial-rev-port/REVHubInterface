@@ -24,7 +24,7 @@ The full text is available in the LICENSE.txt file.
 <a href='https://flathub.org/apps/org.unofficialrevport.REVHubInterface'><img width='240' alt='Download on Flathub' src='https://flathub.org/api/badge?svg&locale=en'/></a>
 
 Start by downloading the latest version of the software from [the Releases page](https://github.com/unofficial-rev-port/REVHubInterface/releases).  
-An `.exe` is provided for Windows systems, a `.DMG` for macOS, and AUR Pkgbuild, Flatpak, and binary for Linux
+An `.exe` is provided for Windows, a `.DMG` for macOS, and AUR Pkgbuild, Flatpak, and binary for Linux
 You can [download from Flathub here](https://flathub.org/apps/org.unofficialrevport.REVHubInterface).
 Alternately, you can download it from PyPi:
 
