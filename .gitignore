@@ -15,3 +15,6 @@ pkg
 RevHubInterface
 .venv
 
+/REVHubInterface/build
+
+/REVHubInterface/dist
