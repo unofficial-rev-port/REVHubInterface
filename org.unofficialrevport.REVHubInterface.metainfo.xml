@@ -54,7 +54,7 @@
         <release version="1.4.1" date="2024-09-17">
             <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.4.1</url>
             <description>
-                <p> Better error handling and improved documentation!>
+                <p> Better error handling and improved documentation! </p>
                     <ul>
                         <li> We have added more detailed error handling in this release</li>
                         <li> This should hopefully help us narrow down some occasionally-reported issues </li>
