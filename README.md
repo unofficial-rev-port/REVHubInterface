@@ -1,4 +1,4 @@
-# REV Hub Interface—Community Edition
+# REV Hub Interface — Community Edition
 [![Discord](https://img.shields.io/discord/1237587540014403614?style=flat&logo=discord&color=5865F2&label=Join%20our%20Discord%21)](https://discord.gg/2CJqU6YX2W)
 [![PyPI - Version](https://img.shields.io/pypi/v/REVHubInterface?label=Latest%20Version%20%28PyPI%29)](https://pypi.org/project/REVHubInterface/)
 [![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/unofficial-rev-port/REVHubInterface/total?label=GitHub%20Downloads)](https://github.com/unofficial-rev-port/REVHubInterface/releases)
