@@ -16,7 +16,11 @@ import REVHubInterface.serialaccess as serialaccess
 #     print(platform.system)
 #     tkinter.messagebox.showerror('Drivers Not Detected', 'Please verify the correct drivers are installed.  Without the correct dirvers, firmware update functionality will be unavailable.\n\n - Windows 10 and above should automatically install the correct drivers when the Expansion Hub is plugged in.\n\n - Windows 7 requires a manual install. Please see this link for the correct driver (FTDI D2xx): https://www.ftdichip.com/Drivers/CDM/CDM21228_Setup.zip\n\n - On macOS, install libftdi via Homebrew: "brew install libftdi"\n\n - On Linux, install libftdi.  On Debian/Ubuntu-based systems, install it via "sudo apt install libftdi1"\n\nException Message:\n' + str(e))
 if not serialaccess.hasAccess(): 
-    tkinter.messagebox.showerror("User does not have serial access", "Your user does not have access to serial. Switch to a user that does, or add your user to a group that has serial access.\nhttps://github.com/unofficial-rev-port/REVHubInterface/blob/main/README.md#access-to-serial-on-linux")
+    if tkinter.messagebox.askyesno("User does not have serial access", "Your user likely does not have access to serial.  Switch to a user that does, or add your user to a group that has serial access.  For more details, see our documentation:\n\nhttps://github.com/unofficial-rev-port/REVHubInterface/blob/main/README.md#access-to-serial-on-linux\n\nWould you like to configure your user to have serial access?"):
+        try:
+            serialaccess.getAccess()
+        except Exception as e:
+            tkinter.messagebox.showerror(message = "Failed to add the user to the group!  Please report this error to the developers:\n\n" + str(e))
 
 def error(windowName: str, error: Exception) -> None:
     errName = str(error)
