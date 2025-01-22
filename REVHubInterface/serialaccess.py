@@ -1,10 +1,12 @@
 import grp
-import os, sys
+import getpass
+import sys
 
 def hasAccess():
     if sys.platform == "linux":
         try:
-            groups = [g.gr_name for g in grp.getgrall() if os.getlogin() in g.gr_mem]
+            user = getpass.getuser()  # Alternative to os.getlogin()
+            groups = [g.gr_name for g in grp.getgrall() if user in g.gr_mem]
             if 'dialout' in groups or 'uucp' in groups: return True
             return False
         except KeyError:
