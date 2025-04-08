@@ -32,9 +32,10 @@ Alternately, you can download it from PyPi:
 2. Run `pip install REVHubInterface` to install
 3. Finally, run `python3 -m REVHubInterface` to run the app (it should also be runnable as `revhubinterface`)
 
+## Access to serial on Linux
 To avoid needing to run REV Hub Interface with root privileges on Linux, add your user to the `dialout` group:
 
-1. Run ```sudo usermod `whoami` -a -G dialout``` (on Arch Linux, you need to use `uucp` instead of `dialout`)
+1. this can be done with  ```sudo usermod $USER -a -G dialout``` (on Arch Linux, you need to use `uucp` instead of `dialout`)
 2. Reboot
 
 
