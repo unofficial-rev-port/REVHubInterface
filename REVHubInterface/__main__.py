@@ -3,6 +3,7 @@ from REVHubInterface import REVcomm  # relative imports don't work here due to p
 from REVHubInterface.REV2mSensor import REV2mSensor
 from REVHubInterface.REVColorSensorV3 import REVColorSensorV3
 from REVHubInterface.REVcomm import *
+from REVHubInterface import licenseCompliance
 from functools import partial
 from sys import platform
 import tkinter as tk, tkinter.ttk, tkinter.filedialog, tkinter.messagebox, os, subprocess, time, platform
@@ -1383,6 +1384,10 @@ def initwindow():
     # See if the error directory exists
     if not os.path.exists(os.path.expanduser("~") + "/.REVHubInterface/"):
         os.mkdir(os.path.expanduser("~") + "/.REVHubInterface/")
+    if not os.path.exists(os.path.expanduser("~") + "/.REVHubInterface/LICENSE.txt"):
+        with open(os.path.exists(os.path.expanduser("~") + "/.REVHubInterface/LICENSE.txt")) as f:
+            for line in licenseCompliance.license.splitlines("\n"):
+                f.write(line)
 
     # Attempt to import and load the Sun Valley theme
     try:
