@@ -93,7 +93,7 @@ class device_info():
 
 # class firmware_tab():
 #     def __init__(self, root, chooseBin, flashNow):
-#         self.INTERFACE_VERSION = '1.4.0'
+#         self.INTERFACE_VERSION = '1.4.2'
 #         root.grid_columnconfigure(0, weight=1)
 #         root.grid_rowconfigure(0, weight=1)
 #         root.grid(sticky=(N, S, E, W))

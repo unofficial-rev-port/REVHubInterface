@@ -1,7 +1,7 @@
 # Maintainer: iris snazzsinclair@gmail.com
 pkgname=revhubinterface-git
 _pkgname=RevHubInterface
-pkgver=1.4
+pkgver=1.4.2
 pkgrel=1
 pkgdesc="Software for controling a REV Expansion Hub on a PC over USB"
 arch=('any')
@@ -15,7 +15,7 @@ makedepends=(
             'tk'
             'python-sv-ttk'
 )
-source=("$_pkgname::git+https://github.com/unofficial-rev-port/REVHubInterface.git#tag=v1.4")
+source=("$_pkgname::git+https://github.com/unofficial-rev-port/REVHubInterface.git#tag=v1.4.2")
 b2sums=('SKIP')
 build(){
     cd $_pkgname

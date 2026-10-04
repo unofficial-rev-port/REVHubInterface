@@ -51,6 +51,16 @@
         </screenshot>
     </screenshots>
     <releases>
+        <release version="1.4.2" date="2026-10-04">
+            <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.4.2</url>
+            <description>
+                <p> Small refinement update </p>
+                    <ul>
+                        <li> Tell user when they do not have the necessary permissions to access the hardware </li>
+                        <li> Updates to support new Flatpak runtime </li>
+                    </ul>
+                </description>
+        </release>
         <release version="1.4.1" date="2024-09-17">
             <url type="details">https://github.com/unofficial-rev-port/REVHubInterface/releases/tag/v1.4.1</url>
             <description>
