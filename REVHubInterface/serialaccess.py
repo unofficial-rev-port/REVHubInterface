@@ -1,14 +1,9 @@
-import grp
-import getpass
-import sys
+import sys, glob, os
 
 def hasAccess():
-    if sys.platform == "linux":
-        try:
-            user = getpass.getuser()  # Alternative to os.getlogin()
-            groups = [g.gr_name for g in grp.getgrall() if user in g.gr_mem]
-            if 'dialout' in groups or 'uucp' in groups: return True
-            return False
-        except KeyError:
-            return False
-    else: return True
+    if sys.platform != "linux":
+        return True
+    ports = glob.glob("/dev/ttyUSB*") + glob.glob("/dev/ttyACM*")
+    if not ports:
+        return True  # nothing to test against; don't block the user
+    return any(os.access(p, os.R_OK | os.W_OK) for p in ports)
