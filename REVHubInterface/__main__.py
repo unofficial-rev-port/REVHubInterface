@@ -1382,12 +1382,17 @@ def initwindow():
     xroot = tk.Tk()
 
     # See if the error directory exists
-    if not os.path.exists(os.path.expanduser("~") + "/.REVHubInterface/"):
-        os.mkdir(os.path.expanduser("~") + "/.REVHubInterface/")
-    if not os.path.exists(os.path.expanduser("~") + "/.REVHubInterface/LICENSE.txt"):
-        with open(os.path.exists(os.path.expanduser("~") + "/.REVHubInterface/LICENSE.txt")) as f:
-            for line in licenseCompliance.license.splitlines("\n"):
-                f.write(line)
+    try:
+        if not os.path.exists(os.path.expanduser("~") + "/.REVHubInterface/"):
+            os.mkdir(os.path.expanduser("~") + "/.REVHubInterface/")
+        if not os.path.exists(os.path.expanduser("~") + "/.REVHubInterface/LICENSE.txt"):
+            with open(os.path.exists(os.path.expanduser("~") + "/.REVHubInterface/LICENSE.txt")) as f:
+                for line in licenseCompliance.license.splitlines("\n"):
+                    f.write(line)
+    except Exception as e:
+        # Print error, then continue
+        print(e)
+        pass
 
     # Attempt to import and load the Sun Valley theme
     try:
