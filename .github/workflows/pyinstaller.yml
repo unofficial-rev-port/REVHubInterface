@@ -19,12 +19,12 @@ jobs:
           clean_checkout: false
           upload_exe_with_name: 'REVHubInterface_Mac_Binary'
       - name: Make DMG
-        uses: unofficial-rev-port/create-dmg-action-fixed-icon@v0.1.0
+        uses: unofficial-rev-port/create-dmg-action-fixed-icon@v0.1.3
         with:
           name: 'REVHubInterface'
           srcdir: './dist/REVHubInterface.app'
       - name: Upload DMG
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: 'REVHubInterface_Mac_DMG'
           path: './REVHubInterface.dmg'
@@ -53,7 +53,7 @@ jobs:
           clean_checkout: false
           upload_exe_with_name: 'REVHubInterface_Linux'
       - name: Upload version file for testing
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: 'version'
           path: './REVHubInterface/_version.py'
