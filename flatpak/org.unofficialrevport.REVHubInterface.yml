@@ -1,6 +1,6 @@
 id: org.unofficialrevport.REVHubInterface
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: REVHubInterface.sh
 finish-args:
@@ -12,48 +12,40 @@ modules:
   - name: tkinter
     buildsystem: simple
     build-commands:
-      - pip3 install --prefix=${FLATPAK_DEST} .
+      - pip3 install --prefix=${FLATPAK_DEST} --no-build-isolation .
     sources:
       - type: git
         url: https://github.com/iwalton3/tkinter-standalone
-        commit: 88aa05075d90d393a29a484bce676e237d311082
+        commit: 8e78e38ef0cceb44a3a0062e1c314a4ff3f981db
     modules:
-      - name: tcl
-        buildsystem: autotools
+      - name: tcl9.0
         subdir: unix
+        config-opts:
+          - --disable-zipfs
         post-install:
-          - chmod 755 /app/lib/libtcl*.so
-        cleanup:
-          - /bin
-          - /lib/pkgconfig
-          - /man
+          - chmod +w ${FLATPAK_DEST}/lib/libtcl9.0.so
         sources:
           - type: archive
-            url: https://prdownloads.sourceforge.net/tcl/tcl8.6.14-src.tar.gz
-            sha256: 5880225babf7954c58d4fb0f5cf6279104ce1cd6aa9b71e9a6322540e1c4de66
+            url: https://prdownloads.sourceforge.net/tcl/tcl9.0.2-src.tar.gz
+            sha256: e074c6a8d9ba2cddf914ba97b6677a552d7a52a3ca102924389a05ccb249b520
             x-checker-data:
-              type: anitya
-              project-id: 4941
-              stable-only: true
-              url-template: https://prdownloads.sourceforge.net/tcl/tcl$version-src.tar.gz
-      - name: tk
-        buildsystem: autotools
+              type: html
+              url: https://sourceforge.net/projects/tcl/rss
+              pattern: <link>(https://sourceforge.net/.+/tcl(8\\.6\\.[\\d\\.]*\\d)-src.tar.gz)/download
+      - name: tk9.0
         subdir: unix
+        config-opts:
+          - --disable-zipfs
         post-install:
-          - chmod 755 /app/lib/libtk*.so
-        cleanup:
-          - /bin
-          - /lib/pkgconfig
-          - /man
+          - chmod +w ${FLATPAK_DEST}/lib/libtcl9tk9.0.so
         sources:
           - type: archive
-            url: https://prdownloads.sourceforge.net/tcl/tk8.6.14-src.tar.gz
-            sha256: 8ffdb720f47a6ca6107eac2dd877e30b0ef7fac14f3a84ebbd0b3612cee41a94
+            url: https://prdownloads.sourceforge.net/tcl/tk9.0.2-src.tar.gz
+            sha256: 76fb852b2f167592fe8b41aa6549ce4e486dbf3b259a269646600e3894517c76
             x-checker-data:
-              type: anitya
-              project-id: 11426
-              stable-only: true
-              url-template: https://prdownloads.sourceforge.net/tcl/tk$version-src.tar.gz
+              type: html
+              url: https://sourceforge.net/projects/tcl/rss
+              pattern: <link>(https://sourceforge.net/.+/tk(8\\.6\\.[\\d\\.]*\\d)-src.tar.gz)/download
   - name: revhubinterface
     buildsystem: simple
     build-commands:
@@ -66,4 +58,3 @@ modules:
     sources:
       - type: dir
         path: ../
-        
